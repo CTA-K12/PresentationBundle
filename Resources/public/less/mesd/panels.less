@@ -1,0 +1,116 @@
+//
+// Panels
+// --------------------------------------------------
+
+
+.panel {
+    padding:              @minPadding;
+    .border-radius(@baseBorderRadius);
+    margin-bottom:         @minMargin;
+    .box-sizing(border-box);
+        ul.breadcrumb {
+        margin: 0;
+        list-style: none;
+        > li {
+            display: inline-block;
+            .ie7-inline-block();
+            text-shadow: 0 1px 0 @white;
+            > .divider {
+                padding: 0 5px;
+                color: #ccc;
+            }
+        }
+        > .active {
+            color: @grayLight;
+        }
+    }
+    &.panel-white {
+        background-color:          @white;
+        box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.1);
+    }
+    &.panel-splash {
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        padding:       0;
+        background-color: @white;
+        border: 1px solid #999;
+        border: 1px solid rgba(0,0,0,.3);
+        *border: 1px solid #999; /* IE6-7 */
+        .border-radius(6px);
+        .box-shadow(0 3px 7px rgba(0,0,0,0.3));
+        .background-clip(padding-box);
+        &.panel-splash-small {
+            width: 360px;
+            margin-left: -180px;
+            .panel-header,
+            .panel-body,
+            .panel-footer {
+                padding:   10px;
+                .box-sizing(border-box);
+            }
+        }
+        &.panel-splash-medium {
+            width: 480px;
+            margin-left: -240px;
+            .panel-header,
+            .panel-body,
+            .panel-footer {
+                padding:   20px;
+                .box-sizing(border-box);
+            }
+        }
+        &.panel-splash-large {
+            width: 640px;
+            margin-left: -320px;
+            .panel-header,
+            .panel-body,
+            .panel-footer {
+                padding:   20px;
+                .box-sizing(border-box);
+            }
+        }
+    }
+    &.panel-header {
+        padding: 9px 15px;
+        border-bottom: 1px solid #eee;
+        h1 {
+            border-bottom: none;
+        }
+    }
+    &.panel-body {
+        position: relative;
+        overflow-y: auto;
+        max-height: 400px;
+        padding: 15px;
+    }
+    &.panel-footer {
+        padding: 14px 15px 15px;
+        margin-bottom: 0;
+        text-align: right; // right align buttons
+        background-color: #f5f5f5;
+        border-top: 1px solid #ddd;
+        .border-radius(0 0 6px 6px);
+        .box-shadow(inset 0 1px 0 @white);
+        .clearfix(); // clear it in case folks use .pull-* classes on buttons
+    }
+}
+
+@media (max-width: 979px) {
+    .panel {
+        &.panel-splash {
+            position: relative;
+            left: 0;
+            top: 0;
+            margin: 0 auto;
+            .border-radius(0);
+        }
+    }
+}
+@media (max-width: 767px) {
+    .panel {
+        &.panel-splash {
+            width: 100%;
+        }
+    }
+}

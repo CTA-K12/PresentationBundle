@@ -1,0 +1,7 @@
+parameters:
+#    presentation.example.class: MESD\Presentation\PresentationBundle\Example
+
+services:
+#    presentation.example:
+#        class: %presentation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

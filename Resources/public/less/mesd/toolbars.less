@@ -1,0 +1,25 @@
+//
+// Toolbars
+// --------------------------------------------------
+
+
+.toolbar {
+    margin:      10px;
+        ul.breadcrumb {
+        padding: 8px 15px;
+        list-style: none;
+        .border-radius(@baseBorderRadius);
+        > li {
+            display: inline-block;
+            .ie7-inline-block();
+            text-shadow: 0 1px 0 @white;
+            > .divider {
+                padding: 0 5px;
+                color: #ccc;
+            }
+        }
+        > .active {
+            color: @grayLight;
+        }
+    }
+}

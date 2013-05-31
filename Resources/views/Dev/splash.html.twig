@@ -1,0 +1,24 @@
+{% extends 'MESDPresentationPresentationBundle:Dev:index.html.twig' %}
+
+{% block container %}
+
+    <div class="panel panel-splash panel-splash-medium">
+        <form action="" method="POST" class="no-margin">
+            <div class="panel-header">
+                <h1>Splash Screen</h1>
+            </div>
+            <div class="panel-body">
+                <label for="username">Email</label>
+                <input type="text" id="username" name="_username" placeholder="Email" value="">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="_password" placeholder="Password">
+            </div>
+            <div class="panel-footer">
+                <a href="#" class="btn btn-link">Register</a>
+                <a id="reset-button" href="#" class="btn btn-link">Forgot Password?</a>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock container %}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+
+    <head>
+        {% block head %}
+
+            {% block meta %}
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
+                <meta name="description" content="ORCase - a contract and case management system for community agencies.">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            {% endblock meta %}
+
+            {% block title %}
+                <title>{{ app_abbrev }}</title>
+            {% endblock title %}
+
+            {% block less %}
+                <script>var less = {env: "development"};</script>
+                <link rel="stylesheet/less" type="text/css" href="{{ asset('dev/less/theme.less') }}">
+                <link rel="stylesheet/less" type="text/css" href="{{ asset('dev/less/bootstrap/responsive.less') }}">
+            {% endblock less %}
+
+            {% block stylesheets %}
+                <link rel="stylesheet" href="{{ asset('dev/css/orchestra-0.1.css') }}" />
+            {% endblock stylesheets %}
+
+            {% block favicon %}
+                <link rel="shortcut icon" href="{{ asset('dev/ico/favicon.ico') }}" />
+            {% endblock favicon %}
+
+            {% block shiv %}
+                <script src="{{ asset('dev/js/modernizr/modernizr-2.6.2.js') }}"></script>
+            {% endblock shiv %}
+
+        {% endblock head %}
+    </head>
+
+    {% block body %}
+        <body>
+            {% block wrapper %}
+
+                <header id="header">
+                    {% block navbar %}
+                        <nav id="nav" class="navbar">
+                            <div class="navbar-fixed-top">
+                                <div class="navbar-inner">
+                                    {% block navbarContent %}
+                                    {% endblock navbarContent %}
+                                </div><!-- END navbar-inner -->
+                            </div><!-- END navbar-fixed-top -->
+                        </nav><!-- END nav, navbar -->
+                    {% endblock navbar %}
+                </header>
+
+                <div id="container" class="wrapper-outer">
+                    <div class="wrapper-inner">
+                        {% block container %}
+                        {% endblock container %}
+                    </div>
+                </div><!-- END container -->
+
+                {% block footer %}
+                    <footer id="footer" class="navbar">
+                        <div class="navbar-fixed-bottom">
+                            <div class="navbar-inner">
+                                <div class="row-fluid">
+                                    {% block footerContent %}
+                                    <div class="footer-left span4">
+                                    <p>
+                                        <small>&copy; {{ "now"|date("Y") }} <span title="{{ org_name }}">{{ org_abbrev }}</span><br />{{ org_address }}</small>
+                                    </p>
+                                </div>
+                                <div class="footer-center span4">
+                                    <p>
+                                        <small>version: {{ version }}</small>
+                                    </p>
+                                </div>
+                                <div class="footer-right span4">
+                                    <p>
+                                        <small>more stuff</small>
+                                    </p>
+                                </div>
+                                    {% endblock footerContent %}
+                                </div>
+                            </div><!-- END navbar-inner -->
+                        </div><!-- END navbar-fixed-bottom -->
+                    </footer><!-- END footer, navbar -->
+                {% endblock footer %}
+
+            {% block javascripts %}
+                <script src="{{ asset('dev/js/jquery/jquery-1.9.1.js') }}"></script>
+                <script src="{{ asset('dev/js/jquery/jquery-ui-1.10.2.js') }}"></script>
+                <script src="{{ asset('dev/js/bootstrap/bootstrap-2.2.2.js') }}"></script>
+                <script src="{{ asset('dev/js/cookie/jquery.cookie.js') }}"></script>
+                <script src="{{ asset('dev/js/introjs/intro-0.3.0.js') }}"></script>
+                <script src="{{ asset('dev/js/orchestra-0.1.js') }}"></script>
+                <script src="{{ asset('dev/js/bootstrap/less.js') }}"></script>
+            {% endblock javascripts %}
+
+            {% endblock wrapper %}
+        </body>
+    {% endblock body %}
+
+</html>

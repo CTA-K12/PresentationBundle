@@ -1,0 +1,32 @@
+MESDPresentationPresentationBundle_index:
+    pattern: /ui
+    defaults: { _controller: MESDPresentationPresentationBundle:Default:index }
+
+MESDPresentationPresentationBundle_splash:
+    pattern: /ui/splash
+    defaults: { _controller: MESDPresentationPresentationBundle:Default:splash }
+
+MESDPresentationPresentationBundle_demo:
+    pattern: /ui/demo
+    defaults: { _controller: MESDPresentationPresentationBundle:Default:demo }
+
+# DEVELOPMENT
+MESDPresentationPresentationBundle_dev_index:
+    pattern: /ui/dev
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:index }
+
+MESDPresentationPresentationBundle_dev_demo:
+    pattern: /ui/dev/demo
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:demo }
+
+MESDPresentationPresentationBundle_dev_flex:
+    pattern: /ui/dev/flex
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:flex }
+
+MESDPresentationPresentationBundle_dev_splash:
+    pattern: /ui/dev/splash
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:splash }
+
+MESDPresentationPresentationBundle_dev_collapse:
+    pattern: /ui/dev/collapse
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:collapse }

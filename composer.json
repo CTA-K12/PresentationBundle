@@ -1,0 +1,25 @@
+{
+    "name": "MESD/Presentation/PresentationBundle",
+    "type": "symfony-bundle",
+    "description": "MESD Presentation Bundle for Symfony2",
+    "keywords": ["mesd", "presentation", "bundle"],
+    "homepage": "http://github.com/MESD/PresentationBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Curtis G Hanson",
+            "email": "chanson@mesd.k12.or.us"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "MESD\\Presentation\\PresentationBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "MESD/Presentation/PresentationBundle"
+}

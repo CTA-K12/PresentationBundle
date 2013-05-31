@@ -1,0 +1,45 @@
+{% extends 'MESDPresentationPresentationBundle:Dev:index.html.twig' %}
+
+    {% block sidebar %}
+        {# type: inline, dropdown, or _blank_ #}
+        {{ render(controller('MESDPresentationPresentationBundle:Dev:sidebar',
+            {
+                'options': { 'type': 'dropdown' },
+                'menu': {
+                    'Fuid Grid': {
+                        'path': '#fluidGridSystem',
+                        'title': 'fluid grid',
+                        'icon': 'icon-desktop'
+                    },
+                    'Responsive': {
+                        'path': '#responsive',
+                        'title': 'responsive',
+                        'icon': 'icon-mobile-phone'
+                    },
+                    'Typography': {
+                        'path': '#typography',
+                        'title': 'typography',
+                        'icon': 'icon-font'
+                    },
+                    'Table': {
+                        'path': '#tables',
+                        'title': 'table',
+                        'icon': 'icon-table'
+                    }
+                }
+            }
+        )) }}
+    {% endblock sidebar %}
+
+
+    {% block breadcrumb %}
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="divider">&rarr;</li>
+            <li class="active">Here</li>
+        </ul>
+    {% endblock breadcrumb %}
+
+    {% block main %}
+    <h1>This is the main screen</h1>
+    {% endblock main %}

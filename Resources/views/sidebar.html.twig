@@ -1,0 +1,45 @@
+{% if 'inline' == type %}
+    {% set sidebarclass = 'sidebar sidebar-inline' %}
+{% elseif 'dropdown' == type %}
+    {% set sidebarclass = 'sidebar sidebar-dropdown' %}
+{% else %}
+    {% set sidebarclass = 'sidebar' %}
+{% endif %}
+
+<aside id="sidebar" class="{{ sidebarclass }}">
+
+    {% if 'dropdown' == type %}
+        <div class="navbar">
+            <div class="btn btn-navbar" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div><!-- END btn-navbar -->
+            <div class="nav-collapse sidebar-collapse">
+    {% endif %}
+
+                <ul class="nav">
+                    {% for k,v in menu %}
+                        <li>
+                            <a href="{{ v['path'] }}" title="{{ v['title'] }}">
+                                <i class="{{ v['icon'] }}"></i>
+                                <span class="pull-right">{{ k }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+    {% if 'dropdown' == type %}
+            </div><!-- END nav-collapse -->
+        </div><!-- END navbar -->
+    {% endif %}
+
+    <div class="toggle-bar toggle-bar-open">
+        <div class="toggle-bar-strip toggle-bar-strip-back"></div>
+        <div class="toggle-bar-handle toggle-bar-handle-open">
+            <i class="icon-chevron-left white"></i>
+        </div><!-- END toggle-bar-handle -->
+        <div class="toggle-bar-strip toggle-bar-strip-front"></div>
+    </div><!-- END toggle-bar -->
+
+</aside><!-- END aside -->

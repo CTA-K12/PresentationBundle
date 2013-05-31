@@ -1,0 +1,48 @@
+//
+// Layouts
+// --------------------------------------------------
+
+
+// Outer layer framing the scrollable divs
+.wrapper-outer {
+    position:      absolute;
+    width:             100%;
+    top:      @navbarHeight;
+    bottom:   @navbarHeight;
+    .box-sizing(border-box);
+}
+
+// Inner layer giving divs flexibility
+.wrapper-inner {
+    position:        relative;
+    height:              100%;
+    width:               100%;
+}
+
+// Main content section, individually scrollable
+.content {
+    height:            100%;
+    overflow-y:        auto;
+    padding:    @minPadding;
+    .box-sizing(border-box);
+}
+
+// Left aside, individually scrollable
+.sidebar {
+    height:            100%;
+    width:    @sidebarWidth;
+    float:             left;
+    overflow-y:        auto;
+    .box-sizing(border-box);
+    background-color: @grayLighter;
+}
+
+// Left aside when minimized
+.sidebar-min {
+    width: @sidebarMinWidth;
+}
+
+// Left aside when hidden
+.sidebar .hide {
+    display:           none;
+}
