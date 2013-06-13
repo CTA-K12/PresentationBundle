@@ -1,5 +1,5 @@
 {
-    "name": "MESD/Presentation/PresentationBundle",
+    "name": "mesd/presentation-presentation-bundle",
     "description": "MESD Presentation Bundle for Symfony2",
     "keywords": ["mesd", "presentation", "bundle"],
     "homepage": "http://github.com/MESD/PresentationBundle",
