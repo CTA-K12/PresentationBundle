@@ -573,7 +573,7 @@ th:before {
     }
 
     .navbar-fixed-top, .navbar-fixed-bottom {
-        margin: 0 auto;
+        margin:   0 auto;
     }
 
     .toggle-bar {
@@ -642,10 +642,10 @@ th:before {
         border-radius: 0;
     }
 
-    .content {
+/*    .content {
         float: left;
         width: 100%;
-    }
+    }*/
 }
 
 @media (min-width: 980px) {

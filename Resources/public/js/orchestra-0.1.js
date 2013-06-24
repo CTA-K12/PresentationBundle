@@ -47,6 +47,8 @@ $('#content').scroll(function() {
 
 $(document).ready(function() {
 
+    $( "#tabs" ).tabs();
+
     // on page load, if sidebar cookie is scrolled, go back to position
     if ($.cookie('sscroll') !== null) {
         $('#sidebar').scrollTop($.cookie('sscroll'));

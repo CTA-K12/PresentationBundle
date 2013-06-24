@@ -20,11 +20,11 @@
             {% block less %}
                 <script>var less = {env: "development"};</script>
                 <link rel="stylesheet/less" type="text/css" href="{{ asset('dev/less/theme.less') }}">
-                <link rel="stylesheet/less" type="text/css" href="{{ asset('dev/less/bootstrap/responsive.less') }}">
             {% endblock less %}
 
             {% block stylesheets %}
                 <link rel="stylesheet" href="{{ asset('dev/css/orchestra-0.1.css') }}" />
+                <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css" />
             {% endblock stylesheets %}
 
             {% block favicon %}

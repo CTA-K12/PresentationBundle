@@ -18,6 +18,11 @@ class DevController extends Controller
         return $this->render('MESDPresentationPresentationBundle:Dev:splash.html.twig', array());
     }
 
+    public function tabcontentAction()
+    {
+        return $this->render('MESDPresentationPresentationBundle:Dev:content.html.twig', array());
+    }
+
     // Renders the sidebar, not accessible via routes, only by controller
     public function sidebarAction($menu, $options = array())
     {

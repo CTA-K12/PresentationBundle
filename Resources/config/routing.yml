@@ -30,3 +30,7 @@ MESDPresentationPresentationBundle_dev_splash:
 MESDPresentationPresentationBundle_dev_collapse:
     pattern: /ui/dev/collapse
     defaults: { _controller: MESDPresentationPresentationBundle:Dev:collapse }
+
+MESDPresentationPresentationBundle_dev_tabcontent:
+    pattern: /ui/dev/tab
+    defaults: { _controller: MESDPresentationPresentationBundle:Dev:tabcontent }
