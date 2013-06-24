@@ -1,6 +1,5 @@
 {
-    "name": "MESD/Presentation/PresentationBundle",
-    "type": "symfony-bundle",
+    "name": "mesd/presentation-presentation-bundle",
     "description": "MESD Presentation Bundle for Symfony2",
     "keywords": ["mesd", "presentation", "bundle"],
     "homepage": "http://github.com/MESD/PresentationBundle",
@@ -15,7 +14,7 @@
         "php": ">=5.3.2"
     },
     "require-dev": {
-        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+        "symfony/framework-bundle": "~2.3"
     },
     "autoload": {
         "psr-0": { "MESD\\Presentation\\PresentationBundle": "" }
