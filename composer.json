@@ -4,6 +4,7 @@
     "keywords": ["mesd", "presentation", "bundle"],
     "homepage": "http://github.com/MESD/PresentationBundle",
     "license": "MIT",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Curtis G Hanson",
