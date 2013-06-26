@@ -9,8 +9,17 @@
 
             {% block meta %}
                 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
-                <meta name="description" content="ORCase - a contract and case management system for community agencies.">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="description" content="Application description goes here." />
+                <meta name="keywords" content="space delimited keywords" />
+                <!-- Apple -->
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+                <!-- Microsoft -->
+                <meta name="application-name" content="Very Short Application Name">
+                <meta name="msapplication-tooltip" content="Application description goes here">
+                <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-tile.png') }}"/>
+                <meta name="msapplication-TileColor" content="#e6e6e6"/>
             {% endblock meta %}
 
             {% block title %}
@@ -31,9 +40,19 @@
                 {% endstylesheets %}
             {% endblock stylesheets %}
 
-            {% block favicon %}
+            {% block icons %}
                 <link rel="shortcut icon" href="{{ asset('bundles/mesdpresentationpresentation/ico/favicon.ico') }}" />
-            {% endblock favicon %}
+                <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-144x144-precomposed.png') }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/mesdpresentationpresentation/ico/pple-touch-icon-114x114-precomposed.png') }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-72x72-precomposed.png') }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-57x57-precomposed.png') }}" />
+                <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-precomposed.png') }}" />
+                <link rel="apple-touch-icon" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon.png') }}" />
+            {% endblock icons %}
+
+            {% block sitemap %}
+                <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
+            {% endblock sitemap %}
 
             {% block shiv %}
                 <script src="{{ asset('bundles/mesdpresentationpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
@@ -94,16 +113,25 @@
                     </footer><!-- END footer, navbar -->
                 {% endblock footer %}
 
-            {% block javascripts %}
-                {% javascripts '@MESDPresentationPresentationBundle/Resources/public/js/jquery/*'
-                               '@MESDPresentationPresentationBundle/Resources/public/js/bootstrap/*'
-                               '@MESDPresentationPresentationBundle/Resources/public/js/cookie/*'
-                               '@MESDPresentationPresentationBundle/Resources/public/js/introjs/*'
-                               '@MESDPresentationPresentationBundle/Resources/public/js/orchestra-0.1.js'
-                               output='bundles/mesdpresentationpresentation/js/orchestra.min.js' %}
-                    <script type="text/javascript" src="{{ asset_url }}"></script>
-                {% endjavascripts %}
-            {% endblock javascripts %}
+                {% block javascripts %}
+                    {% javascripts '@MESDPresentationPresentationBundle/Resources/public/js/jquery/*'
+                                   '@MESDPresentationPresentationBundle/Resources/public/js/bootstrap/*'
+                                   '@MESDPresentationPresentationBundle/Resources/public/js/cookie/*'
+                                   '@MESDPresentationPresentationBundle/Resources/public/js/introjs/*'
+                                   '@MESDPresentationPresentationBundle/Resources/public/js/orchestra-0.1.js'
+                                   output='bundles/mesdpresentationpresentation/js/orchestra.min.js' %}
+                        <script type="text/javascript" src="{{ asset_url }}"></script>
+                    {% endjavascripts %}
+                {% endblock javascripts %}
+
+                {% block analytics %}
+                    <script>
+                        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+                        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+                        s.parentNode.insertBefore(g,s)}(document,'script'));
+                    </script>
+                {% endblock analytics%}
 
             {% endblock wrapper %}
         </body>
