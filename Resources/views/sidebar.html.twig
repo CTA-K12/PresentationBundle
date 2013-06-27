@@ -22,8 +22,8 @@
                     {% for k,v in menu %}
                         <li>
                             <a href="{{ v['path'] }}" title="{{ v['title'] }}">
-                                <i class="{{ v['icon'] }}"></i>
-                                <span class="pull-right">{{ k }}</span>
+                                <span class="{{ v['icon'] }}"></span>
+                                <span class="pull-right hideable">{{ k }}</span>
                             </a>
                         </li>
                     {% endfor %}
@@ -37,7 +37,7 @@
     <div class="toggle-bar toggle-bar-open">
         <div class="toggle-bar-strip toggle-bar-strip-back"></div>
         <div class="toggle-bar-handle toggle-bar-handle-open">
-            <i class="icon-chevron-left white"></i>
+            <span class="icon-chevron-left white"></span>
         </div><!-- END toggle-bar-handle -->
         <div class="toggle-bar-strip toggle-bar-strip-front"></div>
     </div><!-- END toggle-bar -->

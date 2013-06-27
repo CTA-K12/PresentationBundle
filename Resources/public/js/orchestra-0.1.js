@@ -13,10 +13,10 @@ $('.toggle-bar').click(function() {
     $('.toggle-bar-open').switchClass('toggle-bar-open', 'toggle-bar-closed', 500);
     $('.toggle-bar-closed').switchClass('toggle-bar-closed', 'toggle-bar-open', 500);
     $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
-    $('.toggle-bar-handle i').toggleClass('icon-chevron-left icon-chevron-right');
+    $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
     $('.sidebar').switchClass('', 'sidebar-min', 500);
     $('.sidebar-min').switchClass('sidebar-min', '', 500);
-    $('.sidebar span').delay(250).queue(function(){
+    $('.sidebar .hideable').delay(250).queue(function(){
         $(this).toggleClass('hide');
         $(this).dequeue();
     });
@@ -24,7 +24,7 @@ $('.toggle-bar').click(function() {
     $('.row-fluid-content-max').switchClass('row-fluid-content-max', '', 500);
 
     // set sidebar cookie
-    $('.sidebar span').delay(600).queue(function(){
+    $('.sidebar .hideable').delay(600).queue(function(){
         if($(this).hasClass('hide')) {
             $.cookie('sbar', 'closed');
         }
@@ -63,7 +63,7 @@ $(document).ready(function() {
     if (($.cookie('sbar') !== null) && ($.cookie('sbar') === 'closed')) {
         $('.toggle-bar').toggleClass('toggle-bar-open toggle-bar-closed');
         $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
-        $('.toggle-bar-handle i').toggleClass('icon-chevron-left icon-chevron-right');
+        $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
         $('.sidebar').toggleClass('sidebar-min');
         $('.sidebar span').toggleClass('hide');
         $('.row-fluid-content').toggleClass('row-fluid-content-max');

@@ -61,9 +61,8 @@
         {% endblock head %}
     </head>
 
-    {% block body %}
         <body>
-            {% block wrapper %}
+            {% block body %}
 
                 <header id="header">
                     {% block navbar %}
@@ -133,8 +132,7 @@
                     </script>
                 {% endblock analytics%}
 
-            {% endblock wrapper %}
+            {% endblock body %}
         </body>
-    {% endblock body %}
 
 </html>
