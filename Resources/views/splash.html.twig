@@ -3,7 +3,7 @@
 {% block container %}
 
     <div class="panel panel-splash panel-splash-medium">
-        <form action="{{ action }}" method="POST" class="no-margin">
+        <form action="{% if action is defined %}{{ action }}{% else %}#{% endif %}" method="POST" class="no-margin">
             <div class="panel-header">
                 <h1>{{ subtitle }}</h1>
             </div>
