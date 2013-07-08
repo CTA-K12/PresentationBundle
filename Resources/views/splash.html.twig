@@ -7,6 +7,7 @@
             <div class="panel-header">
                 <h1>{{ subtitle }}</h1>
             </div>
+            {% block outerpanelbody %}
             <div class="panel-body">
                 {% block panelbody %}
                 <label for="username">Email</label>
@@ -15,6 +16,8 @@
                 <input type="password" id="password" name="_password" placeholder="Password">
                 {% endblock panelbody %}
             </div>
+            {% endblock outerpanelbody %}
+            {% block outerpanelfooter %}
             <div class="panel-footer">
                 {% block panelfooter %}
                 <a href="#" class="btn btn-link">Register</a>
@@ -22,6 +25,7 @@
                 <button type="submit" class="btn btn-primary">Login</button>
                 {% endblock panelfooter %}
             </div>
+            {% endblock outerpanelfooter %}
         </form>
     </div>
 
