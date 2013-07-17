@@ -499,7 +499,7 @@ th:before {
         width: 60px;
     }
 
-    .sidebar span {
+    .sidebar .hideable {
         display: none;
     }
 }
@@ -543,7 +543,7 @@ th:before {
         overflow-x:  hidden;
     }
 
-    .sidebar span {
+    .sidebar .hideable {
         display:       none;
     }
 
