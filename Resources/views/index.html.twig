@@ -1,81 +1,66 @@
 {% extends 'MESDPresentationPresentationBundle::base.html.twig' %}
-
-    {% block navbarContent %}
+{% block navbarContent %}
+    {% block appLogo %}
         <a class="brand" href="#">
             <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
         </a>
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-        <div class="nav-collapse collapse main-collapse">
-            <ul class="nav">
-                <li><a href="#">Demo1</a></li>
-                <li><a href="#">Demo2</a></li>
-                <li><a href="#">Demo3</a></li>
-            </ul>
-            <span class="pull-right">
-                <form id="search" class="navbar-search">
-                    <input type="text" class="search-query" placeholder="Search">
-                </form>
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">UserName<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="icon-user"></span> Profile <span class="muted pull-right">Ctrl+R</span></a></li>
-                            <li><a href="#"><span class="icon-cog"></span> Settings <span class="muted pull-right">Ctrl+X</span></a></li>
-                            <li><a href="#"><span class="icon-lock"></span> Logout <span class="muted pull-right">Ctrl+Q</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </span>
-         </div><!-- END nav-collapse -->
-    {% endblock navbarContent %}
+    {% endblock appLogo %}
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+    <div class="nav-collapse collapse main-collapse">
+        {% block navLinks %}
+            {% include 'MESDPresentationPresentationBundle::navLinks.html.twig' %}
+        {% endblock navLinks %}
+        <span class="pull-right">
+            {% block searchBar %}
+                {% include 'MESDPresentationPresentationBundle::searchBar.html.twig' %}
+            {% endblock searchBar %}
+            {% block userMenu %}
+                {% include 'MESDPresentationPresentationBundle::userMenu.html.twig' %}
+            {% endblock userMenu %}
+        </span>
+    </div><!-- END nav-collapse -->
+{% endblock navbarContent %}
+{% block container %}
+    {% block sidebar %}
+        {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', { 'menu': ''})) }}
+    {% endblock sidebar %}
 
-    {% block container %}
+    <section id="content" class="content container-fluid">
+        {% block content %}
 
-        {% block sidebar %}
-            {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', { 'menu': ''})) }}
-        {% endblock sidebar %}
-
-        <section id="content" class="content container-fluid">
-            {% block content %}
-
+            {% block breadcrumb %}
                 <div id="toolbar-top" class="panel panel-white">
-                    {% block breadcrumb %}
-                        <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="divider">&rarr;</li>
-                            <li class="active">Here</li>
-                        </ul>
-                    {% endblock breadcrumb %}
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="divider">&rarr;</li>
+                        <li class="active">Here</li>
+                    </ul>
                 </div>
+            {% endblock breadcrumb %}
 
-                <h2>
-                {% block subtitle %}
-                    Text
-                {% endblock subtitle %}
+            {% block subtitle %}
+                {% if subtitle is defined %}
+                    <h2>{{ subtitle }}</h2>
+                {% elseif pagetitle is defined %}
+                    <h2>{{ pagetitle }}</h2>
+                {% endif %}
+            {% endblock subtitle %}
 
-                {% block subtitle %}
-                    {% if subtitle is defined %}
-                        <h2>{{ subtitle }}</h2>
-                    {% elseif pagetitle is defined %}
-                        <h2>{{ pagetitle }}</h2>
-                    {% endif %}
-                {% endblock subtitle %}
+            <div id="main" class="panel panel-white">
+                {% block main %}
+                {% endblock main %}
+            </div><!-- END main -->
 
-                <div id="main" class="panel panel-white">
-                    {% block main %}
-                    {% endblock main %}
-                </div><!-- END main -->
+            <div id="pagination">
+                {% block pagination %}
+                {% endblock pagination %}
+            </div><!-- END pagination -->
 
-                <div id="pagination">
-                    {% block pagination %}
-                    {% endblock pagination %}
-                </div><!-- END pagination -->
+        {% endblock content %}
+    </section><!-- END content -->
 
-            {% endblock content %}
-        </section><!-- END content -->
-
-    {% endblock container %}
+{% endblock container %}

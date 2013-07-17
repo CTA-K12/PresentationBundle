@@ -3,21 +3,29 @@
 {% block container %}
 
     <div class="panel panel-splash panel-splash-medium">
-        <form action="" method="POST" class="no-margin">
+        <form action="{% if action is defined %}{{ action }}{% else %}#{% endif %}" method="POST" class="no-margin">
             <div class="panel-header">
-                <h1>Splash Screen</h1>
+                <h1>{{ subtitle }}</h1>
             </div>
+            {% block outerpanelbody %}
             <div class="panel-body">
+                {% block panelbody %}
                 <label for="username">Email</label>
                 <input type="text" id="username" name="_username" placeholder="Email" value="">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="_password" placeholder="Password">
+                {% endblock panelbody %}
             </div>
+            {% endblock outerpanelbody %}
+            {% block outerpanelfooter %}
             <div class="panel-footer">
+                {% block panelfooter %}
                 <a href="#" class="btn btn-link">Register</a>
                 <a id="reset-button" href="#" class="btn btn-link">Forgot Password?</a>
                 <button type="submit" class="btn btn-primary">Login</button>
+                {% endblock panelfooter %}
             </div>
+            {% endblock outerpanelfooter %}
         </form>
     </div>
 
