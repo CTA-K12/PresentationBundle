@@ -95,11 +95,13 @@
                                                 <small>version: {{ version }}</small>
                                             </p>
                                         </div>
-                                        <div class="footer-right span4">
-                                            <p>
-                                                <small>more stuff</small>
-                                            </p>
-                                        </div>
+                                        {% block footerExtra %}
+                                            <div class="footer-right span4">
+                                                <p>
+                                                    <small>more stuff</small>
+                                                </p>
+                                            </div>
+                                        {% endblock footerExtra %}
                                     {% endblock footerContent %}
                                 </div>
                             </div><!-- END navbar-inner -->
