@@ -44,14 +44,14 @@
 
 
             <div id="main" class="panel panel-white">
-                {% block main %}
-                    {% block subtitle %}
-                        {% if subtitle is defined %}
-                            <h1>{{ subtitle }}</h1>
-                        {% elseif pagetitle is defined %}
-                            <h1>{{ pagetitle }}</h1>
-                        {% endif %}
-                    {% endblock subtitle %}
+                {% block subtitle %}
+                    {% if subtitle is defined %}
+                        <h1>{{ subtitle }}</h1>
+                    {% elseif pagetitle is defined %}
+                        <h1>{{ pagetitle }}</h1>
+                    {% endif %}
+                {% endblock subtitle %}
+                {% block main %}                    
                 {% endblock main %}
             </div><!-- END main -->
 
