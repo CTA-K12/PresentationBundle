@@ -47,9 +47,9 @@
                 {% block main %}
                     {% block subtitle %}
                         {% if subtitle is defined %}
-                            <h2>{{ subtitle }}</h2>
+                            <h1>{{ subtitle }}</h1>
                         {% elseif pagetitle is defined %}
-                            <h2>{{ pagetitle }}</h2>
+                            <h1>{{ pagetitle }}</h1>
                         {% endif %}
                     {% endblock subtitle %}
                 {% endblock main %}
