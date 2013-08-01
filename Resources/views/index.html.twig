@@ -42,16 +42,16 @@
                 </div>
             {% endblock breadcrumb %}
 
-            {% block subtitle %}
-                {% if subtitle is defined %}
-                    <h2>{{ subtitle }}</h2>
-                {% elseif pagetitle is defined %}
-                    <h2>{{ pagetitle }}</h2>
-                {% endif %}
-            {% endblock subtitle %}
 
             <div id="main" class="panel panel-white">
                 {% block main %}
+                    {% block subtitle %}
+                        {% if subtitle is defined %}
+                            <h2>{{ subtitle }}</h2>
+                        {% elseif pagetitle is defined %}
+                            <h2>{{ pagetitle }}</h2>
+                        {% endif %}
+                    {% endblock subtitle %}
                 {% endblock main %}
             </div><!-- END main -->
 
