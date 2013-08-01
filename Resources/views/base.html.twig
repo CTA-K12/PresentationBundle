@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" {% if ngapp is defined %}data-ng-app="{{ ngapp }}"{% endif %}>
         <head>
             {% block head %}
                 {% block meta %}
