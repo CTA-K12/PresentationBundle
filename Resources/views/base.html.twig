@@ -33,6 +33,11 @@
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
+                    {% stylesheets
+                    '@MESDPresentationPresentationBundle/Resources/public/css/introjs/*'
+                    filter='cssrewrite' %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
+                    {% endstylesheets %}
                 {% endblock stylesheets %}
 
                 {% block icons %}
