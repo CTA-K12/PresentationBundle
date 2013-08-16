@@ -42,6 +42,15 @@
                 </div>
             {% endblock breadcrumb %}
 
+            {% block flashMessage %}
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice csuccess">
+                            <h4>{{ flashMessage }}</h4>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endblock flashMessage %}
 
             <div id="main" class="panel panel-white">
                 {% block subtitle %}
@@ -51,7 +60,7 @@
                         <h1>{{ pagetitle }}</h1>
                     {% endif %}
                 {% endblock subtitle %}
-                {% block main %}                    
+                {% block main %}
                 {% endblock main %}
             </div><!-- END main -->
 
