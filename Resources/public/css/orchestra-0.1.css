@@ -466,11 +466,6 @@ input[type="radio"].magic:checked + span {
     line-height:  12px;
 }
 
-th:before { 
-    content: attr(id);
-    display: inline;
-}
-
 .dataTables_filter > label {
     cursor: text;
 }
@@ -529,10 +524,10 @@ th:before {
         overflow: hidden;
     }
 
-    span.pull-right {
+/*    span.pull-right {
         float:         none;
         margin-left:      0;
-    }
+    }*/
 
     .navbar {
         margin-bottom:    0;
@@ -658,7 +653,7 @@ th:before {
     .login .row {
         margin-left: 0px;
     }
-    
+
     .right {
         display: relative;
         float: right;
