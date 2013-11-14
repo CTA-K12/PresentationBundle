@@ -5,7 +5,7 @@
             <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
         </a>
     {% endblock appLogo %}
-    <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse" id="collapse" href="#">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -44,15 +44,24 @@
                 </div>
             {% endblock breadcrumb %}
 
-            {% block subtitle %}
-                {% if subtitle is defined %}
-                    <h2>{{ subtitle }}</h2>
-                {% elseif pagetitle is defined %}
-                    <h2>{{ pagetitle }}</h2>
-                {% endif %}
-            {% endblock subtitle %}
+            {% block flashMessage %}
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice csuccess">
+                            <h4>{{ flashMessage }}</h4>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endblock flashMessage %}
 
             <div id="main" class="panel panel-white">
+                {% block subtitle %}
+                    {% if subtitle is defined %}
+                        <h1>{{ subtitle }}</h1>
+                    {% elseif pagetitle is defined %}
+                        <h1>{{ pagetitle }}</h1>
+                    {% endif %}
+                {% endblock subtitle %}
                 {% block main %}
                 {% endblock main %}
             </div><!-- END main -->

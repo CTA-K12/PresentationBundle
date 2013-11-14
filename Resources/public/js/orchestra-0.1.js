@@ -65,7 +65,7 @@ $(document).ready(function() {
         $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
         $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
         $('.sidebar').toggleClass('sidebar-min');
-        $('.sidebar span').toggleClass('hide');
+        $('.sidebar .hideable').toggleClass('hide');
         $('.row-fluid-content').toggleClass('row-fluid-content-max');
     }
 

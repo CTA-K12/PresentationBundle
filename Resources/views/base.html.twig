@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
         <head>
             {% block head %}
                 {% block meta %}
@@ -30,6 +30,11 @@
                     {% endstylesheets %}
                     {% stylesheets
                     '@MESDPresentationPresentationBundle/Resources/public/css/orchestra-0.1.css'
+                    filter='cssrewrite' %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
+                    {% endstylesheets %}
+                    {% stylesheets
+                    '@MESDPresentationPresentationBundle/Resources/public/css/introjs/*'
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
@@ -95,11 +100,13 @@
                                                 <small>version: {{ version }}</small>
                                             </p>
                                         </div>
-                                        <div class="footer-right span4">
-                                            <p>
-                                                <small>more stuff</small>
-                                            </p>
-                                        </div>
+                                        {% block footerExtra %}
+                                            <div class="footer-right span4">
+                                                <p>
+                                                    <small>more stuff</small>
+                                                </p>
+                                            </div>
+                                        {% endblock footerExtra %}
                                     {% endblock footerContent %}
                                 </div>
                             </div><!-- END navbar-inner -->

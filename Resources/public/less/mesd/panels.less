@@ -71,20 +71,20 @@
             }
         }
     }
-    &.panel-header {
+    .panel-header {
         padding: 9px 15px;
         border-bottom: 1px solid #eee;
         h1 {
             border-bottom: none;
         }
     }
-    &.panel-body {
+    .panel-body {
         position: relative;
         overflow-y: auto;
         max-height: 400px;
         padding: 15px;
     }
-    &.panel-footer {
+    .panel-footer {
         padding: 14px 15px 15px;
         margin-bottom: 0;
         text-align: right; // right align buttons
@@ -98,7 +98,10 @@
 
 @media (max-width: 979px) {
     .panel {
-        &.panel-splash {
+        &.panel-splash,
+        &.panel-splash.panel-splash-small,
+        &.panel-splash.panel-splash-medium,
+        &.panel-splash.panel-splash-large {
             position: relative;
             left: 0;
             top: 0;
@@ -109,7 +112,10 @@
 }
 @media (max-width: 767px) {
     .panel {
-        &.panel-splash {
+        &.panel-splash,
+        &.panel-splash.panel-splash-small,
+        &.panel-splash.panel-splash-medium,
+        &.panel-splash.panel-splash-large {
             width: 100%;
         }
     }

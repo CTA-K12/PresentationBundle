@@ -5,7 +5,15 @@
     <div class="panel panel-splash panel-splash-medium">
         <form action="{% if action is defined %}{{ action }}{% else %}#{% endif %}" method="POST" class="no-margin">
             <div class="panel-header">
-                <h1>{{ subtitle }}</h1>
+                {% block subtitle %}
+                    {% if subtitle is defined %}
+                        <h1>{{ subtitle }}</h1>
+                    {% elseif pagetitle is defined %}
+                        <h1>{{ pagetitle }}</h1>
+                    {% else %}
+                        <h1>Some Title Here</h1>
+                    {% endif %}
+                {% endblock subtitle %}
             </div>
             <div class="panel-body">
                 {% block panelBody %}
