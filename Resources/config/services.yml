@@ -1,7 +1,18 @@
 parameters:
-#    presentation.example.class: MESD\Presentation\PresentationBundle\Example
+    mesdpresentation.gravatar.class: MESDPresentation\PresentationBundle\Twig\GravatarExtension
+    mesdpresentation.placeholder.class: MESDPresentation\PresentationBundle\Twig\PlaceholderExtension
 
 services:
 #    presentation.example:
 #        class: %presentation.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    mesdpresentation.twig.gravatar_extension:
+        class: %mesdpresentation.gravatar.class%
+        tags:
+            - { name: twig.extension }
+
+    mesdpresentation.twig.placeholder_extension:
+        class: %mesdpresentation.placeholder.class%
+        tags:
+            - { name: twig.extension }
