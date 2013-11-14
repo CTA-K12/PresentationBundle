@@ -25,7 +25,7 @@ class PlaceholderExtension extends Twig_Extension
     {
         $this->bgColor = array('r' => 213, 'g' => 213, 'b' => 213);
         $this->fgColor = array('r' => 93, 'g' => 93, 'b' => 93);
-        $this->font    = 'font/rockwell/ROCCB___.TTF';
+        $this->font    = __DIR__ . '/../Resources/public/font/rockwell/ROCCB___.TTF';
         $this->pattern = '/\d+[x]\d+/';
         $this->angle   = 0;
         $this->tooBig  = false;
