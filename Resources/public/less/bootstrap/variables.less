@@ -247,14 +247,14 @@
 // Padding, to be divided by two and applied to the left and right of all columns
 @grid-gutter-width:         30px;
 // Point at which the navbar stops collapsing
-@grid-float-breakpoint:     @screen-sm-min;
+@grid-float-breakpoint:     @screen-md-min;
 
 
 // Navbar
 // -------------------------
 
 // Basics of a navbar
-@navbar-height:                    50px;
+//@navbar-height:                    50px; // SEE MESD Overrides @ bottom
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
@@ -635,3 +635,12 @@
 // Large screen / wide desktop
 @container-large-desktop:      ((1140px + @grid-gutter-width));
 @container-lg:                 @container-large-desktop;
+
+// MESD
+// --------------------------------------------------
+// Sidebar
+@sidebar-base-width:               240px;
+@sidebar-base-closed-width:         60px;
+
+// Navbar
+@navbar-height:                    40px;

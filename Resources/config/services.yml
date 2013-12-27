@@ -1,6 +1,7 @@
 parameters:
     presentation.gravatar.class: MESD\Presentation\PresentationBundle\Twig\GravatarExtension
     presentation.placeholder.class: MESD\Presentation\PresentationBundle\Twig\PlaceholderExtension
+    presentation.highlighter.class: MESD\Presentation\PresentationBundle\Twig\HighlighterExtension
 
 services:
     presentation.twig.gravatar_extension:
@@ -10,5 +11,10 @@ services:
 
     presentation.twig.placeholder_extension:
         class: %presentation.placeholder.class%
+        tags:
+            - { name: twig.extension }
+
+    presentation.twig.highlighter_extension:
+        class: %presentation.highlighter.class%
         tags:
             - { name: twig.extension }

@@ -169,6 +169,22 @@ ol {
   }
 }
 
+.list-chaptered {
+    padding-left:     0;
+    margin-left:      0;
+    list-style:    none;
+    counter-reset: item;
+    li {
+        display:   block;
+        margin-left: 1em;
+        &:before {
+            margin-right:                1em;
+            content: counters(item, '.') ' ';
+            counter-increment:          item;
+        }
+    }
+}
+
 // Description Lists
 dl {
   margin-bottom: @line-height-computed;
@@ -276,4 +292,18 @@ address {
   margin-bottom: @line-height-computed;
   font-style: normal;
   line-height: @line-height-base;
+}
+
+//
+// MESD Overrides
+//------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+    &.page-title {
+        color: @brand-primary;
+        font-weight: bolder;
+        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 0 10px 12px;
+        margin: 0 -10px 24px -10px;
+    }
 }

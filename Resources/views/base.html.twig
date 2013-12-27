@@ -5,25 +5,28 @@
                 {% block meta %}
                     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="application-name" content="Very Short Application Name"/>
                     <meta name="description" content="Application description goes here." />
                     <meta name="keywords" content="space delimited keywords" />
                 <!-- Apple -->
                     <meta name="apple-mobile-web-app-capable" content="yes" />
                     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
                 <!-- Microsoft -->
-                    <meta name="application-name" content="Very Short Application Name"/>
                     <meta name="msapplication-tooltip" content="Application description goes here"/>
-                    <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-tile.png') }}"/>
                     <meta name="msapplication-TileColor" content="#e6e6e6"/>
+                <!-- Google -->
+                    <meta name="google" content="notranslate">
+                <!-- License and Copyright -->
+                    <meta name="dcterms:rights" content="gpl-3.0, cc-by-nc-sa">
                 {% endblock meta %}
 
                 {% block title %}
-                    <title>{{ app_abbrev }}{% if subtitle is defined %} - {{ subtitle }}{% endif %}</title>
+                    <title>{% if subtitle is defined %}{{ subtitle }} - {% endif %}{{ app_abbreviation }}</title>
                 {% endblock title %}
 
                 {% block stylesheets %}
                     {% stylesheets
-                    '@MESDPresentationPresentationBundle/Resources/public/less/*'
+                    '@MESDPresentationPresentationBundle/Resources/public/less/theme.less'
                     filter='less'
                     output='bundles/mesdpresentationpresentation/css/orchestra-less.min.css' %}
                     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
@@ -48,9 +51,20 @@
                     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-57x57-precomposed.png') }}" />
                     <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-precomposed.png') }}" />
                     <link rel="apple-touch-icon" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon.png') }}" />
+                    <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-tile-144x144.png') }}"/>
+                    <meta name="msapplication-square70x70logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-70x70.png') }}"/>
+                    <meta name="msapplication-square150x150logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-150x150.png') }}"/>
+                    <meta name="msapplication-wide310x150logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-wide-310x150.png') }}"/>
+                    <meta name="msapplication-square310x310logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-310x310.png') }}"/>
                 {% endblock icons %}
 
                 {% block sitemap %}
+                    <meta name="robots" content="noarchive" /><!-- robot, no archiving! -->
+                    <meta name="googlebot" content="noarchive" /><!-- you neither google -->
+                    <meta name="googlebot-mobile" content="noarchive" /><!-- i shouldn't have to tell you twice -->
+                    <meta name="slurp" content="noarchive" /><!-- or you yahoo -->
+                    <meta name="bingbot" content="noarchive" /><!-- or microsoft -->
+                    <meta name="baiduspider" content="noarchive" /><!-- or especially, you china -->
                 <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
                 {% endblock sitemap %}
 
@@ -66,13 +80,9 @@
 
                 <header id="header">
                     {% block navbar %}
-                        <nav id="nav" class="navbar">
-                            <div class="navbar-fixed-top">
-                                <div class="navbar-inner">
-                                    {% block navbarContent %}
-                                    {% endblock navbarContent %}
-                                </div><!-- END navbar-inner -->
-                            </div><!-- END navbar-fixed-top -->
+                        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                            {% block navbarContent %}
+                            {% endblock navbarContent %}
                         </nav><!-- END nav, navbar -->
                     {% endblock navbar %}
                 </header>
@@ -85,32 +95,32 @@
                 </div><!-- END container -->
 
                 {% block footer %}
-                    <footer id="footer" class="navbar">
-                        <div class="navbar-fixed-bottom">
-                            <div class="navbar-inner">
-                                <div class="row-fluid">
-                                    {% block footerContent %}
-                                        <div class="footer-left span4">
-                                            <p>
-                                                <small>&copy; {{ "now"|date("Y") }} <span title="{{ org_name }}">{{ org_abbrev }}</span><br />{{ org_address }}</small>
-                                            </p>
-                                        </div>
-                                        <div class="footer-center span4">
-                                            <p>
-                                                <small>version: {{ version }}</small>
-                                            </p>
-                                        </div>
-                                        {% block footerExtra %}
-                                            <div class="footer-right span4">
-                                                <p>
-                                                    <small>more stuff</small>
-                                                </p>
-                                            </div>
-                                        {% endblock footerExtra %}
-                                    {% endblock footerContent %}
+                    <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
+                        <div class="row">
+                            {% block footerContent %}
+                                <div class="footer-left col-md-4">
+                                    <p class="h-card">
+                                        <span>&copy; {{ "now"|date("Y") }}</span>
+                                        <abbr class="p-name" title="{{ org_name }}">{{ org_abbreviation }}</abbr>
+                                        <span>{{ org_address }}</span>
+                                    </p>
                                 </div>
-                            </div><!-- END navbar-inner -->
-                        </div><!-- END navbar-fixed-bottom -->
+                                <div class="footer-center col-md-4">
+                                    <p>version: {{ app_version }}</p>
+                                </div>
+                                <div class="footer-right col-md-4">
+                                    <p>
+                                        <a href="#" title="about">About</a>
+                                        <a class="divider" disabled="disabled"></a>
+                                        <a href="#" title="terms">Terms</a>
+                                        <a class="divider" disabled="disabled"></a>
+                                        <a href="#" title="privacy">Privacy</a>
+                                        <a class="divider" disabled="disabled"></a>
+                                        <a href="#" title="security">Security</a>
+                                    </p>
+                                </div>
+                            {% endblock footerContent %}
+                        </div>
                     </footer><!-- END footer, navbar -->
                 {% endblock footer %}
 

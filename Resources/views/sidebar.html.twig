@@ -20,12 +20,38 @@
 
                 <ul class="nav">
                     {% for k,v in menu %}
+                        {#  set currentPath = path(route)
+                            split the currentPath and v['path']
+                            do a for loop on path
+                            if each value of currentPath is found in v['path']
+                            set to active
+                            if not, don't set active
+                            ----------------------------------------------------
+                            this method is checking that all child paths match
+                            for example:
+
+                            if menu path was /foo/bar/
+                            for each current path:
+                                menu         | current         | pass/fail
+                                -------------+-----------------+----------
+                                /foo/bar     | /foo/bar        | PASS
+                                /foo/bar     | /foo/foo/bar    | FAIL
+                                /foo/bar     | /foo/bar/new    | PASS
+                                /foo/bar     | /foo/bar/1/edit | PASS
+                                /foo/bar/new | /foo/bar        | FAIL
+
+                            {% if path(route) == v['path'] %}
+                            <li class="active">
+                        {% else %}
+                            <li>
+                        {% endif %}#}
+                        {#{ path(route)|split(v['path']) }#}
                         <li>
-                            <a href="{{ v['path'] }}" title="{{ v['title'] }}">
-                                <span class="{{ v['icon'] }}"></span>
-                                <span class="pull-right hideable">{{ k }}</span>
-                            </a>
-                        </li>
+                                <a href="{{ v['path'] }}" title="{{ v['title'] }}">
+                                    <span class="fa icon {{ v['icon'] }}"></span>
+                                    <span class="pull-right hideable">{{ k }}</span>
+                                </a>
+                            </li>
                     {% endfor %}
                 </ul>
 

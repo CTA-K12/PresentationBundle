@@ -1,16 +1,20 @@
 {% extends 'MESDPresentationPresentationBundle::base.html.twig' %}
 {% block navbarContent %}
-    {% block appLogo %}
-        <a class="brand" href="#">
-            <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
-        </a>
-    {% endblock appLogo %}
-    <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse" id="collapse" href="#">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </a>
-    <div class="nav-collapse collapse main-collapse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        {% block appLogo %}
+            <a class="brand" href="#">
+                <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+            </a>
+        {% endblock appLogo %}
+    </div>
+
+    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
         {% block navLinks %}
             {% include 'MESDPresentationPresentationBundle::navLinks.html.twig' %}
         {% endblock navLinks %}
@@ -34,15 +38,16 @@
     <section id="content" class="content container-fluid">
         {% block content %}
 
-            {% block breadcrumb %}
-                <div id="toolbar-top" class="panel panel-white">
-                    <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="divider">&rarr;</li>
-                        <li class="active">Here</li>
-                    </ul>
+            {% block toolbarTop %}
+                <div id="toolbar-top" class="toolbar panel panel-white">
+                    {% block toolbarTopContent %}
+                        {% block toolbarTopLeftContent %}
+                        {% endblock toolbarTopLeftContent %}
+                        {% block toolbarTopRightContent %}
+                        {% endblock toolbarTopRightContent %}
+                    {% endblock toolbarTopContent %}
                 </div>
-            {% endblock breadcrumb %}
+            {% endblock toolbarTop %}
 
             {% block flashMessage %}
                 {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -57,21 +62,27 @@
             <div id="main" class="panel panel-white">
                 {% block subtitle %}
                     {% if subtitle is defined %}
-                        <h1>{{ subtitle }}</h1>
+                        <h1 class="page-title">{{ subtitle }}</h1>
                     {% elseif pagetitle is defined %}
-                        <h1>{{ pagetitle }}</h1>
+                        <h1 class="page-title">{{ pagetitle }}</h1>
                     {% endif %}
                 {% endblock subtitle %}
                 {% block main %}
                 {% endblock main %}
             </div><!-- END main -->
 
-            <div id="pagination">
-                {% block pagination %}
-                {% endblock pagination %}
-            </div><!-- END pagination -->
+            {% block toolbarBottom %}
+                <div id="toolbar-bottom" class="toolbar panel panel-white">
+                    {% block toolbarBottomContent %}
+                        <div class="panel-body">
+                        </div>
+                    {% endblock toolbarBottomContent %}
+                </div>
+            {% endblock toolbarBottom %}
 
         {% endblock content %}
+        <!--<div class="eop"></div>-->
     </section><!-- END content -->
+    <hr class="eop" />
 
 {% endblock container %}

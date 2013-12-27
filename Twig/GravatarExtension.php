@@ -6,7 +6,7 @@ use Twig_Extension;
 
 class GravatarExtension extends Twig_Extension
 {
-    private $gravatarDomain = 'http://www.gravatar.com/avatar/';
+    private $gravatarDomain = 'https://www.gravatar.com/avatar/';
     private $format     = '.jpg';
     private $size       = '?s=40';
     private $emailHash;

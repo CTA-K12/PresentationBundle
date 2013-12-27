@@ -4,22 +4,23 @@
 
 
 .toolbar {
-    margin:      10px;
+    padding:           10px;
+    .box-sizing(border-box);
         ul.breadcrumb {
-        padding: 8px 15px;
+        padding: 0;
         list-style: none;
-        .border-radius(@baseBorderRadius);
+        background-color: transparent;
+        float: left;
         > li {
             display: inline-block;
-            .ie7-inline-block();
-            text-shadow: 0 1px 0 @white;
+            text-shadow: 0 1px 0 #ffffff;
             > .divider {
                 padding: 0 5px;
                 color: #ccc;
             }
         }
         > .active {
-            color: @grayLight;
+            color: @gray-light;
         }
     }
 }
