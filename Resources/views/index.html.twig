@@ -24,9 +24,7 @@
         </span>
     </div><!-- END nav-collapse -->
 {% endblock navbarContent %}
-
 {% block container %}
-
     {% block sidebar %}
         {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', { 'menu': ''})) }}
     {% endblock sidebar %}
@@ -45,10 +43,31 @@
             {% endblock breadcrumb %}
 
             {% block flashMessage %}
+                {% for flashMessage in app.session.flashbag.get('danger') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice alert alert-danger">
+                            {{ flashMessage }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('warning') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice alert alert-warning">
+                            {{ flashMessage }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
                 {% for flashMessage in app.session.flashbag.get('notice') %}
                     {% if flashMessage is defined %}
-                        <div class="flash-notice csuccess">
-                            <h4>{{ flashMessage }}</h4>
+                        <div class="flash-notice alert alert-info">
+                            {{ flashMessage }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice alert alert-success">
+                            {{ flashMessage }}
                         </div>
                     {% endif %}
                 {% endfor %}
