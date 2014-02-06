@@ -15,25 +15,21 @@
                     {% endif %}
                 {% endblock subtitle %}
             </div>
-            {% block outerpanelbody %}
             <div class="panel-body">
-                {% block panelbody %}
+                {% block panelBody %}
                 <label for="username">Email</label>
                 <input type="text" id="username" name="_username" placeholder="Email" value="">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="_password" placeholder="Password">
-                {% endblock panelbody %}
+                {% endblock panelBody %}
             </div>
-            {% endblock outerpanelbody %}
-            {% block outerpanelfooter %}
             <div class="panel-footer">
-                {% block panelfooter %}
+                {% block panelFooter %}
                 <a href="#" class="btn btn-link">Register</a>
                 <a id="reset-button" href="#" class="btn btn-link">Forgot Password?</a>
                 <button type="submit" class="btn btn-primary">Login</button>
-                {% endblock panelfooter %}
+                {% endblock panelFooter %}
             </div>
-            {% endblock outerpanelfooter %}
         </form>
     </div>
 
