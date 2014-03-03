@@ -3,34 +3,27 @@
 {% block container %}
 
     <div class="panel panel-splash panel-splash-medium">
-        <form action="{% if action is defined %}{{ action }}{% else %}#{% endif %}" method="POST" class="no-margin">
-            <div class="panel-header">
-                {% block subtitle %}
-                    {% if subtitle is defined %}
-                        <h1>{{ subtitle }}</h1>
-                    {% elseif pagetitle is defined %}
-                        <h1>{{ pagetitle }}</h1>
-                    {% else %}
-                        <h1>Some Title Here</h1>
-                    {% endif %}
-                {% endblock subtitle %}
-            </div>
-            <div class="panel-body">
-                {% block panelBody %}
-                <label for="username">Email</label>
-                <input type="text" id="username" name="_username" placeholder="Email" value="">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="_password" placeholder="Password">
-                {% endblock panelBody %}
-            </div>
-            <div class="panel-footer">
-                {% block panelFooter %}
-                <a href="#" class="btn btn-link">Register</a>
-                <a id="reset-button" href="#" class="btn btn-link">Forgot Password?</a>
-                <button type="submit" class="btn btn-primary">Login</button>
-                {% endblock panelFooter %}
-            </div>
-        </form>
+        <div class="panel-header">
+            {% block subtitle %}
+                {% if subtitle is defined %}
+                    <h1>{{ subtitle }}</h1>
+                {% elseif pagetitle is defined %}
+                    <h1>{{ pagetitle }}</h1>
+                {% else %}
+                    <h1>Some Title Here</h1>
+                {% endif %}
+            {% endblock subtitle %}
+        </div>
+        <div class="panel-body">
+            {% block panelBody %}
+                <p>i'm stuff and i go here</p>
+            {% endblock panelBody %}
+        </div>
+        <div class="panel-footer">
+            {% block panelFooter %}
+                <p>i'm more stuff and i go here</p>
+            {% endblock panelFooter %}
+        </div>
     </div>
 
 {% endblock container %}
