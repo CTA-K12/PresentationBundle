@@ -1,28 +1,58 @@
 <!DOCTYPE html>
-    <html lang="en"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
+    <html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
         <head>
             {% block head %}
                 {% block meta %}
                     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                    <meta name="application-name" content="Very Short Application Name"/>
-                    <meta name="description" content="Application description goes here." />
-                    <meta name="keywords" content="space delimited keywords" />
+                    <meta name="application-name" content="{{ app_name }}"/>
+                    <meta name="description" content="{{ app_description }}" />
+                    <meta name="keywords" content="{{ app_keywords }}" />
+                    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+                    <meta name="DC.title" content="{{ app_name }}">
+                    <meta name="DC.identifier" content="{{ app_url }}">
+                    <meta name="DC.description" content="{{ app_description }}">
+                    <meta name="DC.subject" content="{{ app_keywords }}">
+                    <meta name="DC.language" scheme="ISO639-1" content="{{ app.request.locale }}">
+                    <meta name="DC.creator" content="{{ org_url }}">
+                    <meta name="DC.contributor" content="{{ org_url }}">
+                    <meta name="DC.publisher" content="{{ org_url }}">
+                    <meta name="DC.license" content="{{ app_license_url_1 }}">
+                    <meta name="DC.license" content="{{ app_license_url_2 }}">
+                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Collection">
+                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Dataset">
+                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/InteractiveResource">
+                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Text">
+                    <meta name="DC.relation" content="{{ app_url }}">
+                    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+                    <meta name="DCTERMS.created" scheme="ISO8601" content="{{ "now"|date("Y-m-d") }}">
                 <!-- Apple -->
                     <meta name="apple-mobile-web-app-capable" content="yes" />
                     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
                 <!-- Microsoft -->
-                    <meta name="msapplication-tooltip" content="Application description goes here"/>
+                    <meta name="msapplication-tooltip" content="{{ app_description }}"/>
                     <meta name="msapplication-TileColor" content="#e6e6e6"/>
                 <!-- Google -->
                     <meta name="google" content="notranslate">
                 <!-- License and Copyright -->
-                    <meta name="dcterms:rights" content="gpl-3.0, cc-by-nc-sa">
+                    <meta name="dcterms:rights" content="{{ app_license_1 }}">
+                    <meta name="dcterms:rights" content="{{ app_license_2 }}">
                 {% endblock meta %}
 
+                {#}
                 {% block title %}
-                    <title>{% if subtitle is defined %}{{ subtitle }} - {% endif %}{{ app_abbreviation }}</title>
+                    <title>{{ subtitle ~ ' | ' ~ app_abbreviation|default(app_abbreviation) }}</title>
                 {% endblock title %}
+                {#}
+
+                <title>
+                    {% block title %}
+                        {% if subtitle is defined %}
+                            {{ subtitle ~ ' | ' }}
+                        {% endif %}
+                    {% endblock title %}
+                    {{ app_abbreviation }}
+                </title>
 
                 {% block stylesheets %}
                     {% stylesheets
@@ -101,8 +131,8 @@
                                 <div class="footer-left col-md-4">
                                     <p class="h-card">
                                         <span>&copy; {{ "now"|date("Y") }}</span>
-                                        <abbr class="p-name" title="{{ org_name }}">{{ org_abbreviation }}</abbr>
-                                        <span>{{ org_address }}</span>
+                                        <abbr class="p-name name" title="{{ org_name }}">{{ org_abbreviation }}</abbr>
+                                        <span class="p-adr adr">{{ org_address }}</span>
                                     </p>
                                 </div>
                                 <div class="footer-center col-md-4">

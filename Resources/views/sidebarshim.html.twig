@@ -1,9 +1,18 @@
+{#{% block sidebarshim %}
+    <div class="toggle-bar toggle-bar-open">
+        <!--<div class="toggle-bar-strip toggle-bar-strip-back"></div>-->
+        <div class="toggle-bar-handle toggle-bar-handle-open">
+            <span class="fa fa-chevron-left"></span>
+        </div><!-- END toggle-bar-handle -->
+        <!--<div class="toggle-bar-strip toggle-bar-strip-front"></div>-->
+    </div><!-- END toggle-bar -->
+{% endblock sidebarshim %}#}
 {% block sidebarshim %}
-<div class="toggle-bar toggle-bar-open">
-    <div class="toggle-bar-strip toggle-bar-strip-back"></div>
-    <div class="toggle-bar-handle toggle-bar-handle-open">
-        <span class="icon-chevron-left icon-light"></span>
-    </div><!-- END toggle-bar-handle -->
-    <div class="toggle-bar-strip toggle-bar-strip-front"></div>
-</div><!-- END toggle-bar -->
+    <div class="drag-bar">
+        <div class="drag-bar-handle">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div><!-- END drag-bar-handle -->
+    </div><!-- END drag-bar -->
 {% endblock sidebarshim %}

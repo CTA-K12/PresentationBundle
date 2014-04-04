@@ -92,6 +92,9 @@ footer {
             margin: 10px;
         }
     }
+    .nav {
+        width: 100%;
+    }
     .nav > li:last-child > a,
     .navbar > li:last-child > a,
     .navbar .nav-collapse > li:last-child > a,
@@ -139,22 +142,76 @@ footer {
     }
 }
 
-.toggle-bar {
-    position:        absolute;
+.drag-bar {
+    position:           fixed;
     left:                60px;
-    top:                    0;
-    bottom:                 0;
-    width:                2px;
+    top:                 40px;
+    bottom:              20px;
+    width:                3px;
     padding-bottom:       1px;
     cursor:              auto;
     background-color: #dddddd;
     box-shadow: 2px 0px 4px 1px rgba(151, 151, 151, .1);
-    .toggle-bar-handle,
-    .toggle-bar-strip {
-        display:       none;
+    -webkit-transition: background-color .3s ease-in, box-shadow .3s ease-in;
+       -moz-transition: background-color .3s ease-in, box-shadow .3s ease-in;
+         -o-transition: background-color .3s ease-in, box-shadow .3s ease-in;
+            transition: background-color .3s ease-in, box-shadow .3s ease-in;
+    &:hover,
+    &:active,
+    &:focus {
+        cursor:        col-resize;
+        background-color: #bbddff;
+        -webkit-box-shadow: 0 0 12px 2px rgba(187,221,255,0.5);
+        -moz-box-shadow:    0 0 12px 2px rgba(187,221,255,0.5);
+        box-shadow:         0 0 12px 2px rgba(187,221,255,0.5);
+    }
+    .drag-bar-handle {
+        position:        absolute;
+        top:                  50%;
+        height:              21px;
+        width:                9px;
+        background-color: #bbddff;
+        left:                -3px;
+        border-radius:        3px;
+        .dot:after {
+            content:          "·";
+            color:        #ffffff;
+            font-weight:      900;
+            text-align:    center;
+            line-height:     10px;
+            height:           5px;
+            display:        block;
+        }
     }
 }
 
+/* mobile */
+@media (max-width: 767px) {
+    .drag-bar {
+        left: 60px;
+    }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    .drag-bar {
+        left: 60px;
+    }
+}
+
+/* lo res monitor */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .drag-bar {
+        left: 60px;
+    }
+}
+
+/* desktop monitor */
+@media (min-width: 1200px) {
+    .drag-bar {
+        left: 240px;
+    }
+}
 
 
 @media (min-width: @screen-md-min) {
@@ -176,62 +233,6 @@ footer {
         .sidebar-min {
             width: @sidebar-base-closed-width;
         }
-    }
-
-    /* Toggle Bar */
-
-    .toggle-bar {
-        left:               240px;
-        .toggle-bar-open {
-            left:      240px;
-            cursor: w-resize;
-        }
-        .toggle-bar-closed {
-            left:                  60px;
-            cursor:            e-resize;
-        }
-        .toggle-bar-handle {
-            position: absolute;
-            top: 50%;
-            background-color: #dddddd;
-            height: 24px;
-            line-height: 24px;
-            width: 12px;
-            text-align: center;
-            span {
-                color: #ffffff;
-            }
-            &-open {
-                left: -10px;
-                border-radius: 4px 0 0 4px;
-                cursor: w-resize;
-            }
-            &-closed {
-                right: -10px;
-                border-radius: 0 4px 4px 0;
-                cursor: e-resize;
-            }
-        }
-        .toggle-bar-strip {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            &-front {
-                display: none;
-            }
-        }
-
-        .toggle-bar-strip:hover,
-        .toggle-bar-strip:hover ~ .toggle-bar-handle,
-        .toggle-bar-handle:hover,
-        .toggle-bar-handle:hover ~ .toggle-bar-strip-front,
-        .toggle-bar i:hover,
-        .toggle-bar i:hover ~ .toggle-bar-strip {
-            display: block;
-            background-color: #7fb2c1;
-        }
-
     }
 
 }

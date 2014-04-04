@@ -352,12 +352,14 @@ input[type="radio"] {
     color: #999999;
 }
 
-
-.show-grid > [class*="span"] {
-    text-align: center;
+.show-grid > div[class^='col-'],
+.show-grid > div[class*="col-"] {
+    text-align:                 center;
     background-color: rgba(0,0,0,0.05);
-    line-height: 30px;
-    margin-bottom: 10px;
+    line-height:                  30px;
+    margin-bottom:                10px;
+    border:          1px solid #cccccc;
+    border-radius:                 4px;
 }
 
 /* Responsive */

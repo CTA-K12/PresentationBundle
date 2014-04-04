@@ -32,7 +32,37 @@
 {% block container %}
 
     {% block sidebar %}
-        {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', { 'menu': ''})) }}
+        {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', {
+            'route': app.request.get('_route'),
+            'options': { 'type': '' },
+            'menu': {
+                'Fuid Grid': {
+                    'path': '#fluidGridSystem',
+                    'title': 'fluid grid',
+                    'icon': 'fa fa-desktop'
+                },
+                'Responsive': {
+                    'path': '#responsive',
+                    'title': 'responsive',
+                    'icon': 'fa fa-mobile-phone'
+                },
+                'Typography': {
+                    'path': '#typography',
+                    'title': 'typography',
+                    'icon': 'fa fa-font'
+                },
+                'Table': {
+                    'path': '#tables',
+                    'title': 'table',
+                    'icon': 'fa fa-table'
+                },
+                'Form': {
+                    'path': '#forms',
+                    'title': 'form',
+                    'icon': 'fa fa-list-alt'
+                }
+            }}))
+        }}
     {% endblock sidebar %}
 
     <section id="content" class="content container-fluid">

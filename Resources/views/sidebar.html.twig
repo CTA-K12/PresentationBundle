@@ -40,13 +40,16 @@
                                 /foo/bar     | /foo/bar/1/edit | PASS
                                 /foo/bar/new | /foo/bar        | FAIL
 
-                            {% if path(route) == v['path'] %}
+                        #}
+                        {#}
+                        {% if path(route) == v['path'] %}
                             <li class="active">
                         {% else %}
                             <li>
-                        {% endif %}#}
+                        {% endif %}
+                        {#}
                         {#{ path(route)|split(v['path']) }#}
-                        <li>
+                            <li>
                                 <a href="{{ v['path'] }}" title="{{ v['title'] }}">
                                     <span class="fa icon {{ v['icon'] }}"></span>
                                     <span class="pull-right hideable">{{ k }}</span>

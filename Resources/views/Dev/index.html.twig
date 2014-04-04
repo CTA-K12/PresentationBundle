@@ -1,80 +1,90 @@
-{% extends 'MESDPresentationPresentationBundle:Dev:base.html.twig' %}
+{% extends 'MESDPresentationPresentationBundle::base.html.twig' %}
 
-    {% block navbarContent %}
-        <a class="brand" href="#">
-            <img src="{{ asset('dev/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
-        </a>
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-collapse">
+
+{% block navbarContent %}
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </a>
-        <div class="nav-collapse collapse main-collapse">
-            <ul class="nav">
-                <li><a href="#">Demo1</a></li>
-                <li><a href="#">Demo2</a></li>
-                <li><a href="#">Demo3</a></li>
-            </ul>
-            <span class="pull-right">
-                <form id="search" class="navbar-search">
-                    <input type="text" class="search-query" placeholder="Search">
-                </form>
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">UserName<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="fa-user"></span> Profile <span class="muted pull-right">Ctrl+R</span></a></li>
-                            <li><a href="#"><span class="fa-cog"></span> Settings <span class="muted pull-right">Ctrl+X</span></a></li>
-                            <li><a href="#"><span class="fa-lock"></span> Logout <span class="muted pull-right">Ctrl+Q</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </span>
-         </div><!-- END nav-collapse -->
-    {% endblock navbarContent %}
+        </button>
+        {% block appLogo %}
+            <a class="brand" href="#">
+                <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+            </a>
+        {% endblock appLogo %}
+    </div>
 
-    {% block container %}
+    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
+        {% block navLinks %}
+            {% include 'MESDPresentationPresentationBundle::navLinks.html.twig' %}
+        {% endblock navLinks %}
+        <span class="pull-right">
+            {% block searchBar %}
+                {% include 'MESDPresentationPresentationBundle::searchBar.html.twig' %}
+            {% endblock searchBar %}
+            {% block userMenu %}
+                {% include 'MESDPresentationPresentationBundle::userMenu.html.twig' %}
+            {% endblock userMenu %}
+        </span>
+    </div><!-- END nav-collapse -->
+{% endblock navbarContent %}
 
-        {% block sidebar %}
-            {{ render(controller('MESDPresentationPresentationBundle:Dev:sidebar', { 'menu': ''})) }}
-        {% endblock sidebar %}
+{% block container %}
 
-        <section id="content" class="content container-fluid">
-            {% block content %}
+    {% block sidebar %}
+        {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', { 'menu': ''})) }}
+    {% endblock sidebar %}
 
-                <div id="toolbar-top" class="panel panel-white">
-                    {% block breadcrumb %}
-                    {% endblock breadcrumb %}
+    <section id="content" class="content container-fluid">
+        {% block content %}
+
+            {% block toolbarTop %}
+                <div id="toolbar-top" class="toolbar panel panel-white">
+                    {% block toolbarTopContent %}
+                        {% block toolbarTopLeftContent %}
+                        {% endblock toolbarTopLeftContent %}
+                        {% block toolbarTopRightContent %}
+                        {% endblock toolbarTopRightContent %}
+                    {% endblock toolbarTopContent %}
                 </div>
+            {% endblock toolbarTop %}
 
+            {% block flashMessage %}
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    {% if flashMessage is defined %}
+                        <div class="flash-notice csuccess">
+                            <h4>{{ flashMessage }}</h4>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endblock flashMessage %}
+
+            <div id="main" class="panel panel-white">
                 {% block subtitle %}
                     {% if subtitle is defined %}
-                        <h2>{{ subtitle }}</h2>
+                        <h1 class="page-title">{{ subtitle }}</h1>
                     {% elseif pagetitle is defined %}
-                        <h2>{{ pagetitle }}</h2>
+                        <h1 class="page-title">{{ pagetitle }}</h1>
                     {% endif %}
                 {% endblock subtitle %}
+                {% block main %}
+                {% endblock main %}
+            </div><!-- END main -->
 
-                <div id="main" class="panel panel-white">
-                    {% block main %}
-                        <div id="tabs">
-                            <ul>
-                                <li><a href="#tabs-1">Preloaded</a></li>
-                                <li><a href="{{ path('MESDPresentationPresentationBundle_dev_tabcontent') }}">Tab 1</a></li>
-                            </ul>
-                            <div id="tabs-1">
-                                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-                            </div>
+            {% block toolbarBottom %}
+                <div id="toolbar-bottom" class="toolbar panel panel-white">
+                    {% block toolbarBottomContent %}
+                        <div class="panel-body">
                         </div>
-                    {% endblock main %}
-                </div><!-- END main -->
+                    {% endblock toolbarBottomContent %}
+                </div>
+            {% endblock toolbarBottom %}
 
-                <div id="pagination">
-                    {% block pagination %}
-                    {% endblock pagination %}
-                </div><!-- END pagination -->
+        {% endblock content %}
+        <!--<div class="eop"></div>-->
+    </section><!-- END content -->
+    <hr class="eop" />
 
-            {% endblock content %}
-        </section><!-- END content -->
-
-    {% endblock container %}
+{% endblock container %}
