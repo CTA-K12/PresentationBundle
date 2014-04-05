@@ -117,11 +117,9 @@
                     {% endblock navbar %}
                 </header>
 
-                <div id="container" class="wrapper-outer">
-                    <div class="wrapper-inner">
-                        {% block container %}
-                        {% endblock container %}
-                    </div>
+                <div id="container" class="wrapper">
+                    {% block container %}
+                    {% endblock container %}
                 </div><!-- END container -->
 
                 {% block footer %}
@@ -160,7 +158,8 @@
                         '@MESDPresentationPresentationBundle/Resources/public/js/bootstrap/*'
                         '@MESDPresentationPresentationBundle/Resources/public/js/cookie/*'
                         '@MESDPresentationPresentationBundle/Resources/public/js/introjs/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/orchestra-0.1.js'
+                        '@MESDPresentationPresentationBundle/Resources/public/js/elementqueries/*'
+                        '@MESDPresentationPresentationBundle/Resources/public/js/orchestra.js'
                         output='bundles/mesdpresentationpresentation/js/orchestra.min.js'
                         %}
                         <script type="text/javascript" src="{{ asset_url }}"></script>
