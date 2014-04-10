@@ -1,4 +1,4 @@
-{% extends 'MESDPresentationPresentationBundle::base.html.twig' %}
+{% extends 'MESDPresentationBundle::base.html.twig' %}
 {% block navbarContent %}
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main">
@@ -9,30 +9,30 @@
         </button>
         {% block appLogo %}
             <a class="brand" href="#">
-                <img src="{{ asset('bundles/mesdpresentationpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+                <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
             </a>
         {% endblock appLogo %}
     </div>
 
     <div class="collapse navbar-collapse main-collapse" id="navbar-main">
         {% block navLinks %}
-            {% include 'MESDPresentationPresentationBundle::navLinks.html.twig' %}
+            {% include 'MESDPresentationBundle::navLinks.html.twig' %}
         {% endblock navLinks %}
-        <span class="pull-right">
+        <ul class="nav navbar-nav navbar-right">
             {% block searchBar %}
-                {% include 'MESDPresentationPresentationBundle::searchBar.html.twig' %}
+                {% include 'MESDPresentationBundle::searchBar.html.twig' %}
             {% endblock searchBar %}
             {% block userMenu %}
-                {% include 'MESDPresentationPresentationBundle::userMenu.html.twig' %}
+                {% include 'MESDPresentationBundle::userMenu.html.twig' %}
             {% endblock userMenu %}
-        </span>
+        </ul>
     </div><!-- END nav-collapse -->
 {% endblock navbarContent %}
 
 {% block container %}
 
     {% block sidebar %}
-        {{ render(controller('MESDPresentationPresentationBundle:Default:sidebar', {
+        {{ render(controller('MESDPresentationBundle:Default:sidebar', {
             'route': app.request.get('_route'),
             'options': { 'type': '' },
             'menu': {

@@ -56,36 +56,36 @@
 
                 {% block stylesheets %}
                     {% stylesheets
-                    '@MESDPresentationPresentationBundle/Resources/public/less/theme.less'
+                    '@MESDPresentationBundle/Resources/public/less/theme.less'
                     filter='less'
-                    output='bundles/mesdpresentationpresentation/css/orchestra-less.min.css' %}
+                    output='bundles/mesdpresentation/css/orchestra-less.min.css' %}
                     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
                     {% endstylesheets %}
                     {% stylesheets
-                    '@MESDPresentationPresentationBundle/Resources/public/css/orchestra-0.1.css'
+                    '@MESDPresentationBundle/Resources/public/css/orchestra-0.1.css'
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
                     {% stylesheets
-                    '@MESDPresentationPresentationBundle/Resources/public/css/introjs/*'
+                    '@MESDPresentationBundle/Resources/public/css/introjs/*'
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
                 {% endblock stylesheets %}
 
                 {% block icons %}
-                    <link rel="shortcut icon" href="{{ asset('bundles/mesdpresentationpresentation/ico/favicon.ico') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-144x144-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/mesdpresentationpresentation/ico/pple-touch-icon-114x114-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-72x72-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-57x57-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon-precomposed.png') }}" />
-                    <link rel="apple-touch-icon" href="{{ asset('bundles/mesdpresentationpresentation/ico/apple-touch-icon.png') }}" />
-                    <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-tile-144x144.png') }}"/>
-                    <meta name="msapplication-square70x70logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-70x70.png') }}"/>
-                    <meta name="msapplication-square150x150logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-150x150.png') }}"/>
-                    <meta name="msapplication-wide310x150logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-wide-310x150.png') }}"/>
-                    <meta name="msapplication-square310x310logo" content="{{ asset('bundles/mesdpresentationpresentation/ico/microsoft-windows-square-310x310.png') }}"/>
+                    <link rel="shortcut icon" href="{{ asset('bundles/mesdpresentation/ico/favicon.ico') }}" />
+                    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-144x144-precomposed.png') }}" />
+                    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/mesdpresentation/ico/pple-touch-icon-114x114-precomposed.png') }}" />
+                    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-72x72-precomposed.png') }}" />
+                    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-57x57-precomposed.png') }}" />
+                    <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-precomposed.png') }}" />
+                    <link rel="apple-touch-icon" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon.png') }}" />
+                    <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-tile-144x144.png') }}"/>
+                    <meta name="msapplication-square70x70logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-70x70.png') }}"/>
+                    <meta name="msapplication-square150x150logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-150x150.png') }}"/>
+                    <meta name="msapplication-wide310x150logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-wide-310x150.png') }}"/>
+                    <meta name="msapplication-square310x310logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-310x310.png') }}"/>
                 {% endblock icons %}
 
                 {% block sitemap %}
@@ -99,7 +99,7 @@
                 {% endblock sitemap %}
 
                 {% block shiv %}
-                    <script src="{{ asset('bundles/mesdpresentationpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
+                    <script src="{{ asset('bundles/mesdpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
                 {% endblock shiv %}
 
             {% endblock head %}
@@ -126,24 +126,24 @@
                     <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
                         <div class="row">
                             {% block footerContent %}
-                                <div class="footer-left col-md-4">
+                                <div class="footer-left col-md-1-3">
                                     <p class="h-card">
                                         <span>&copy; {{ "now"|date("Y") }}</span>
                                         <abbr class="p-name name" title="{{ org_name }}">{{ org_abbreviation }}</abbr>
                                         <span class="p-adr adr">{{ org_address }}</span>
                                     </p>
                                 </div>
-                                <div class="footer-center col-md-4">
+                                <div class="footer-center col-md-1-3">
                                     <p>version: {{ app_version }}</p>
                                 </div>
-                                <div class="footer-right col-md-4">
+                                <div class="footer-right col-md-1-3">
                                     <p>
                                         <a href="#" title="about">About</a>
-                                        <a class="divider" disabled="disabled"></a>
+                                        <span class="divider">|</span>
                                         <a href="#" title="terms">Terms</a>
-                                        <a class="divider" disabled="disabled"></a>
+                                        <span class="divider">|</span>
                                         <a href="#" title="privacy">Privacy</a>
-                                        <a class="divider" disabled="disabled"></a>
+                                        <span class="divider">|</span>
                                         <a href="#" title="security">Security</a>
                                     </p>
                                 </div>
@@ -154,13 +154,13 @@
 
                 {% block javascripts %}
                     {% javascripts
-                        '@MESDPresentationPresentationBundle/Resources/public/js/jquery/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/bootstrap/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/cookie/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/introjs/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/elementqueries/*'
-                        '@MESDPresentationPresentationBundle/Resources/public/js/orchestra.js'
-                        output='bundles/mesdpresentationpresentation/js/orchestra.min.js'
+                        '@MESDPresentationBundle/Resources/public/js/jquery/*'
+                        '@MESDPresentationBundle/Resources/public/js/bootstrap/*'
+                        '@MESDPresentationBundle/Resources/public/js/cookie/*'
+                        '@MESDPresentationBundle/Resources/public/js/introjs/*'
+                        '@MESDPresentationBundle/Resources/public/js/elementqueries/*'
+                        '@MESDPresentationBundle/Resources/public/js/orchestra.js'
+                        output='bundles/mesdpresentation/js/orchestra.min.js'
                         %}
                         <script type="text/javascript" src="{{ asset_url }}"></script>
                     {% endjavascripts %}

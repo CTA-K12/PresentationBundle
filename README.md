@@ -18,7 +18,6 @@ rendering MESD web-applications. It is based off the following open-source proje
   + JQuery & JQuery UI
   + modernizr.js
   + cookie.js
-  + intro.js
 
 Wanna screenshot? No.
 

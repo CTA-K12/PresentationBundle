@@ -22,6 +22,10 @@ div[class*=' col-'] {
     min-height:                         1px;
     padding-left:  (@grid-gutter-width / 2);
     padding-right: (@grid-gutter-width / 2);
+}
+
+div[class^='col-xs-'],
+div[class*=' col-xs-'] {
     float:                             left;
 }
 
@@ -30,7 +34,6 @@ div[class*=' col-'] {
 
 // start the loop
 .the-loop (xs, @fractions-arr, @grid-columns, @fractions-arr-len);
-
 
 @media (min-width: @screen-sm-min) {
     .container {

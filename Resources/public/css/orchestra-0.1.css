@@ -40,129 +40,11 @@ p.list-header {
 .primary-key { color: GoldenRod; }
 .foreign-key { color: SlateGray; }
 
-/* Navigation */
 
-.navbar {
-    z-index:             1000;
-}
-
-.navbar-inverse .brand {
-    padding:    0 12px 0 12px;
-    background-color:    #fff;
-    width:               90px;
-    height:              36px;
-    margin:             2px 0;
-    border-radius:       20px;
-    -moz-box-shadow: 1px 1px 0 #ddd, inset 2px 2px 5px #888;
-    -webkit-box-shadow: 1px 1px 0 #ddd, inset 2px 2px 5px #888;
-    box-shadow: 1px 1px 0 #ddd, inset 2px 2px 5px #888;
-}
-
-.navbar-search .search-query {
-    line-height:         20px;
-}
-
-.navbar .nav li.dropdown.open > .dropdown-toggle,
-.navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle {
-    color: #555555;
-    background-color: #ffffff;
-    -webkit-box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .pull-right li.dropdown.open:last-child > .dropdown-toggle,
-.navbar .pull-right li.dropdown.active:last-child > .dropdown-toggle,
-.navbar .pull-right li.dropdown.open.active:last-child > .dropdown-toggle {
-    -webkit-box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-menu {
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    border: none;
-    border-top: none;
-    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-}
-
-.navbar .pull-right > li > .dropdown-menu:before,
-.navbar .nav > li > .dropdown-menu.pull-right:before,
-.navbar .pull-right > li > .dropdown-menu:after,
-.navbar .nav > li > .dropdown-menu.pull-right:after {
-    right:   0;
-    left: auto;
-}
-.navbar .nav > li > .dropdown-menu:before,
-.navbar .nav > li > .dropdown-menu:after {
-    position: absolute;
-    top:             0;
-    left:            0;
-    display:      none;
-    border:       none;
-    content:        '';
-}
-
-.dropdown-menu li > a {
-    padding:   2px 6px;
-}
-
-.dropdown-menu li > a > i {
-    padding-right: 4px;
-}
-
-.dropdown-menu li > a > span.pull-right {
-    float:        right;
-    position:  absolute;
-    right:         10px;
-}
-
-.dropdown-menu li > a:hover .muted {
-    color:     #ffffff;
-}
-
-.nav-tab-header {
-    line-height: 26px;
-    font-weight: bold;
-    padding-right: 24px;
-}
-
-.nav-tab-header > * {
-    display: inline;
-    padding-left: 10px;
-}
-
-.nav-tab-header *:first-child {
-    padding-left: 0;
-}
-
-.nav-tab-header h1,
-.nav-tab-header h2,
-.nav-tab-header h3,
-.nav-tab-header h4,
-.nav-tab-header h5,
-.nav-tab-header h6 {
-    line-height: 36px;
-}
-
-.nav-tab-header i { position: absolute; line-height: 36px;}
 
 /* Sidebar */
 
-/*.sidebar ul, sidebar ol {
-    margin-left:       5px;
-} */
 /*
-.sidebar ul li {
-    padding:         5px 0;
-    box-sizing: border-box;
-}
-
 .sidebar-inverse ul li a {
     color: #999;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
@@ -171,10 +53,6 @@ p.list-header {
 .sidebar-inverse ul li a:hover {
     color: #fff;
     background-color: transparent;
-}
-
-.sidebar ul li span {
-    line-height: 30px;
 }
 */
 
@@ -375,15 +253,6 @@ input[type="radio"] {
 }
 
 @media (max-width: 979px) {
-
-    .navbar {
-        margin-bottom:    0;
-    }
-
-    .navbar-fixed-top, .navbar-fixed-bottom {
-        margin:   0 auto;
-    }
-
     .panel {
         border-radius: 0;
     }
@@ -407,17 +276,11 @@ input[type="radio"] {
     }
 
 /* IE 8 ... since we still fucking support it */
-
 .pull-right, span.pull-right {
     float:      none\9;
 }
 
 /* NEW Temporary Bootstrap 3 MESD CSS Overrides */
-.navbar-nav > li > a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .navbar-nav.navbar-user-menu > li > a {
     padding-top: 0px;
     padding-bottom: 0px;

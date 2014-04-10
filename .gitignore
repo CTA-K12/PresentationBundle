@@ -10,16 +10,9 @@ composer.phar
 app/config/parameters.yml
 *.php~
 *.swp
-bandice
 version.txt
 *.phptidy-cache
 ignore/
-src/MESD/Crud/CrudBundle/Entity/
-src/MESD/Crud/CrudBundle/FormType/
-src/MESD/Crud/CrudBundle/Repository/
-src/MESD/Crud/CrudBundle/Resources/config/doctrine/
-src/MESD/Crud/CrudBundle/Resources/views/Gender/
-src/MESD/Crud/CrudBundle/Resources/views/School/
 web/css
 web/js
 web/images
