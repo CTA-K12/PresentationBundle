@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/TwigMoneyFilterExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/TwigMoneyFilterExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 
@@ -20,7 +20,7 @@ class TwigMoneyFilterExtension extends Twig_Extension
         ***/
         return array(
             //'text' => new Text(),
-            'appabbrev' = 'ORCase',
+            'appabbrev' = 'MESD',
         );
     }
 

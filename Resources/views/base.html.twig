@@ -56,18 +56,18 @@
 
                 {% block stylesheets %}
                     {% stylesheets
-                    '@MESDPresentationBundle/Resources/public/less/theme.less'
+                    '@MesdPresentationBundle/Resources/public/less/theme.less'
                     filter='less'
                     output='bundles/mesdpresentation/css/orchestra-less.min.css' %}
                     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
                     {% endstylesheets %}
                     {% stylesheets
-                    '@MESDPresentationBundle/Resources/public/css/orchestra-0.1.css'
+                    '@MesdPresentationBundle/Resources/public/css/orchestra-0.1.css'
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
                     {% stylesheets
-                    '@MESDPresentationBundle/Resources/public/css/introjs/*'
+                    '@MesdPresentationBundle/Resources/public/css/introjs/*'
                     filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                     {% endstylesheets %}
@@ -154,12 +154,12 @@
 
                 {% block javascripts %}
                     {% javascripts
-                        '@MESDPresentationBundle/Resources/public/js/jquery/*'
-                        '@MESDPresentationBundle/Resources/public/js/bootstrap/*'
-                        '@MESDPresentationBundle/Resources/public/js/cookie/*'
-                        '@MESDPresentationBundle/Resources/public/js/introjs/*'
-                        '@MESDPresentationBundle/Resources/public/js/elementqueries/*'
-                        '@MESDPresentationBundle/Resources/public/js/orchestra.js'
+                        '@MesdPresentationBundle/Resources/public/js/jquery/*'
+                        '@MesdPresentationBundle/Resources/public/js/bootstrap/*'
+                        '@MesdPresentationBundle/Resources/public/js/cookie/*'
+                        '@MesdPresentationBundle/Resources/public/js/introjs/*'
+                        '@MesdPresentationBundle/Resources/public/js/elementqueries/*'
+                        '@MesdPresentationBundle/Resources/public/js/orchestra.js'
                         output='bundles/mesdpresentation/js/orchestra.min.js'
                         %}
                         <script type="text/javascript" src="{{ asset_url }}"></script>

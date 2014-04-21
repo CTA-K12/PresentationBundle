@@ -1,11 +1,11 @@
-MESDPresentationBundle_index:
+MesdPresentationBundle_index:
     pattern: /
-    defaults: { _controller: MESDPresentationBundle:Default:index }
+    defaults: { _controller: MesdPresentationBundle:Default:index }
 
-MESDPresentationBundle_splash:
+MesdPresentationBundle_splash:
     pattern: /splash
-    defaults: { _controller: MESDPresentationBundle:Default:splash }
+    defaults: { _controller: MesdPresentationBundle:Default:splash }
 
-MESDPresentationBundle_demo:
+MesdPresentationBundle_demo:
     pattern: /demo
-    defaults: { _controller: MESDPresentationBundle:Default:demo }
+    defaults: { _controller: MesdPresentationBundle:Default:demo }

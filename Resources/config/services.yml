@@ -1,8 +1,8 @@
 parameters:
-    presentation.gravatar.class:    MESD\PresentationBundle\Twig\GravatarExtension
-    presentation.placeholder.class: MESD\PresentationBundle\Twig\PlaceholderExtension
-    presentation.highlighter.class: MESD\PresentationBundle\Twig\HighlighterExtension
-    presentation.interval.class:    MESD\PresentationBundle\Twig\IntervalExtension
+    presentation.gravatar.class:    Mesd\PresentationBundle\Twig\GravatarExtension
+    presentation.placeholder.class: Mesd\PresentationBundle\Twig\PlaceholderExtension
+    presentation.highlighter.class: Mesd\PresentationBundle\Twig\HighlighterExtension
+    presentation.interval.class:    Mesd\PresentationBundle\Twig\IntervalExtension
 
 services:
     presentation.twig.gravatar_extension:

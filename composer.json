@@ -1,8 +1,8 @@
 {
     "name": "mesd/presentation-bundle",
-    "description": "MESD Presentation Bundle for Symfony2",
+    "description": "Mesd Presentation Bundle for Symfony2",
     "keywords": ["mesd", "presentation", "bundle"],
-    "homepage": "http://github.com/MESD/PresentationBundle",
+    "homepage": "http://github.com/Mesd/PresentationBundle",
     "license": "MIT",
     "type": "symfony-bundle",
     "authors": [
@@ -18,8 +18,8 @@
         "symfony/framework-bundle": "~2.3"
     },
     "autoload": {
-        "psr-0": { "MESD\\PresentationBundle": "" }
+        "psr-0": { "Mesd\\PresentationBundle": "" }
     },
     "minimum-stability": "dev",
-    "target-dir": "MESD/PresentationBundle"
+    "target-dir": "Mesd/PresentationBundle"
 }

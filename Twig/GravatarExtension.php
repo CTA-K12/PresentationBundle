@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/GravatarExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/GravatarExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 

@@ -39,6 +39,10 @@ div[class*=' col-xs-'] {
     .container {
         width: @container-sm;
     }
+    div[class^='col-sm-'],
+    div[class*=' col-sm-'] {
+        float:                             left;
+    }
     .the-loop (sm, @fractions-arr, @grid-columns, @fractions-arr-len);
 }
 
@@ -46,12 +50,20 @@ div[class*=' col-xs-'] {
     .container {
         width: @container-md;
     }
+    div[class^='col-md-'],
+    div[class*=' col-md-'] {
+        float:                             left;
+    }
     .the-loop (md, @fractions-arr, @grid-columns, @fractions-arr-len);
 }
 
 @media (min-width: @screen-lg-min) {
     .container {
         width: @container-lg;
+    }
+    div[class^='col-lg-'],
+    div[class*=' col-lg-'] {
+        float:                             left;
     }
     .the-loop (lg, @fractions-arr, @grid-columns, @fractions-arr-len);
 }

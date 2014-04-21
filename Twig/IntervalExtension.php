@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/IntervalExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/IntervalExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 

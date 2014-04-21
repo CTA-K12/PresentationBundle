@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/HighlighterExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/HighlighterExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 

@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/PlaceholderExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/PlaceholderExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 

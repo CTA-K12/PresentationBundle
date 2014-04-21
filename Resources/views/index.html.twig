@@ -1,4 +1,4 @@
-{% extends 'MESDPresentationBundle::base.html.twig' %}
+{% extends 'MesdPresentationBundle::base.html.twig' %}
 {% block navbarContent %}
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main">
@@ -16,14 +16,14 @@
 
     <div class="collapse navbar-collapse main-collapse" id="navbar-main">
         {% block navLinks %}
-            {% include 'MESDPresentationBundle::navLinks.html.twig' %}
+            {% include 'MesdPresentationBundle::navLinks.html.twig' %}
         {% endblock navLinks %}
         <ul class="nav navbar-nav navbar-right">
             {% block searchBar %}
-                {% include 'MESDPresentationBundle::searchBar.html.twig' %}
+                {% include 'MesdPresentationBundle::searchBar.html.twig' %}
             {% endblock searchBar %}
             {% block userMenu %}
-                {% include 'MESDPresentationBundle::userMenu.html.twig' %}
+                {% include 'MesdPresentationBundle::userMenu.html.twig' %}
             {% endblock userMenu %}
         </ul>
     </div><!-- END nav-collapse -->
@@ -32,7 +32,7 @@
 {% block container %}
 
     {% block sidebar %}
-        {{ render(controller('MESDPresentationBundle:Default:sidebar', {
+        {{ render(controller('MesdPresentationBundle:Default:sidebar', {
             'route': app.request.get('_route'),
             'options': { 'type': '' },
             'menu': {

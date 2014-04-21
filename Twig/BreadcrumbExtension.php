@@ -1,6 +1,6 @@
 <?php
-// MESD/PresentationBundle/Twig/BreadcrumbExtension.php
-namespace MESD\PresentationBundle\Twig;
+// Mesd/PresentationBundle/Twig/BreadcrumbExtension.php
+namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 
