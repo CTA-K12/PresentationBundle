@@ -587,11 +587,11 @@
 }
 
 // Creates a wrapper for a series of columns
-//.make-row(@gutter: @grid-gutter-width) {
-//  margin-left:  (@gutter / -2);
-//  margin-right: (@gutter / -2);
-//  .clearfix();
-//}
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  .clearfix();
+}
 
 // Generate the extra small columns
 .make-xs-column(@columns; @gutter: @grid-gutter-width) {
@@ -871,9 +871,10 @@
   }
 }
 
+// THIS PROBABLY SHOULDN'T BE OVERRIDDEN
 // Creates a wrapper for a series of columns
-.make-row(@gutter: @grid-gutter-width) {
-  margin-left:  0;
-  margin-right: 0;
-  .clearfix();
-}
+//.make-row(@gutter: @grid-gutter-width) {
+//  margin-left:  0;
+//  margin-right: 0;
+//  .clearfix();
+//}
