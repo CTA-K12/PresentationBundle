@@ -1,6 +1,6 @@
 {
     "name": "mesd/presentation-bundle",
-    "description": "Mesd Presentation Bundle for Symfony2",
+    "description": "MESD Presentation Bundle for Symfony2",
     "keywords": ["mesd", "presentation", "bundle"],
     "homepage": "http://github.com/Mesd/PresentationBundle",
     "license": "MIT",
