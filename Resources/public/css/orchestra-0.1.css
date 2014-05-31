@@ -253,7 +253,7 @@ input[type="radio"] {
 }
 
 @media (max-width: 979px) {
-    .panel {
+    .section {
         border-radius: 0;
     }
 

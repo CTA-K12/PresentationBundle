@@ -24,6 +24,47 @@ class DefaultController extends Controller
         return $this->render('MesdPresentationBundle::demo.html.twig', array());
     }
 
+    // Renders the login layout page, based on splash page
+    public function loginAction()
+    {
+        return $this->render('MesdPresentationBundle::login.html.twig', array());
+    }
+
+    // Renders the grid page, used for full page grids (like an excel spreadsheet)
+    public function gridAction()
+    {
+        return $this->render('MesdPresentationBundle::grid.html.twig', array());
+    }
+
+    // Renders the calendar page
+    public function calendarAction()
+    {
+        return $this->render('MesdPresentationBundle::calendar.html.twig', array());
+    }
+
+    // Renders the search results page, like a google search result page, but not
+    public function searchResultsAction()
+    {
+        return $this->render('MesdPresentationBundle::searchResults.html.twig', array());
+    }
+
+    // Renders the map page
+    public function mapAction()
+    {
+        return $this->render('MesdPresentationBundle::map.html.twig', array());
+    }
+
+    // Renders the dashboard page
+    public function dashboardAction()
+    {
+        return $this->render('MesdPresentationBundle::dashboard.html.twig', array());
+    }
+
+    // Renders the error page, such as 404 or 403
+    public function errorAction()
+    {
+        return $this->render('MesdPresentationBundle::error.html.twig', array());
+    }
 
     // Renders the sidebar, not accessible via routes, only by controller
     public function sidebarAction($route, $menu, $options = array())

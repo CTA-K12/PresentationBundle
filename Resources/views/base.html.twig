@@ -2,100 +2,25 @@
     <html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
         <head>
             {% block head %}
+
                 {% block meta %}
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                    <meta name="application-name" content="{{ app_name }}"/>
-                    <meta name="description" content="{{ app_description }}" />
-                    <meta name="keywords" content="{{ app_keywords }}" />
-                    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-                    <meta name="DC.title" content="{{ app_name }}">
-                    <meta name="DC.identifier" content="{{ app_url }}">
-                    <meta name="DC.description" content="{{ app_description }}">
-                    <meta name="DC.subject" content="{{ app_keywords }}">
-                    <meta name="DC.language" scheme="ISO639-1" content="{{ app.request.locale }}">
-                    <meta name="DC.creator" content="{{ org_url }}">
-                    <meta name="DC.contributor" content="{{ org_url }}">
-                    <meta name="DC.publisher" content="{{ org_url }}">
-                    <meta name="DC.license" content="{{ app_license_url_1 }}">
-                    <meta name="DC.license" content="{{ app_license_url_2 }}">
-                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Collection">
-                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Dataset">
-                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/InteractiveResource">
-                    <meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Text">
-                    <meta name="DC.relation" content="{{ app_url }}">
-                    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
-                    <meta name="DCTERMS.created" scheme="ISO8601" content="{{ "now"|date("Y-m-d") }}">
-                <!-- Apple -->
-                    <meta name="apple-mobile-web-app-capable" content="yes" />
-                    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-                <!-- Microsoft -->
-                    <meta name="msapplication-tooltip" content="{{ app_description }}"/>
-                    <meta name="msapplication-TileColor" content="#e6e6e6"/>
-                <!-- Google -->
-                    <meta name="google" content="notranslate">
-                <!-- License and Copyright -->
-                    <meta name="dcterms:rights" content="{{ app_license_1 }}">
-                    <meta name="dcterms:rights" content="{{ app_license_2 }}">
+                    {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
                 {% endblock meta %}
 
-                {#}
                 {% block title %}
-                    <title>{{ subtitle ~ ' | ' ~ app_abbreviation|default(app_abbreviation) }}</title>
-                {% endblock title %}
-                {#}
-
-                <title>
-                    {% block title %}
-                        {% if subtitle is defined %}
-                            {{ subtitle ~ ' | ' }}
-                        {% endif %}
-                    {% endblock title %}
-                    {{ app_abbreviation }}
-                </title>
+                    {% include 'MesdPresentationBundle:Block:title.html.twig' %}
+                {% endblock title%}
 
                 {% block stylesheets %}
-                    {% stylesheets
-                    '@MesdPresentationBundle/Resources/public/less/theme.less'
-                    filter='less'
-                    output='bundles/mesdpresentation/css/orchestra-less.min.css' %}
-                    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-                    {% endstylesheets %}
-                    {% stylesheets
-                    '@MesdPresentationBundle/Resources/public/css/orchestra-0.1.css'
-                    filter='cssrewrite' %}
-                    <link rel="stylesheet" href="{{ asset_url }}" />
-                    {% endstylesheets %}
-                    {% stylesheets
-                    '@MesdPresentationBundle/Resources/public/css/introjs/*'
-                    filter='cssrewrite' %}
-                    <link rel="stylesheet" href="{{ asset_url }}" />
-                    {% endstylesheets %}
+                    {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
                 {% endblock stylesheets %}
 
                 {% block icons %}
-                    <link rel="shortcut icon" href="{{ asset('bundles/mesdpresentation/ico/favicon.ico') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-144x144-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/mesdpresentation/ico/pple-touch-icon-114x114-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-72x72-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-57x57-precomposed.png') }}" />
-                    <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon-precomposed.png') }}" />
-                    <link rel="apple-touch-icon" href="{{ asset('bundles/mesdpresentation/ico/apple-touch-icon.png') }}" />
-                    <meta name="msapplication-TileImage" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-tile-144x144.png') }}"/>
-                    <meta name="msapplication-square70x70logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-70x70.png') }}"/>
-                    <meta name="msapplication-square150x150logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-150x150.png') }}"/>
-                    <meta name="msapplication-wide310x150logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-wide-310x150.png') }}"/>
-                    <meta name="msapplication-square310x310logo" content="{{ asset('bundles/mesdpresentation/ico/microsoft-windows-square-310x310.png') }}"/>
+                    {% include 'MesdPresentationBundle:Block:icons.html.twig' %}
                 {% endblock icons %}
 
                 {% block sitemap %}
-                    <meta name="robots" content="noarchive" /><!-- robot, no archiving! -->
-                    <meta name="googlebot" content="noarchive" /><!-- you neither google -->
-                    <meta name="googlebot-mobile" content="noarchive" /><!-- i shouldn't have to tell you twice -->
-                    <meta name="slurp" content="noarchive" /><!-- or you yahoo -->
-                    <meta name="bingbot" content="noarchive" /><!-- or microsoft -->
-                    <meta name="baiduspider" content="noarchive" /><!-- or especially, you china -->
-                <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
+                    {% include 'MesdPresentationBundle:Block:sitemap.html.twig' %}
                 {% endblock sitemap %}
 
                 {% block shiv %}
@@ -108,71 +33,184 @@
         <body>
             {% block body %}
 
-                <header id="header">
-                    {% block navbar %}
-                        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
-                            {% block navbarContent %}
-                            {% endblock navbarContent %}
-                        </nav><!-- END nav, navbar -->
-                    {% endblock navbar %}
-                </header>
+                {% block header %}
+                    <header id="header">
+                        {% block navbar %}
+                            <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                                {% block navbarContent %}
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-main">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="brand" href="#">
+                                            {% block navbarContentLogo %}
+                                                <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+                                            {% endblock navbarContentLogo %}
+                                        </a>
+                                    </div>
 
-                <div id="container" class="wrapper">
-                    {% block container %}
-                    {% endblock container %}
-                </div><!-- END container -->
+                                    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
+                                        {% block navbarContentLeft %}
+                                            {% include 'MesdPresentationBundle::navLinks.html.twig' %}
+                                        {% endblock navbarContentLeft %}
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {% block navbarContentRight %}
+                                                {% block navbarContentWidgets %}
+                                                    {% include 'MesdPresentationBundle::searchBar.html.twig' %}
+                                                {% endblock navbarContentWidgets %}
+                                                {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                            {% endblock navbarContentRight %}
+                                        </ul>
+                                    </div><!-- END nav-collapse -->
+                                {% endblock navbarContent %}
+                            </nav><!-- END nav, navbar -->
+                        {% endblock navbar %}
+                    </header>
+                {% endblock header %}
+
+                {% block containerOuter %}
+                    <div id="container-outer" class="container-outer wrapper">
+
+                        {% block sidebar %}
+                            {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+                                'route': app.request.get('_route'),
+                                'options': { 'type': '' },
+                                'menu': {
+                                    'Fuid Grid': {
+                                        'path': '#fluidGridSystem',
+                                        'title': 'fluid grid',
+                                        'icon': 'fa fa-desktop'
+                                    },
+                                    'Responsive': {
+                                        'path': '#responsive',
+                                        'title': 'responsive',
+                                        'icon': 'fa fa-mobile-phone'
+                                    },
+                                    'Typography': {
+                                        'path': '#typography',
+                                        'title': 'typography',
+                                        'icon': 'fa fa-font'
+                                    },
+                                    'Table': {
+                                        'path': '#tables',
+                                        'title': 'table',
+                                        'icon': 'fa fa-table'
+                                    },
+                                    'Form': {
+                                        'path': '#forms',
+                                        'title': 'form',
+                                        'icon': 'fa fa-list-alt'
+                                    }
+                                }}))
+                            }}
+                        {% endblock sidebar %}
+
+                        {% block containerInner %}
+                            <section id="container-inner" class="container-inner container-fluid">
+
+                                {% block toolbarTop %}
+                                    <div id="toolbar-top" class="toolbar section section-white">
+                                        {% block toolbarTopLeft %}
+                                        {% endblock toolbarTopLeft %}
+                                        {% block toolbarTopRight %}
+                                        {% endblock toolbarTopRight %}
+                                    </div>
+                                {% endblock toolbarTop %}
+
+                                {% block flashMessage %}
+                                    {% for type in ['danger', 'warning', 'info', 'success'] %}
+                                        {% for flashMessage in app.session.flashbag.get(type) %}
+                                            {% if flashMessage is defined %}
+                                                <div class="{{"alert alert-dismissable alert-"~type}}">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    {{ flashMessage|raw }}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endblock flashMessage %}
+
+                                {% block content %}
+                                    <div id="content" class="content section section-white">
+                                        {% block contentHeader %}
+                                            {% block pageTitle %}
+                                                <h1 class="page-title">{% if pageTitle is defined %}{{ pageTitle|raw }}{% endif %}
+                                                    {% block pageSubtitle %}
+                                                        {% if pageSubtitle is defined %}<small>{{ pageSubtitle|raw }}</small>{% endif %}
+                                                    {% endblock pageSubtitle %}
+                                                </h1>
+                                            {%- endblock pageTitle -%}
+                                        {% endblock contentHeader %}
+                                        {% block contentBody %}
+                                        {% endblock contentBody %}
+                                        {% block contentFooter %}
+                                        {% endblock contentFooter %}
+                                    </div><!-- END content -->
+                                {% endblock content %}
+
+                                {% block toolbarBottom %}
+                                    <div id="toolbar-bottom" class="toolbar section section-white">
+                                        {% block toolbarBottomLeft %}
+                                        {% endblock toolbarBottomLeft %}
+                                        {% block toolbarBottomCenter %}
+                                        {% endblock toolbarBottomCenter %}
+                                        {% block toolbarBottomRight %}
+                                        {% endblock toolbarBottomRight %}
+                                    </div>
+                                {% endblock toolbarBottom %}
+
+                            </section><!-- END content -->
+                            <!--<hr class="eop" />-->
+                        {% endblock containerInner %}
+
+                    </div><!-- END container-outer -->
+                {% endblock containerOuter %}
 
                 {% block footer %}
                     <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
-                        <div class="row">
-                            {% block footerContent %}
+                        {% block footerContent %}
+                            <div class="row">
                                 <div class="footer-left col-md-1-3">
-                                    <p class="h-card">
-                                        <span>&copy; {{ "now"|date("Y") }}</span>
-                                        <abbr class="p-name name" title="{{ org_name }}">{{ org_abbreviation }}</abbr>
-                                        <span class="p-adr adr">{{ org_address }}</span>
-                                    </p>
+                                    {% block footerContentLeft %}
+                                        <p class="h-card">
+                                            <span>&copy; {{ "now"|date("Y") }}</span>
+                                            <abbr class="p-name name" title="{{ orgName }}">{{ orgAbbreviation }}</abbr>
+                                            <span class="p-adr adr">{{ orgAddress }}</span>
+                                        </p>
+                                    {% endblock footerContentLeft %}
                                 </div>
                                 <div class="footer-center col-md-1-3">
-                                    <p>version: {{ app_version }}</p>
+                                    {% block footerContentCenter %}
+                                        <p>version: {{ appVersion }}</p>
+                                    {% endblock footerContentCenter %}
                                 </div>
                                 <div class="footer-right col-md-1-3">
-                                    <p>
-                                        <a href="#" title="about">About</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="terms">Terms</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="privacy">Privacy</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="security">Security</a>
-                                    </p>
+                                    {% block footerContentRight %}
+                                        <p>
+                                            <a href="#" title="about">About</a>
+                                            <span class="divider">|</span>
+                                            <a href="#" title="terms">Terms</a>
+                                            <span class="divider">|</span>
+                                            <a href="#" title="privacy">Privacy</a>
+                                            <span class="divider">|</span>
+                                            <a href="#" title="security">Security</a>
+                                        </p>
+                                    {% endblock footerContentRight %}
                                 </div>
-                            {% endblock footerContent %}
-                        </div>
+                            </div><!-- END row -->
+                        {% endblock footerContent %}
                     </footer><!-- END footer, navbar -->
                 {% endblock footer %}
 
                 {% block javascripts %}
-                    {% javascripts
-                        '@MesdPresentationBundle/Resources/public/js/jquery/*'
-                        '@MesdPresentationBundle/Resources/public/js/bootstrap/*'
-                        '@MesdPresentationBundle/Resources/public/js/cookie/*'
-                        '@MesdPresentationBundle/Resources/public/js/introjs/*'
-                        '@MesdPresentationBundle/Resources/public/js/elementqueries/*'
-                        '@MesdPresentationBundle/Resources/public/js/orchestra.js'
-                        output='bundles/mesdpresentation/js/orchestra.min.js'
-                        %}
-                        <script type="text/javascript" src="{{ asset_url }}"></script>
-                    {% endjavascripts %}
+                    {% include 'MesdPresentationBundle:Block:javascripts.html.twig' %}
                 {% endblock javascripts %}
 
                 {% block analytics %}
-                    <script>
-                    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-                    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-                        s.parentNode.insertBefore(g,s)}(document,'script'));
-                    </script>
+                    {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
                 {% endblock analytics %}
 
             {% endblock body %}

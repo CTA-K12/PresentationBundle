@@ -1,8 +1,8 @@
 {% extends 'MesdPresentationBundle::index.html.twig' %}
 
-{% block main %}
-    <div class="panel panel-splash panel-splash-medium">
-        <div class="panel-header">
+{% block containerOuter %}
+    <div class="section section-splash section-splash-medium">
+        <div class="section-header">
             {% block subtitle %}
                 {% if subtitle is defined %}
                     <h1>{{ subtitle }}</h1>
@@ -13,15 +13,15 @@
                 {% endif %}
             {% endblock subtitle %}
         </div>
-        <div class="panel-body">
-            {% block panelBody %}
+        <div class="section-body">
+            {% block sectionBody %}
                 <p>i'm stuff and i go here</p>
-            {% endblock panelBody %}
+            {% endblock sectionBody %}
         </div>
-        <div class="panel-footer">
-            {% block panelFooter %}
+        <div class="section-footer">
+            {% block sectionFooter %}
                 <p>i'm more stuff and i go here</p>
-            {% endblock panelFooter %}
+            {% endblock sectionFooter %}
         </div>
     </div>
-{% endblock main %}
+{% endblock containerOuter %}

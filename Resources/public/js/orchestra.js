@@ -60,7 +60,7 @@ function Sidebar() {
         this.currPos = pos;
 
         $('.sidebar').css('width', this.currPos);
-        $('.content').css('margin-left', this.currPos);
+        $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
     }
 
@@ -203,9 +203,9 @@ $('#sidebar').scroll(function() {
     $.cookie('sscroll', $('#sidebar').scrollTop());
 });
 
-// when content is scrolled, set a cookie of the scroll position
-$('#content').scroll(function() {
-    $.cookie('cscroll', $('#content').scrollTop());
+// when container-inner is scrolled, set a cookie of the scroll position
+$('#container-inner').scroll(function() {
+    $.cookie('cscroll', $('#container-inner').scrollTop());
 });
 
 $(document).ready(function() {
@@ -217,9 +217,9 @@ $(document).ready(function() {
         $('#sidebar').scrollTop($.cookie('sscroll'));
     }
 
-    // on page load, if content cookie is scrolled, go back to position
+    // on page load, if container-inner cookie is scrolled, go back to position
     if ($.cookie('cscroll') !== null) {
-        $('#content').scrollTop($.cookie('cscroll'));
+        $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
     // on page load, if sidebar cookie is collapsed, collapse sidebar

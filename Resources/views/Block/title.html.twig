@@ -1,0 +1,7 @@
+{% if pageTitle is defined %}
+    {% set pageTitle = (pageTitle ~ ' | ' ~ appAbbreviation)|striptags %}
+{% else %}
+    {% set pageTitle = appAbbreviation|striptags %}
+{% endif %}
+
+<title>{{ pageTitle }}</title>

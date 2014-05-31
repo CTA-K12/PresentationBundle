@@ -1,0 +1,22 @@
+{% stylesheets
+          '@MesdPresentationBundle/Resources/public/less/theme.less' 
+          filter='less'
+          output='bundles/mesdpresentation/css/mesdpresentation-less.css'
+     %}
+     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+{% endstylesheets %}
+{% stylesheets
+          '@MesdPresentationBundle/Resources/public/css/*'
+          filter='cssrewrite'
+          output='bundles/mesdpresentation/css/mesdpresentation-css.css'
+     %}
+     <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{#} Are we even still using this?
+{% stylesheets
+          '@MesdPresentationBundle/Resources/public/css/introjs/*'
+          filter='cssrewrite'
+     %}
+     <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{#}

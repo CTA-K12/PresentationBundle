@@ -1,9 +1,9 @@
 //
-// Panels
+// sections
 // --------------------------------------------------
 
 
-.panel {
+.section {
     padding:         10px;
     border-radius:    4px;
     margin-bottom:   10px;
@@ -24,11 +24,11 @@
             color: @gray-light;
         }
     }
-    &.panel-white {
+    &.section-white {
         background-color:                    #fff;
         box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.1);
     }
-    &.panel-splash {
+    &.section-splash {
         position:               absolute;
         top:                        80px;
         left:                        50%;
@@ -40,51 +40,51 @@
         border-radius:               6px;
         .box-shadow(0 3px 7px rgba(0,0,0,0.3));
         background-clip:     padding-box;
-        &.panel-splash-small {
+        &.section-splash-small {
             width:        360px;
             margin-left: -180px;
-            .panel-header,
-            .panel-body,
-            .panel-footer {
+            .section-header,
+            .section-body,
+            .section-footer {
                 padding:   10px;
                 .box-sizing(border-box);
             }
         }
-        &.panel-splash-medium {
+        &.section-splash-medium {
             width: 480px;
             margin-left: -240px;
-            .panel-header,
-            .panel-body,
-            .panel-footer {
+            .section-header,
+            .section-body,
+            .section-footer {
                 padding:   20px;
                 .box-sizing(border-box);
             }
         }
-        &.panel-splash-large {
+        &.section-splash-large {
             width: 640px;
             margin-left: -320px;
-            .panel-header,
-            .panel-body,
-            .panel-footer {
+            .section-header,
+            .section-body,
+            .section-footer {
                 padding:   20px;
                 .box-sizing(border-box);
             }
         }
     }
-    .panel-header {
+    .section-header {
         padding: 9px 15px;
         border-bottom: 1px solid #eee;
         h1 {
             border-bottom: none;
         }
     }
-    .panel-body {
+    .section-body {
         position: relative;
         overflow-y: auto;
         max-height: 400px;
         padding: 15px;
     }
-    .panel-footer {
+    .section-footer {
         padding: 14px 15px 15px;
         margin-bottom: 0;
         text-align: right; // right align buttons
@@ -97,11 +97,11 @@
 }
 
 @media (max-width: 979px) {
-    .panel {
-        &.panel-splash,
-        &.panel-splash.panel-splash-small,
-        &.panel-splash.panel-splash-medium,
-        &.panel-splash.panel-splash-large {
+    .section {
+        &.section-splash,
+        &.section-splash.section-splash-small,
+        &.section-splash.section-splash-medium,
+        &.section-splash.section-splash-large {
             position: relative;
             left: 0;
             top: 0;
@@ -110,11 +110,11 @@
     }
 }
 @media (max-width: 767px) {
-    .panel {
-        &.panel-splash,
-        &.panel-splash.panel-splash-small,
-        &.panel-splash.panel-splash-medium,
-        &.panel-splash.panel-splash-large {
+    .section {
+        &.section-splash,
+        &.section-splash.section-splash-small,
+        &.section-splash.section-splash-medium,
+        &.section-splash.section-splash-large {
             width: 100%;
         }
     }

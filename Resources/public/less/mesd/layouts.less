@@ -9,7 +9,7 @@ body {
     height:            100%;
 }
 
-.wrapper {
+.container-outer {
     position:      absolute;
     width:             100%;
     top:     @navbar-height;
@@ -17,7 +17,7 @@ body {
     overflow:        hidden;
 }
 
-.content {
+.container-inner {
     height:             100%;
     width:              auto;
     padding: @padding-base-horizontal @padding-base-horizontal @padding-base-vertical;
@@ -216,7 +216,7 @@ footer {
 @media (min-width: @screen-md-min) {
 
     // Main content section, individually scrollable
-    .content {
+    .container-inner {
         margin: 0 auto -2px 240px;
     }
 

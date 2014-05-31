@@ -1,0 +1,34 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="application-name" content="{{ appName }}"/>
+<meta name="description" content="{{ appDescription }}" />
+<meta name="keywords" content="{{ appKeywords }}" />
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.title" content="{{ appName }}">
+<meta name="DC.identifier" content="{{ appUrl }}">
+<meta name="DC.description" content="{{ appDescription }}">
+<meta name="DC.subject" content="{{ appKeywords }}">
+<meta name="DC.language" scheme="ISO639-1" content="{{ app.request.locale }}">
+<meta name="DC.creator" content="{{ orgUrl }}">
+<meta name="DC.contributor" content="{{ orgUrl }}">
+<meta name="DC.publisher" content="{{ orgUrl }}">
+<meta name="DC.license" content="{{ appLicenseUrl1 }}">
+<meta name="DC.license" content="{{ appLicenseUrl2 }}">
+<meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Collection">
+<meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Dataset">
+<meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/InteractiveResource">
+<meta name="DC.type" scheme="DCMITYPE" content="http://purl.org/dc/dcmitype/Text">
+<meta name="DC.relation" content="{{ appUrl }}">
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+<meta name="DCTERMS.created" scheme="ISO8601" content="{{ "now"|date("Y-m-d") }}">
+<!-- Apple -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Microsoft -->
+<meta name="msapplication-tooltip" content="{{ appDescription }}"/>
+<meta name="msapplication-TileColor" content="#e6e6e6"/>
+<!-- Google -->
+<meta name="google" content="notranslate">
+<!-- License and Copyright -->
+<meta name="dcterms:rights" content="{{ appLicense1 }}">
+<meta name="dcterms:rights" content="{{ appLicense2 }}">
