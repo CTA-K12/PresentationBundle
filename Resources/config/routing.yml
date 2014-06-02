@@ -1,3 +1,7 @@
+MesdPresentationBundle_docs:
+    resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
+    prefix:   /docs
+
 MesdPresentationBundle_index:
     pattern: /
     defaults: { _controller: MesdPresentationBundle:Default:index }
@@ -6,6 +10,34 @@ MesdPresentationBundle_splash:
     pattern: /splash
     defaults: { _controller: MesdPresentationBundle:Default:splash }
 
-MesdPresentationBundle_demo:
-    pattern: /demo
-    defaults: { _controller: MesdPresentationBundle:Default:demo }
+# Should login be split up?
+# Such as: login, register, forgot-password, forgot-username
+MesdPresentationBundle_login:
+    pattern: /login
+    defaults: { _controller: MesdPresentationBundle:Default:login }
+
+MesdPresentationBundle_grid:
+    pattern: /grid
+    defaults: { _controller: MesdPresentationBundle:Default:grid }
+
+# Should calendar be split up?
+# Such as: calendar-month, calendar-week, calendar-day (agenda)
+MesdPresentationBundle_calendar:
+    pattern: /calendar
+    defaults: { _controller: MesdPresentationBundle:Default:calendar }
+
+MesdPresentationBundle_list:
+    pattern: /list
+    defaults: { _controller: MesdPresentationBundle:Default:list }
+
+MesdPresentationBundle_map:
+    pattern: /map
+    defaults: { _controller: MesdPresentationBundle:Default:map }
+
+MesdPresentationBundle_dashboard:
+    pattern: /dashboard
+    defaults: { _controller: MesdPresentationBundle:Default:dashboard }
+
+MesdPresentationBundle_error:
+    pattern: /error
+    defaults: { _controller: MesdPresentationBundle:Default:error }

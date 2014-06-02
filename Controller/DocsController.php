@@ -4,36 +4,36 @@ namespace Mesd\PresentationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class DocsController extends Controller
 {
-    // Renders the main (index) layout page
-    public function indexAction()
+    // Renders the table of contents (toc)
+    public function tocAction()
     {
-        return $this->render('MesdPresentationBundle::index.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:toc.html.twig', array());
     }
 
-    // Renders the splash layout page, used for login and registration forms
-    public function splashAction()
+    // Renders the grids page
+    public function gridsAction()
     {
-        return $this->render('MesdPresentationBundle::splash.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:grids.html.twig', array());
     }
 
-    // Renders the docs page
-    public function docsAction()
+    // Renders the typography page
+    public function typeAction()
     {
-        return $this->render('MesdPresentationBundle::docs.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:type.html.twig', array());
     }
 
-    // Renders the login layout page, based on splash page
-    public function loginAction()
+    // Renders the tables page
+    public function tablesAction()
     {
-        return $this->render('MesdPresentationBundle::login.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:tables.html.twig', array());
     }
 
-    // Renders the grid page, used for full page grids (like an excel spreadsheet)
-    public function gridAction()
+    // Renders the forms
+    public function formsAction()
     {
-        return $this->render('MesdPresentationBundle::grid.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:forms.html.twig', array());
     }
 
     // Renders the calendar page
