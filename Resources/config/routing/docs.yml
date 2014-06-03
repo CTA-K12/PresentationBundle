@@ -1,0 +1,11 @@
+MesdPresentationBundle_docs_index:
+    pattern: /
+    defaults: { _controller: MesdPresentationBundle:Docs:toc }
+
+MesdPresentationBundle_docs_toc:
+    pattern: /toc
+    defaults: { _controller: MesdPresentationBundle:Docs:toc }
+
+MesdPresentationBundle_docs_grids:
+    pattern: /grids
+    defaults: { _controller: MesdPresentationBundle:Docs:grids }

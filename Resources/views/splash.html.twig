@@ -5,9 +5,9 @@
         <div class="section-header">
             {% block subtitle %}
                 {% if subtitle is defined %}
-                    <h1>{{ subtitle }}</h1>
+                    <h1 class="page-title">{{ subtitle }}</h1>
                 {% elseif pagetitle is defined %}
-                    <h1>{{ pagetitle }}</h1>
+                    <h1 class="page-title">{{ pagetitle }}</h1>
                 {% else %}
                     <h1>Some Title Here</h1>
                 {% endif %}

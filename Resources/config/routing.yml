@@ -1,10 +1,10 @@
-MesdPresentationBundle_docs:
-    resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
-    prefix:   /docs
-
 MesdPresentationBundle_index:
     pattern: /
     defaults: { _controller: MesdPresentationBundle:Default:index }
+
+MesdPresentationBundle_docs:
+    resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
+    prefix:   /docs
 
 MesdPresentationBundle_splash:
     pattern: /splash

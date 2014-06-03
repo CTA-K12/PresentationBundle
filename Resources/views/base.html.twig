@@ -135,19 +135,25 @@
 
                                 {% block content %}
                                     <div id="content" class="content section section-white">
-                                        {% block contentHeader %}
-                                            {% block pageTitle %}
-                                                <h1 class="page-title">{% if pageTitle is defined %}{{ pageTitle|raw }}{% endif %}
-                                                    {% block pageSubtitle %}
-                                                        {% if pageSubtitle is defined %}<small>{{ pageSubtitle|raw }}</small>{% endif %}
-                                                    {% endblock pageSubtitle %}
-                                                </h1>
-                                            {%- endblock pageTitle -%}
-                                        {% endblock contentHeader %}
-                                        {% block contentBody %}
-                                        {% endblock contentBody %}
-                                        {% block contentFooter %}
-                                        {% endblock contentFooter %}
+                                        <div class="section-header">
+                                            {% block contentHeader %}
+                                                {% block pageTitle %}
+                                                    <h1 class="page-title">{% if pageTitle is defined %}{{ pageTitle|raw }}{% endif %}
+                                                        {% block pageSubtitle %}
+                                                            {% if pageSubtitle is defined %}<small>{{ pageSubtitle|raw }}</small>{% endif %}
+                                                        {% endblock pageSubtitle %}
+                                                    </h1>
+                                                {% endblock pageTitle %}
+                                            {% endblock contentHeader %}
+                                        </div>
+                                        <div class="section-body">
+                                            {% block contentBody %}
+                                            {% endblock contentBody %}
+                                        </div>
+                                        <div class="section-footer">
+                                            {% block contentFooter %}
+                                            {% endblock contentFooter %}
+                                        </div>
                                     </div><!-- END content -->
                                 {% endblock content %}
 

@@ -1,0 +1,31 @@
+{{ render(controller('MesdPresentationBundle:Default:sidebar', {
+    'route': app.request.get('_route'),
+    'options': { 'type': '' },
+    'menu': {
+        'TOC': {
+            'path':  path('MesdPresentationBundle_docs_toc'),
+            'title': 'Table of Contents',
+            'icon':  'fa fa-files-o'
+        },
+        'Grids': {
+            'path':  path('MesdPresentationBundle_docs_grids'),
+            'title': 'Grids',
+            'icon':  'fa fa-th'
+        },
+        'Typography': {
+            'path': '#typography',
+            'title': 'typography',
+            'icon': 'fa fa-font'
+        },
+        'Table': {
+            'path': '#tables',
+            'title': 'table',
+            'icon': 'fa fa-table'
+        },
+        'Form': {
+            'path': '#forms',
+            'title': 'form',
+            'icon': 'fa fa-list-alt'
+        }
+    }}))
+}}

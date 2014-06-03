@@ -1,12 +1,22 @@
-Documentation
--------------
+{# src/Mesd/PresentationBundle/Resources/views/Docs/toc.html.twig #}
+{% extends 'MesdPresentationBundle::base.html.twig' %}
 
-Pages
------
-* index
-* splash
-* ...
+{% set pageTitle = '<span class="fa fa-files-o"></span> Table of Contents' %}
+{% set pageSubtitle = 'MesdPresentationBundle Documentation' %}
 
-Components
-----------
-...
+{% block sidebar %}
+    {% include('MesdPresentationBundle:Docs:sidebar.html.twig') %}
+{% endblock sidebar %}
+
+{% block contentBody %}
+
+<h2>Components</h2>
+<ul>
+    <li><a href="{{ path('MesdPresentationBundle_docs_grids') }}">Grids</a></li>
+</ul>
+
+<h2>Pages</h2>
+<ul>
+    <li><a href="#">index</a></li>
+</ul>
+{% endblock contentBody %}

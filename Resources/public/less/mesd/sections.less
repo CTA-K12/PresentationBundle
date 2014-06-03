@@ -4,7 +4,6 @@
 
 
 .section {
-    padding:         10px;
     border-radius:    4px;
     margin-bottom:   10px;
     overflow:      hidden;
@@ -32,7 +31,6 @@
         position:               absolute;
         top:                        80px;
         left:                        50%;
-        padding:                       0;
         background-color:           #fff;
         border:           1px solid #999;
         border: 1px solid rgba(0,0,0,.3);
@@ -43,12 +41,6 @@
         &.section-splash-small {
             width:        360px;
             margin-left: -180px;
-            .section-header,
-            .section-body,
-            .section-footer {
-                padding:   10px;
-                .box-sizing(border-box);
-            }
         }
         &.section-splash-medium {
             width: 480px;
@@ -56,8 +48,7 @@
             .section-header,
             .section-body,
             .section-footer {
-                padding:   20px;
-                .box-sizing(border-box);
+                padding: 20px;
             }
         }
         &.section-splash-large {
@@ -66,31 +57,34 @@
             .section-header,
             .section-body,
             .section-footer {
-                padding:   20px;
-                .box-sizing(border-box);
+                padding: 20px;
             }
         }
     }
     .section-header {
-        padding: 9px 15px;
-        border-bottom: 1px solid #eee;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        *border: 1px solid #ccc; /* IE6-7 */
         h1 {
             border-bottom: none;
         }
     }
     .section-body {
+        /*
         position: relative;
         overflow-y: auto;
         max-height: 400px;
-        padding: 15px;
+        */
+        padding: 10px;
     }
     .section-footer {
-        padding: 14px 15px 15px;
-        margin-bottom: 0;
-        text-align: right; // right align buttons
-        background-color: #f5f5f5;
-        border-top: 1px solid #ddd;
-        border-radius: 0 0 6px 6px;
+        padding:                   10px;
+        margin-bottom:                0;
+        text-align:               right; // right align buttons
+        background-color:       #f5f5f5;
+        border-top:      1px solid #ddd;
+        border-radius:      0 0 6px 6px;
         .box-shadow(inset 0 1px 0 #fff);
         .clearfix(); // clear it in case folks use .pull-* classes on buttons
     }
