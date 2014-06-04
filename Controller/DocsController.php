@@ -30,64 +30,51 @@ class DocsController extends Controller
         return $this->render('MesdPresentationBundle:Docs:tables.html.twig', array());
     }
 
-    // Renders the forms
+    // Renders the forms page
     public function formsAction()
     {
         return $this->render('MesdPresentationBundle:Docs:forms.html.twig', array());
     }
 
-    // Renders the calendar page
-    public function calendarAction()
+    // Renders the buttons page
+    public function buttonsAction()
     {
-        return $this->render('MesdPresentationBundle::calendar.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:buttons.html.twig', array());
     }
 
-    // Renders the search results page (i.e. list), like a google search result page, but not
-    public function listAction()
+    // Renders the image page
+    public function imgAction()
     {
-        return $this->render('MesdPresentationBundle::list.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:img.html.twig', array());
     }
 
-    // Renders the map page
-    public function mapAction()
+    // Renders the helper classes page
+    public function helpersAction()
     {
-        return $this->render('MesdPresentationBundle::map.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:helpers.html.twig', array());
     }
 
-    // Renders the dashboard page
-    public function dashboardAction()
+    // Renders the icons page
+    public function iconsAction()
     {
-        return $this->render('MesdPresentationBundle::dashboard.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:icons.html.twig', array());
     }
 
-    // Renders the error page, such as 404 or 403
-    public function errorAction()
+    // Renders the navs page
+    public function navsAction()
     {
-        return $this->render('MesdPresentationBundle::error.html.twig', array());
+        return $this->render('MesdPresentationBundle:Docs:navs.html.twig', array());
     }
 
-    // Renders the sidebar, not accessible via routes, only by controller
-    public function sidebarAction($route, $menu, $options = array())
+    // Renders the breadcrumbs page
+    public function breadcrumbsAction()
     {
-        $type = 'default';
-        if(isset($options['type'])){
-            switch ($options['type']) {
-                case 'inline':
-                    $type = 'inline';
-                    break;
-                case 'dropdown':
-                    $type = 'dropdown';
-                    break;
-                case 'default':
-                default:
-                    $type = 'default';
-                    break;
-            }
-        }
-        return $this->render('MesdPresentationBundle::sidebar.html.twig', array(
-            'route' => $route,
-            'menu' => $menu,
-            'type' => $type
-        ));
+        return $this->render('MesdPresentationBundle:Docs:breadcrumbs.html.twig', array());
+    }
+
+    // Renders the labels & badges page
+    public function labelsAction()
+    {
+        return $this->render('MesdPresentationBundle:Docs:labels.html.twig', array());
     }
 }

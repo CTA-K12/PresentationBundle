@@ -197,6 +197,9 @@ $(window).resize(function(){
     };
 }( jQuery ));
 
+$(function () {
+    $('[data-toggle=tooltip]').tooltip();
+});
 
 // when sidebar is scrolled, set a cookie of the scroll position
 $('#sidebar').scroll(function() {
