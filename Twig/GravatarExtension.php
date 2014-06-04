@@ -19,8 +19,11 @@ class GravatarExtension extends Twig_Extension
         );
     }
 
-    public function gravatarFilter($email)
+    public function gravatarFilter($email, $size = NULL)
     {
+        if($size) {
+            $this->size = '?s=' . $size;
+        }
         $this->emailHash = md5($email);
         $this->request   = $this->gravatarDomain . $this->emailHash . $this->format . $this->size;
 

@@ -41,3 +41,7 @@ MesdPresentationBundle_dashboard:
 MesdPresentationBundle_error:
     pattern: /error
     defaults: { _controller: MesdPresentationBundle:Default:error }
+
+MesdPresentationBundle_profile:
+    pattern: /profile
+    defaults: { _controller: MesdPresentationBundle:Default:profile }

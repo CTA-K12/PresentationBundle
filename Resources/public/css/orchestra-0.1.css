@@ -200,10 +200,6 @@ input[type="radio"] {
     font-weight: normal;
 }
 
-.navbar-gravatar {
-    margin-right: 16px;
-}
-
 /* Tables */
 
 .table-mini {
@@ -278,12 +274,6 @@ input[type="radio"] {
 /* IE 8 ... since we still fucking support it */
 .pull-right, span.pull-right {
     float:      none\9;
-}
-
-/* NEW Temporary Bootstrap 3 MESD CSS Overrides */
-.navbar-nav.navbar-user-menu > li > a {
-    padding-top: 0px;
-    padding-bottom: 0px;
 }
 
 /*

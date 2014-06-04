@@ -66,6 +66,12 @@ class DefaultController extends Controller
         return $this->render('MesdPresentationBundle::error.html.twig', array());
     }
 
+    // Renders the profile page
+    public function profileAction()
+    {
+        return $this->render('MesdPresentationBundle::profile.html.twig', array());
+    }
+
     // Renders the sidebar, not accessible via routes, only by controller
     public function sidebarAction($route, $menu, $options = array())
     {
