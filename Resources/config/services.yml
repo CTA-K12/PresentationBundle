@@ -3,6 +3,7 @@ parameters:
     presentation.placeholder.class: Mesd\PresentationBundle\Twig\PlaceholderExtension
     presentation.highlighter.class: Mesd\PresentationBundle\Twig\HighlighterExtension
     presentation.interval.class:    Mesd\PresentationBundle\Twig\IntervalExtension
+    presentation.breadcrumb.class:  Mesd\PresentationBundle\Twig\BreadcrumbExtension
 
 services:
     presentation.twig.gravatar_extension:
@@ -22,5 +23,12 @@ services:
 
     presentation.twig.interval_extension:
         class: %presentation.interval.class%
+        tags:
+            - { name: twig.extension }
+
+    presentation.twig.breadcrumb_extension:
+        class: %presentation.breadcrumb.class%
+        scope: container
+        arguments: [@service_container]
         tags:
             - { name: twig.extension }

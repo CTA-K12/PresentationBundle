@@ -114,6 +114,11 @@
                                 {% block toolbarTop %}
                                     <div id="toolbar-top" class="toolbar section section-white">
                                         {% block toolbarTopLeft %}
+                                            {% block breadcrumbWidget %}
+                                                <ul class="breadcrumb">
+                                                    {{ render(controller('MesdBreadcrumbBundle:Default:index', {'request': app.request})) }}
+                                                </ul>
+                                            {% endblock breadcrumbWidget %}
                                         {% endblock toolbarTopLeft %}
                                         {% block toolbarTopRight %}
                                         {% endblock toolbarTopRight %}
