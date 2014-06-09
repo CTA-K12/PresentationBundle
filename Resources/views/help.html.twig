@@ -1,0 +1,56 @@
+{# src/Mesd/PresentationBundle/Resources/views/Docs/type.html.twig #}
+{% extends 'MesdPresentationBundle::base.html.twig' %}
+
+{% set pageTitle = '<span class="fa fa-life-ring"></span> Help' %}
+{% set pageSubtitle = 'MesdPresentationBundle Documentation' %}
+
+{% block sidebar %}
+    {% include('MesdPresentationBundle:Docs:sidebar.html.twig') %}
+{% endblock sidebar %}
+
+{% block contentBody %}
+    <section class="section-wiki">
+        <article id="article-foo">
+            <h1 id="foo" class="permalink">
+                Foo
+                <small>(sample h1)</small>
+                <a href="#help-foo" title="Permalink to this paragraph">
+                    <span class="fa fa-link"></span>
+                </a>
+            </h1>
+            <p>
+                Normal paragraphs look like this. Lorem ipsum dolor sit amet, at homero alterum convenire pri, justo forensibus vim ex. Purto pericula per ea, quod efficiantur ne qui. Alienum reformidans vix in. Mel in bonorum blandit deseruisse, mei percipit constituto scriptorem ea, pro meis diceret suavitate an. Vero blandit sit ei. Paulo sententiae id pro.
+            </p>
+            <p>
+                This paragraph demonstrates the use of <em>italics</em>. Vis equidem maiorum cotidieque et, mei aliquid moderatius dissentiunt id, et eruditi moderatius eum. Quo summo repudiare id, exerci tamquam virtute vim no. <em>Laboramus persequeris</em> nec an, has impetus volumus ut. Sale clita vim ne, tempor omnesque usu no.
+            </p>
+            <p>
+                This paragraph demonstrates the use of <strong>bold</strong>. Ea vis elitr molestiae reprehendunt, cu commodo aliquip prodesset sed, ad eos affert aperiri verterem. Wisi idque senserit ne vim, epicurei antiopam iudicabit pri eu, eu vix tantas diceret feugait. Ea mea omittam scaevola, scripta labitur legendos nam ex, eum an <strong>illud petentium constituto</strong>. Ea nemore facilisis reformidans eos, possit animal conclusionemque id est.
+            </p>
+            <h2 id="bar" class="permalink">
+                Bar
+                <small>(sample h2)</small>
+                <a href="#help-foo-bar" title="Permalink to this paragraph">
+                    <span class="fa fa-link"></span>
+                </a>
+            </h2>
+            <p>
+                This paragraph has lots of <a href="#">links</a>. Vel aliquip partiendo periculis <a href="#">te</a>, mel illud <a href="#">oporteat in</a>, usu hinc <a href="#">alienum at</a>. Enim volutpat consectetuer mei id. Vel populo graeco diceret an, usu at error inermis. Mei ut soleat iuvaret antiopam, postea omittam in vix. Vim amet alii philosophia an, errem consectetuer eu vis.
+            </p>
+            <p>
+                This paragraph has a special link. This link is for referencing other documents. Id eos solet accusam. Eos cu docendi noluisse. Oblique erroribus rationibus ex pro, pri ad facete adolescens, cu sit amet illum perfecto. Ullum graeco tacimates ea est. <a href="#" class="reference">See <span class="reference-underline">Reference Article</span> for more information.</a>
+            </p>
+        </article>
+        <article id="article-2">
+            <div class="notice notice-default">
+                <div class="notice-header">
+                    <span class="fa fa-exclamation-circle"></span> Notice
+                </div>
+                <div class="notice-body">
+                    This is a notice
+                </div>
+            </div>
+        </article>
+    </section>
+
+{% endblock contentBody %}

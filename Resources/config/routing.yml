@@ -45,3 +45,7 @@ MesdPresentationBundle_error:
 MesdPresentationBundle_profile:
     pattern: /profile
     defaults: { _controller: MesdPresentationBundle:Default:profile }
+
+MesdPresentationBundle_help:
+    pattern: /help
+    defaults: { _controller: MesdPresentationBundle:Default:help }

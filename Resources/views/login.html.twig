@@ -1,0 +1,38 @@
+{% extends 'MesdPresentationBundle::index.html.twig' %}
+
+{% block containerOuter %}
+
+    <div class="section section-splash section-splash-medium">
+        <div class="section-header">
+            {% block subtitle %}
+                <h1 class="page-title">{{ subtitle }}</h1>
+            {% endblock subtitle %}
+        </div>
+        <div class="section-body">
+            {% block panelBody %}
+                {% if error %}
+                    <div>{{ error.message }}</div>
+                {% endif %}
+                <form action="{{ path('login_check') }}" method="post" role="form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="_username" class="form-control" placeholder="Username" value="{{ last_username }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="_password" class="form-control" placeholder="Password" />
+                    </div>
+            {% endblock panelBody %}
+        </div>
+        <div class="section-footer">
+            {% block panelFooter %}
+                    <div class="form-group">
+                        <a href="{{ path('account_register') }}" class="btn btn-link">Forgot Password?</a>
+                        <button type="submit" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</button>
+                    </div>
+                </form>
+            {% endblock panelFooter %}
+        </div>
+    </div>
+
+{% endblock containerOuter %}
