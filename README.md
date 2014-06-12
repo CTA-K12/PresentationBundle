@@ -67,6 +67,8 @@ assetic:
             inputs:
                 - '@AcmeFooBundle/Resources/public/js/thirdparty/jquery.js'
                 - '@AcmeFooBundle/Resources/public/js/thirdparty/jquery.ui.js'
+   
+```             
 
 Updating
 --------
