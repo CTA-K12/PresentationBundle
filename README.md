@@ -46,6 +46,34 @@ This bundle will is compatible with all browsers except IE8 and below.
 Configuring
 -----------
 
+Twig global variables are used to set static application data. You'll need to add
+the following list of globals to your config file:
+
+```yaml
+# app/config/config.yml
+twig:
+    globals:
+        appName:         %app_name%
+        appAbbreviation: %app_abbreviation%
+        appDescription:  %app_description%
+        appKeywords:     %app_keywords%
+        appUrl:          %app_url%
+        appVersion:      %app_version%
+        appBuild:        %app_build%
+        appRelease:      %app_release%
+        appLicense1:     %app_license_1%
+        appLicenseUrl1:  %app_license_url_1%
+        appLicense2:     %app_license_2%
+        appLicenseUrl2:  %app_license_url_2%
+        orgName:         %org_name%
+        orgAbbreviation: %org_abbreviation%
+        orgAddress:      %org_address%
+        orgTelephone:    %org_telephone%
+        orgEmail:        %org_email%
+        orgUrl:          %org_url%
+```
+
+
 If you are already using one of the libraries required for the PresentationBundle
 to work, then you can reference it with a named asset. Listed below are the named
 assets you can set in your configuration file to override:
