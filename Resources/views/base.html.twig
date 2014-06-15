@@ -116,7 +116,7 @@
                                         {% block toolbarTopLeft %}
                                             {% block breadcrumbWidget %}
                                                 <ul class="breadcrumb">
-                                                    {{ render(controller('MesdBreadcrumbBundle:Default:index', {'request': app.request})) }}
+                                                    {{ render(controller('MesdPresentationBundle:Breadcrumb:index', {'request': app.request})) }}
                                                 </ul>
                                             {% endblock breadcrumbWidget %}
                                         {% endblock toolbarTopLeft %}

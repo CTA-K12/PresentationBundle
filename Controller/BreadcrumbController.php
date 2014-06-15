@@ -19,14 +19,14 @@ class BreadcrumbController extends Controller
     public $placeholder;
     public $separator;
     public $homeLabel; // to include icon, ex. '<i class="icon-home"></i> Home'
-    
+
     public function indexAction($request)
     {
-        $config = $this->container->getParameter('mesd_presentation');
+        /*$config = $this->container->getParameter('mesd_presentation');
         //echo '<pre>';var_dump($config);exit;
         $this->placeholder = $config['placeholder'];
         $this->separator   = $config['separator'];
-        $this->homeLabel   = $config['homeLabel'];
+        $this->homeLabel   = $config['homeLabel'];*/
 
 /*        // get current uri: /orcase-symfony/agency/new
         $uri = $request->getUri();
@@ -45,7 +45,7 @@ class BreadcrumbController extends Controller
         foreach ($routerCollection as $k => $v){
             $routes[$k] = 1 == strlen($v->getPath()) ? $v->getPath() : rtrim($v->getPath(), '/');
         }
-        
+
         // parse url path for potential parent paths, if none exist, ignore and move on
         $len = count($path);
         for($i = 0; $i < $len; $i++) {
@@ -74,15 +74,15 @@ class BreadcrumbController extends Controller
         $routeCollection = $router->getRouteCollection();
         $routeParams = $router->match($request->getPathInfo());
         $route = $routeCollection->get($routeParams['_route']);
-        
+
         $baseUrl = $request->getBaseUrl();
         $pathInfo = $request->getPathInfo();
         $requestUri = $request->getRequestUri();
         $routePattern = $route->getPattern();
-        
+
         $ignoreParams = array('_route' => true, '_controller' => true);
         $routeParams = array_diff_key($routeParams, $ignoreParams);
-        
+
         $paths = preg_split('@/@', $pathInfo, NULL, PREG_SPLIT_NO_EMPTY);
         $routes[$this->homeLabel] = $baseUrl;
 
