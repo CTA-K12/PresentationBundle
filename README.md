@@ -46,31 +46,32 @@ This bundle will is compatible with all browsers except IE8 and below.
 Configuring
 -----------
 
-Twig global variables are used to set static application data. You'll need to add
-the following list of globals to your config file:
+Twig global variables are no longer used!
+
+This bundle now uses it's own configuration, which is loaded into the service container
+at runtime. The configuration currently uses defualts, which are not appropriate for a
+production application. If you want to override the defaults, add some or all of the following
+to your symfony configuration:
 
 ```yaml
 # app/config/config.yml
-twig:
-    globals:
-        appName:         %app_name%
-        appAbbreviation: %app_abbreviation%
-        appDescription:  %app_description%
-        appKeywords:     %app_keywords%
-        appUrl:          %app_url%
-        appVersion:      %app_version%
-        appBuild:        %app_build%
-        appRelease:      %app_release%
-        appLicense1:     %app_license_1%
-        appLicenseUrl1:  %app_license_url_1%
-        appLicense2:     %app_license_2%
-        appLicenseUrl2:  %app_license_url_2%
-        orgName:         %org_name%
-        orgAbbreviation: %org_abbreviation%
-        orgAddress:      %org_address%
-        orgTelephone:    %org_telephone%
-        orgEmail:        %org_email%
-        orgUrl:          %org_url%
+mesd_presentation:
+    app_name:          App
+    app_abbreviation:  APP
+    app_description:   App Description
+    app_keywords:      App Key Words
+    app_url:           http://myurl.domain/app
+    app_version:       0.0.0
+    app_license_1:     My License
+    app_license_url_1: http://myurl.domain/my_license
+    app_license_2:     MIT
+    app_license_url_2: http://symfony.com/doc/current/contributing/code/license.html
+    org_name:          Org
+    org_abbreviation:  ORG
+    org_address:       Org Address
+    org_telephone:     Org Phone No
+    org_email:         Org Email Address
+    org_url:           http://myurl.domain
 ```
 
 
