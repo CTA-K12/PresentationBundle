@@ -25,7 +25,7 @@
                 {% if error %}
                     <div>{{ error.message }}</div>
                 {% endif %}
-                <form action="{{ path('login_check') }}" method="post" role="form">
+                <form action="{{ path('MesdAuthenticationBundle_login_check') }}" method="post" role="form">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="_username" class="form-control" placeholder="Username" value="{{ last_username }}" />
@@ -39,8 +39,9 @@
         <div class="section-footer">
             {% block panelFooter %}
                     <div class="form-group">
-                        <a href="{{ path('account_register') }}" class="btn btn-link">Forgot Password?</a>
+                        {# <a href="{{ path('account_register') }}" class="btn btn-link">Forgot Password?</a> #}
                         <button type="submit" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</button>
+                        <input type="hidden" name="_target_path" value="{{ url('MesdPresentationBundle_help') }}" />
                     </div>
                 </form>
             {% endblock panelFooter %}
