@@ -30,6 +30,7 @@ class PlaceholderExtension extends Twig_Extension
         $this->angle   = 0;
         $this->tooBig  = false;
     }
+
     public function getFilters()
     {
         return array(
@@ -39,7 +40,7 @@ class PlaceholderExtension extends Twig_Extension
 
     public function placeholderFilter($size, $text = null)
     {
-        
+
         preg_match($this->pattern, $size, $match);
         if(!empty($match) && is_array($match))
         {

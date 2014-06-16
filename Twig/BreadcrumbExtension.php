@@ -16,6 +16,7 @@ class BreadcrumbExtension extends Twig_Extension
     {
         $this->container = $container;
     }
+
     public function getFunctions()
     {
         return array(
@@ -27,7 +28,7 @@ class BreadcrumbExtension extends Twig_Extension
     {
         // get the request
         $this->request = $this->container->get('request');
-        
+
         // get the params of the route we requested
         $params = $this->container->get('router')->match($this->request->getPathInfo());
         print_r($params);
