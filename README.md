@@ -49,9 +49,9 @@ Configuring
 Twig global variables are no longer used!
 
 This bundle now uses it's own configuration, which is loaded into the service container
-at runtime. The configuration currently uses defualts, which are not appropriate for a
+at runtime. The configuration currently uses defaults, which are not appropriate for a
 production application. If you want to override the defaults, add some or all of the following
-to your symfony configuration:
+keys to your symfony configuration:
 
 ```yaml
 # app/config/config.yml
