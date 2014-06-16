@@ -1,4 +1,5 @@
 parameters:
+    presentation.container.class:   Mesd\PresentationBundle\Twig\ContainerExtension
     presentation.gravatar.class:    Mesd\PresentationBundle\Twig\GravatarExtension
     presentation.placeholder.class: Mesd\PresentationBundle\Twig\PlaceholderExtension
     presentation.highlighter.class: Mesd\PresentationBundle\Twig\HighlighterExtension
@@ -6,6 +7,12 @@ parameters:
     presentation.breadcrumb.class:  Mesd\PresentationBundle\Twig\BreadcrumbExtension
 
 services:
+    presentation.twig.container_extension:
+        class: %presentation.container.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
+
     presentation.twig.gravatar_extension:
         class: %presentation.gravatar.class%
         tags:
