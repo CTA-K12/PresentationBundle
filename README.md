@@ -46,6 +46,31 @@ This bundle will is compatible with all browsers except IE8 and below.
 Configuring
 -----------
 
+
+Add Presentatioin Bundle to Assetic Configuration
+```yaml
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    - MesdPresentationBundle
+    filters:
+        cssrewrite: ~
+        cssembed:
+            jar: "%kernel.root_dir%/Resources/filters/cssembed-0.4.5.jar"
+        less:
+            node: %node_base_path%
+            node_paths: [%node_lib_path%, %node_modules_path%]
+```
+
+Add parameters.yml
+```yaml
+    node_base_path: /usr/bin/node
+    node_lib_path: /usr/include/node
+    node_modules_path: /lib/node_modules
+```
+
 Twig global variables are no longer used!
 
 This bundle now uses it's own configuration, which is loaded into the service container
