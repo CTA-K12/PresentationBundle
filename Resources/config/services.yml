@@ -1,10 +1,11 @@
 parameters:
-    presentation.container.class:   Mesd\PresentationBundle\Twig\ContainerExtension
-    presentation.gravatar.class:    Mesd\PresentationBundle\Twig\GravatarExtension
-    presentation.placeholder.class: Mesd\PresentationBundle\Twig\PlaceholderExtension
-    presentation.highlighter.class: Mesd\PresentationBundle\Twig\HighlighterExtension
-    presentation.interval.class:    Mesd\PresentationBundle\Twig\IntervalExtension
-    presentation.breadcrumb.class:  Mesd\PresentationBundle\Twig\BreadcrumbExtension
+    presentation.container.class:    Mesd\PresentationBundle\Twig\ContainerExtension
+    presentation.gravatar.class:     Mesd\PresentationBundle\Twig\GravatarExtension
+    presentation.placeholder.class:  Mesd\PresentationBundle\Twig\PlaceholderExtension
+    presentation.highlighter.class:  Mesd\PresentationBundle\Twig\HighlighterExtension
+    presentation.interval.class:     Mesd\PresentationBundle\Twig\IntervalExtension
+    presentation.breadcrumb.class:   Mesd\PresentationBundle\Twig\BreadcrumbExtension
+    presentation.routeHelper.class: Mesd\PresentationBundle\Twig\RouteHelperExtension
 
 services:
     presentation.twig.container_extension:
@@ -35,6 +36,13 @@ services:
 
     presentation.twig.breadcrumb_extension:
         class: %presentation.breadcrumb.class%
+        scope: container
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
+
+    presentation.twig.routeHelper_extension:
+        class: %presentation.routeHelper.class%
         scope: container
         arguments: [@service_container]
         tags:
