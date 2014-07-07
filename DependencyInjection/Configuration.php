@@ -99,6 +99,12 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('registration_path')
                     ->defaultValue('#')
                 ->end()
+                ->scalarNode('user_profile_path')
+                    ->defaultValue('#')
+                ->end()
+                ->scalarNode('user_settings_path')
+                    ->defaultValue('#')
+                ->end()
             ->end();
 
         return $treeBuilder;
