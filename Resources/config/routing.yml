@@ -10,15 +10,13 @@ MesdPresentationBundle_splash:
     pattern: /splash
     defaults: { _controller: MesdPresentationBundle:Default:splash }
 
-# Should login be split up?
-# Such as: login, register, forgot-password, forgot-username
-MesdPresentationBundle_login:
-    pattern: /login
-    defaults: { _controller: MesdPresentationBundle:Default:login }
-
 MesdPresentationBundle_grid:
     pattern: /grid
     defaults: { _controller: MesdPresentationBundle:Default:grid }
+
+MesdPresentationBundle_login_demo:
+    pattern: /login-demo
+    defaults: { _controller: MesdPresentationBundle:Default:login }
 
 # Should calendar be split up?
 # Such as: calendar-month, calendar-week, calendar-day (agenda)

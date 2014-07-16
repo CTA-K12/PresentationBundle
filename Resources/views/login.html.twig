@@ -16,16 +16,29 @@
                 {% elseif pagetitle is defined %}
                     <h1 class="page-title">{{ pagetitle }}</h1>
                 {% else %}
-                    <h1>Some Title Here</h1>
+                    <h1>{{ mesd_presentation__app_name }} Login</h1>
                 {% endif %}
             {% endblock subtitle %}
         </div>
         <div class="section-body">
             {% block panelBody %}
-                {% if error %}
-                    <div>{{ error.message }}</div>
+                {% if error is defined %}
+                    {% if error %}
+                        <div>{{ error|trans }}</div>
+                    {% endif %}
                 {% endif %}
                 <form action="{{ routeHelper(mesd_presentation__login_check_path) }}" method="post" role="form">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="form-group">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'MesdUserBundle') }} |
+                            <a href="{{ routeHelper(mesd_presentation__logout_path) }}">
+                                {{ 'layout.logout'|trans({}, 'MesdUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ routeHelper(mesd_presentation__login_path) }}">{{ 'layout.login'|trans({}, 'MesdUserBundle') }}</a>
+                        {% endif %}
+                    </div>
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="_username" class="form-control" placeholder="Username" value="{{ last_username }}" />
@@ -46,7 +59,6 @@
                             <a href="{{ routeHelper(mesd_presentation__password_reset_path) }}" class="btn btn-link">{{ mesd_presentation__password_reset_text }}</a>
                         {% endif %}
                         <button type="submit" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</button>
-                        <input type="hidden" name="_target_path" value="{{ routeHelper(mesd_presentation__login_target_path, true) }}" />
                     </div>
                 </form>
             {% endblock panelFooter %}
