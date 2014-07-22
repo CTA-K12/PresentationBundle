@@ -6,21 +6,21 @@
             {% block subtitle %}
                 {% if subtitle is defined %}
                     <h1 class="page-title">{{ subtitle }}</h1>
-                {% elseif pagetitle is defined %}
-                    <h1 class="page-title">{{ pagetitle }}</h1>
+                {% elseif pageTitle is defined %}
+                    <h1 class="page-title">{{ pageTitle }}</h1>
                 {% else %}
-                    <h1>Some Title Here</h1>
+                    <h1>MESD Application</h1>
                 {% endif %}
             {% endblock subtitle %}
         </div>
         <div class="section-body">
             {% block sectionBody %}
-                <p>i'm stuff and i go here</p>
+                <p>MESD Application</p>
             {% endblock sectionBody %}
         </div>
         <div class="section-footer">
             {% block sectionFooter %}
-                <p>i'm more stuff and i go here</p>
+                <p>MESD Application Footer</p>
             {% endblock sectionFooter %}
         </div>
     </div>
