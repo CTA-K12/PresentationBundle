@@ -73,43 +73,45 @@
 
                 {% block containerOuter %}
                     <div id="container-outer" class="container-outer wrapper">
-
-                        {% block sidebar %}
-                            {{ render(controller('MesdPresentationBundle:Default:sidebar', {
-                                'route': app.request.get('_route'),
-                                'options': { 'type': '' },
-                                'menu': {
-                                    'Fuid Grid': {
-                                        'path': '#fluidGridSystem',
-                                        'title': 'fluid grid',
-                                        'icon': 'fa fa-desktop'
-                                    },
-                                    'Responsive': {
-                                        'path': '#responsive',
-                                        'title': 'responsive',
-                                        'icon': 'fa fa-mobile-phone'
-                                    },
-                                    'Typography': {
-                                        'path': '#typography',
-                                        'title': 'typography',
-                                        'icon': 'fa fa-font'
-                                    },
-                                    'Table': {
-                                        'path': '#tables',
-                                        'title': 'table',
-                                        'icon': 'fa fa-table'
-                                    },
-                                    'Form': {
-                                        'path': '#forms',
-                                        'title': 'form',
-                                        'icon': 'fa fa-list-alt'
-                                    }
-                                }}))
-                            }}
-                        {% endblock sidebar %}
-
+                        {% block sidebarOuter %}
+                        <aside id="sidebar" class="{{ sidebarclass }}">
+                            {% block sidebar %}
+                                {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+                                    'route': app.request.get('_route'),
+                                    'options': { 'type': '' },
+                                    'menu': {
+                                        'Fuid Grid': {
+                                            'path': '#fluidGridSystem',
+                                            'title': 'fluid grid',
+                                            'icon': 'fa fa-desktop'
+                                        },
+                                        'Responsive': {
+                                            'path': '#responsive',
+                                            'title': 'responsive',
+                                            'icon': 'fa fa-mobile-phone'
+                                        },
+                                        'Typography': {
+                                            'path': '#typography',
+                                            'title': 'typography',
+                                            'icon': 'fa fa-font'
+                                        },
+                                        'Table': {
+                                            'path': '#tables',
+                                            'title': 'table',
+                                            'icon': 'fa fa-table'
+                                        },
+                                        'Form': {
+                                            'path': '#forms',
+                                            'title': 'form',
+                                            'icon': 'fa fa-list-alt'
+                                        }
+                                    }}))
+                                }}
+                            {% endblock sidebar %}
+                        </aside>
+                        {% endblock sidebarOuter %}
                         {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid">
+                            <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.session.get('mesdPresentationSidebar')}}px;">
 
                                 {% block toolbarTop %}
                                     <div id="toolbar-top" class="toolbar section section-white">
@@ -223,7 +225,6 @@
                 {% block analytics %}
                     {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
                 {% endblock analytics %}
-
             {% endblock body %}
         </body>
 

@@ -1,49 +1,11 @@
-MesdPresentationBundle_index:
-    pattern: /
-    defaults: { _controller: MesdPresentationBundle:Default:index }
+MesdPresentationBundle_docs:
+    resource: "@MesdPresentationBundle/Resources/config/routing/default.yml"
+    prefix:   /
 
 MesdPresentationBundle_docs:
     resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
     prefix:   /docs
 
-MesdPresentationBundle_splash:
-    pattern: /splash
-    defaults: { _controller: MesdPresentationBundle:Default:splash }
-
-MesdPresentationBundle_grid:
-    pattern: /grid
-    defaults: { _controller: MesdPresentationBundle:Default:grid }
-
-MesdPresentationBundle_login_demo:
-    pattern: /login-demo
-    defaults: { _controller: MesdPresentationBundle:Default:login }
-
-# Should calendar be split up?
-# Such as: calendar-month, calendar-week, calendar-day (agenda)
-MesdPresentationBundle_calendar:
-    pattern: /calendar
-    defaults: { _controller: MesdPresentationBundle:Default:calendar }
-
-MesdPresentationBundle_list:
-    pattern: /list
-    defaults: { _controller: MesdPresentationBundle:Default:list }
-
-MesdPresentationBundle_map:
-    pattern: /map
-    defaults: { _controller: MesdPresentationBundle:Default:map }
-
-MesdPresentationBundle_dashboard:
-    pattern: /dashboard
-    defaults: { _controller: MesdPresentationBundle:Default:dashboard }
-
-MesdPresentationBundle_error:
-    pattern: /error
-    defaults: { _controller: MesdPresentationBundle:Default:error }
-
-MesdPresentationBundle_profile:
-    pattern: /profile
-    defaults: { _controller: MesdPresentationBundle:Default:profile }
-
-MesdPresentationBundle_help:
-    pattern: /help
-    defaults: { _controller: MesdPresentationBundle:Default:help }
+MesdPresentationBundle_displaysession:
+    resource: "@MesdPresentationBundle/Resources/config/routing/displaySession.yml"
+    prefix: /mesdpresentationdisplaysession

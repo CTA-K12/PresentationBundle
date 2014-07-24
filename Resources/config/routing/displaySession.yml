@@ -1,0 +1,18 @@
+MesdPresentationBundle_displaysession_sidebar:
+    pattern: /{size}/sidebar
+    defaults: { _controller: MesdPresentationBundle:DisplaySession:sessionSidebar }
+    requirements:
+        size: \d+
+        _method: post
+
+MesdPresentationBundle_displaysession_hidesidebarlabels:
+    pattern: /hidesidebarlabels
+    defaults: { _controller: MesdPresentationBundle:DisplaySession:sessionHideSidebarLabels }
+    requirements:
+        _method: post
+
+MesdPresentationBundle_displaysession_showsidebarlabels:
+    pattern: /showsidebarlabels
+    defaults: { _controller: MesdPresentationBundle:DisplaySession:sessionShowSidebarLabels }
+    requirements:
+        _method: post
