@@ -116,7 +116,7 @@ var sidebar = new function () {
 
         $.ajax({
             type: 'POST',
-            url: baseUrl+'/mesdpresentationdisplaysession/'+this.getCurrPos()+'/sidebar',
+            url: baseUrl+'/mesdpresentationdisplaysession/sidebar/'+this.getCurrPos()+'',
         });
     }
 }

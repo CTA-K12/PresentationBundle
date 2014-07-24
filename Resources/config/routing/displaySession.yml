@@ -1,5 +1,5 @@
 MesdPresentationBundle_displaysession_sidebar:
-    pattern: /{size}/sidebar
+    pattern: /sidebar/{size}
     defaults: { _controller: MesdPresentationBundle:DisplaySession:sessionSidebar }
     requirements:
         size: \d+
