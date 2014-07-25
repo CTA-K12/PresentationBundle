@@ -1,6 +1,6 @@
-MesdPresentationBundle_docs:
+MesdPresentationBundle_ui:
     resource: "@MesdPresentationBundle/Resources/config/routing/default.yml"
-    prefix:   /
+    prefix:   /ui
 
 MesdPresentationBundle_docs:
     resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
