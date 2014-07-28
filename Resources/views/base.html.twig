@@ -74,7 +74,7 @@
                 {% block containerOuter %}
                     <div id="container-outer" class="container-outer wrapper">
                         {% block sidebarOuter %}
-                        <aside id="sidebar" class="{{ sidebarclass }}">
+                        <aside id="sidebar" class="{{ sidebarclass }}" style="width: {{app.session.get('mesdPresentationSidebar')}}px;">
                             {% block sidebar %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
