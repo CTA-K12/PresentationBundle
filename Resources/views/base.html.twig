@@ -41,9 +41,7 @@
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
                                             <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
+                                            <span class="fa fa-bars"></span>
                                         </button>
                                         <a class="brand" href="#">
                                             {% block navbarContentLogo %}
@@ -61,7 +59,9 @@
                                                 {% block navbarContentWidgets %}
                                                     {% include 'MesdPresentationBundle::searchBar.html.twig' %}
                                                 {% endblock navbarContentWidgets %}
-                                                {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                                {% block useMenu %}
+                                                    {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                                {% endblock useMenu %}
                                             {% endblock navbarContentRight %}
                                         </ul>
                                     </div><!-- END nav-collapse -->
