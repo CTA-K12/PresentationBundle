@@ -254,14 +254,17 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
+
+    // Sidebar now handled by a session
+    //
     // on page load, if sidebar cookie is collapsed, collapse sidebar
-    if (($.cookie('sbar') !== null) && ($.cookie('sbar') === 'closed')) {
-        $('.toggle-bar').toggleClass('toggle-bar-open toggle-bar-closed');
-        $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
-        $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
-        $('.sidebar').toggleClass('sidebar-min');
-        $('.sidebar .hideable').toggleClass('hide');
-        $('.row-fluid-content').toggleClass('row-fluid-content-max');
-    }
+    // if (($.cookie('sbar') !== null) && ($.cookie('sbar') === 'closed')) {
+        // $('.toggle-bar').toggleClass('toggle-bar-open toggle-bar-closed');
+        // $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
+        // $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
+        // $('.sidebar').toggleClass('sidebar-min');
+        // $('.sidebar .hideable').toggleClass('hide');
+        // $('.row-fluid-content').toggleClass('row-fluid-content-max');
+    // }
 
 });
