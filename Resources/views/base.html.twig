@@ -74,7 +74,7 @@
                 {% block containerOuter %}
                     <div id="container-outer" class="container-outer wrapper">
                         {% block sidebarOuter %}
-                        <aside id="sidebar" class="{{ sidebarclass }}" style="width: {{app.session.get('mesdPresentationSidebar')}}px;">
+                        <aside id="sidebar" class="{{ sidebarclass }}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
                             {% block sidebar %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
@@ -111,7 +111,7 @@
                         </aside>
                         {% endblock sidebarOuter %}
                         {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.session.get('mesdPresentationSidebar')}}px;">
+                            <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
 
                                 {% block toolbarTop %}
                                     <div id="toolbar-top" class="toolbar section section-white">

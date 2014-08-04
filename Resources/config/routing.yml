@@ -5,7 +5,3 @@ MesdPresentationBundle_ui:
 MesdPresentationBundle_docs:
     resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
     prefix:   /docs
-
-MesdPresentationBundle_displaysession:
-    resource: "@MesdPresentationBundle/Resources/config/routing/displaySession.yml"
-    prefix: /mesdpresentationdisplaysession

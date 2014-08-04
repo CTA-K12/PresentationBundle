@@ -8,7 +8,7 @@
     </div><!-- END toggle-bar -->
 {% endblock sidebarshim %}#}
 {% block sidebarshim %}
-    <div class="drag-bar" style="left: {{app.session.get('mesdPresentationSidebar')}}px;">
+    <div class="drag-bar" style="left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
         <div class="drag-bar-handle">
             <span class="dot"></span>
             <span class="dot"></span>

@@ -90,39 +90,21 @@ var sidebar = new function () {
     this.relabel = function(){
         if (this.getCurrPos() > threshold * maximized) {
             $('.sidebar').find('.hideable').removeClass('hide');
+            $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
          } else {
             $('.sidebar').find('.hideable').addClass('hide');
+            $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/' });
         }
     }
 
     // remove labels if sidebar closed
     this.finishMove = function() {
-        // console.log(this.getCurrPos());
-        // console.log(this.getCurrPos()+' : '+(this.getCurrPos() > threshold * maximized) )
-        if (this.getCurrPos() > threshold * maximized) {
-            $('.sidebar').find('.hideable').removeClass('hide');
-            $.ajax({
-                type: 'POST',
-                url: baseUrl+'/mesdpresentationdisplaysession/showsidebarlabels',
-            });
-
-        } else {
-            $('.sidebar').find('.hideable').addClass('hide');
-            $.ajax({
-                type: 'POST',
-                url: baseUrl+'/mesdpresentationdisplaysession/hidesidebarlabels',
-            });
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: baseUrl+'/mesdpresentationdisplaysession/sidebar/'+this.getCurrPos()+'',
-        });
+        this.relabel();
+        $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/' });
     }
 }
 
 
-// sidebar.setCurrPos(sidebar.getMax());
 
 $('.drag-bar-handle').dblclick(function(e){
     $('.sidebar').find('.hideable').toggleClass('hide');
@@ -253,18 +235,5 @@ $(document).ready(function() {
     if ($.cookie('cscroll') !== null) {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
-
-
-    // Sidebar now handled by a session
-    //
-    // on page load, if sidebar cookie is collapsed, collapse sidebar
-    // if (($.cookie('sbar') !== null) && ($.cookie('sbar') === 'closed')) {
-        // $('.toggle-bar').toggleClass('toggle-bar-open toggle-bar-closed');
-        // $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
-        // $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
-        // $('.sidebar').toggleClass('sidebar-min');
-        // $('.sidebar .hideable').toggleClass('hide');
-        // $('.row-fluid-content').toggleClass('row-fluid-content-max');
-    // }
 
 });
