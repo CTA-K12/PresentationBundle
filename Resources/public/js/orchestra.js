@@ -141,6 +141,9 @@ $('.drag-bar').mousedown(function(e){
         else{
             xccord = e.pageX - 1;
         }
+        if (xcoord < sidebar.min) {
+            xcoord = sidebar.min;
+        }
         sidebar.setCurrPos(xcoord);
         sidebar.finishMove();
         delay(function(){ sidebar.finishMove();}, quiet)
@@ -237,9 +240,17 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
-    if ($.cookie('MesdPresentationSidebarSize')) {
-    } else {
+    if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
+        console.log('less than 0');
         $.cookie('MesdPresentationSidebarSize', 240, { path: '/' });
+        $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
+    } else {
+    }
+
+    if ($.cookie('MesdPresentationSidebarSize') < 60 ) {
+        console.log('less than 60');
+        $.cookie('MesdPresentationSidebarSize', 60, { path: '/' });
+    } else {
     }
 
     // fix up some odd issues if they login without a cookie.
