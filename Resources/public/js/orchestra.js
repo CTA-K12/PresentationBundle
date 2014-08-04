@@ -142,7 +142,7 @@ $('.drag-bar').mousedown(function(e){
             xccord = e.pageX - 1;
         }
         sidebar.setCurrPos(xcoord);
-        sidebar.relabel();
+        sidebar.finishMove();
         delay(function(){ sidebar.finishMove();}, quiet)
     });
 });
@@ -178,6 +178,7 @@ $(window).resize(function(){
         sidebar.setCurrPos(vp);
         sidebar.setLastPos(vp);
     }
+    sidebar.finishMove();
 });
 
 // viewport jQuery plugin
@@ -236,4 +237,5 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
+    // fix up some odd issues if they login without a cookie.
 });
