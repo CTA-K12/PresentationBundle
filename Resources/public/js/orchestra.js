@@ -237,5 +237,10 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
+    if ($.cookie('MesdPresentationSidebarSize')) {
+    } else {
+        $.cookie('MesdPresentationSidebarSize', 240, { path: '/' });
+    }
+
     // fix up some odd issues if they login without a cookie.
 });
