@@ -214,7 +214,8 @@
     line-height: @line-height-computed;
   }
 
-  @media (max-width: @grid-float-breakpoint) { // MESD override
+  // MESD Override
+  @media (max-width: @grid-float-breakpoint) {
     // Dropdowns get custom display when collapsed
     .open .dropdown-menu {
       position: static;
@@ -238,8 +239,9 @@
     }
   }
 
+  // MESD Override
   // Uncollapse the nav
-  @media (min-width: @grid-float-breakpoint) { // MESD override
+  @media (min-width: @grid-float-breakpoint) {
     float: left;
     margin: 0;
 
@@ -284,6 +286,7 @@
   // Mixin behavior for optimum display
   .form-inline();
 
+  // MESD Override
   .form-group {
     @media (max-width: @grid-float-breakpoint) {
       margin-bottom: 5px;
@@ -325,8 +328,9 @@
   right: 0;
 }
 
+// MESD Override
 // Right align go away
-@media (min-width: @grid-float-breakpoint) { // MESD override
+@media (min-width: @grid-float-breakpoint) {
     // Right aligned menus need alt position
     .navbar-nav.pull-right > li > .dropdown-menu,
     .navbar-nav > li > .dropdown-menu.pull-right {
@@ -453,7 +457,8 @@
     }
 
 
-    @media (max-width: @grid-float-breakpoint) { // MESD override
+    // MESD Override
+    @media (max-width: @grid-float-breakpoint) {
       // Dropdowns get custom display when collapsed
       .open .dropdown-menu {
         > li > a {
@@ -591,7 +596,8 @@
       }
     }
 
-    @media (max-width: @grid-float-breakpoint) { // MESD override
+    // MESD Override
+    @media (max-width: @grid-float-breakpoint) {
       // Dropdowns get custom display
       .open .dropdown-menu {
         > .dropdown-header {
@@ -634,7 +640,7 @@
 
 }
 
-// MESD Custom
+// MESD Override
 .navbar-user-menu {
     .navbar-gravatar {
         height:                  30px;
