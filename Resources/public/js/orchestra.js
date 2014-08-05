@@ -241,7 +241,6 @@ $(document).ready(function() {
     }
 
     if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
-        console.log('less than 0');
         $.cookie('MesdPresentationSidebarSize', 240, { path: '/', expires: 30  });
         $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
         sidebar.setCurrPos(xcoord);
