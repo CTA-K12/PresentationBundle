@@ -5,18 +5,15 @@
 {% else %}
     {% set sidebarclass = 'sidebar' %}
 {% endif %}
-
-<aside id="sidebar" class="{{ sidebarclass }}">
-
-    {% if 'dropdown' == type %}
-        <div class="navbar">
-            <div class="btn btn-navbar" data-toggle="collapse" data-target=".sidebar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </div><!-- END btn-navbar -->
-            <div class="nav-collapse sidebar-collapse">
-    {% endif %}
+        {% if 'dropdown' == type %}
+            <div class="navbar">
+                <div class="btn btn-navbar" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div><!-- END btn-navbar -->
+                <div class="nav-collapse sidebar-collapse">
+                {% endif %}
 
                 <ul class="nav">
                     {% for k,v in menu %}
@@ -40,7 +37,7 @@
                                 /foo/bar     | /foo/bar/1/edit | PASS
                                 /foo/bar/new | /foo/bar        | FAIL
 
-                        #}
+                                #}
                         {#}
                         {% if path(route) == v['path'] %}
                             <li class="active">
@@ -49,20 +46,18 @@
                         {% endif %}
                         {#}
                         {#{ path(route)|split(v['path']) }#}
-                            <li>
-                                <a href="{{ v['path'] }}" title="{{ v['title'] }}">
-                                    <span class="fa icon {{ v['icon'] }}"></span>
-                                    <span class="pull-right hideable">{{ k }}</span>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ v['path'] }}" title="{{ v['title'] }}">
+                                <span class="fa icon {{ v['icon'] }}"></span>
+                                <span class="pull-right hideable {% if app.request.cookies.has('hideSidebarLabels') %}hide{% endif %}">{{ k }}</span>
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
 
-    {% if 'dropdown' == type %}
-            </div><!-- END nav-collapse -->
-        </div><!-- END navbar -->
-    {% endif %}
+                {% if 'dropdown' == type %}
+                </div><!-- END nav-collapse -->
+            </div><!-- END navbar -->
+        {% endif %}
 
-    {% include 'MesdPresentationBundle::sidebarshim.html.twig' %}
-
-</aside><!-- END aside -->
+        {% include 'MesdPresentationBundle::sidebarshim.html.twig' %}

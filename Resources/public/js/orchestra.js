@@ -1,37 +1,28 @@
-var maximized  = 240;
-var minimized  = 60;
-var xsMin      = 0;
-var smMin      = 768;
-var mdMin      = 992;
-var lgMin      = 1200;
+var delay = (function(){
+    var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+    };
+})();
 
 // this sidebar object
-function Sidebar() {
+var sidebar = new function () {
     // attributes
-    this.max     = 240;
-    this.min     =  60;
-    this.currPos =   0;
-    this.lastPos =   0;
-
-    // methods
-    this.getMin     = getMin;
-    this.setMin     = setMin;
-    this.getMax     = getMax;
-    this.setMax     = setMin;
-    this.getCurrPos = getCurrPos;
-    this.setCurrPos = setCurrPos;
-    this.getLastPos = getLastPos;
-    this.setLastPos = setLastPos;
-    this.isMinOrMax = isMinOrMax;
+    this.max     =  240;
+    this.min     =   60;
+    this.currPos =    0;
+    this.lastPos =    0;
+    this.timer   = null;
 
     // gets sidebar min
-    function getMin()
+    this.getMin = function()
     {
         return this.min;
     }
 
     // sets sidebar min
-    function setMin(min)
+    this.setMin = function(setMin)
     {
         this.min = min;
     }
@@ -43,41 +34,42 @@ function Sidebar() {
     }
 
     // sets sidebar max
-    function setMax(max)
+    this.setMax = function(setMax)
     {
         this.max = max;
     }
 
     // gets current position of sidebar
-    function getCurrPos()
+    this.getCurrPos = function()
     {
         return this.currPos;
     }
 
     // sets current position of sidebar to pos
-    function setCurrPos(pos)
+    this.setCurrPos = function(pos)
     {
         this.currPos = pos;
 
+        $('.sidebarOuter').css('width', this.currPos);
         $('.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
     }
 
     // gets last position of sidebar
-    function getLastPos()
+    this.getLastPos = function()
     {
         return this.lastPos;
     }
 
     // sets last position of sidebar to pos
-    function setLastPos(pos)
+    this.setLastPos = function(pos)
     {
         this.lastPos = pos;
     }
 
     //returns 0 = min, -1 = between, 1 = max
-    function isMinOrMax()
+    this.isMinOrMax = function()
     {
         var currentPos = this.currPos;
 
@@ -95,12 +87,27 @@ function Sidebar() {
         }
     }
 
+    this.relabel = function(){
+        if (this.getCurrPos() > threshold * maximized) {
+            $('.sidebar').find('.hideable').removeClass('hide');
+            $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/', expires: 30 });
+         } else {
+            $('.sidebar').find('.hideable').addClass('hide');
+            $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
+        }
+    }
+
+    // remove labels if sidebar closed
+    this.finishMove = function() {
+        this.relabel();
+        $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/', expires: 30 });
+    }
 }
 
-var sidebar = new Sidebar();
-sidebar.setCurrPos(sidebar.getMax());
+
 
 $('.drag-bar-handle').dblclick(function(e){
+    $('.sidebar').find('.hideable').toggleClass('hide');
     e.preventDefault();
     var xcoord = e.pageX;
     if(maximized >= e.pageX - 6 && maximized <= e.pageX + 6){
@@ -117,7 +124,9 @@ $('.drag-bar-handle').dblclick(function(e){
     }
     sidebar.setLastPos(xcoord);
     sidebar.setCurrPos(xcoord);
+    sidebar.finishMove();
 });
+
 
 $('.drag-bar').mousedown(function(e){
     e.preventDefault();
@@ -132,9 +141,15 @@ $('.drag-bar').mousedown(function(e){
         else{
             xccord = e.pageX - 1;
         }
+        if (xcoord < sidebar.min) {
+            xcoord = sidebar.min;
+        }
         sidebar.setCurrPos(xcoord);
+        sidebar.finishMove();
+        // delay(function(){ sidebar.finishMove();}, quiet)
     });
 });
+
 
 $(document).mouseup(function(e){
     sidebar.setLastPos(sidebar.getCurrPos());
@@ -166,6 +181,7 @@ $(window).resize(function(){
         sidebar.setCurrPos(vp);
         sidebar.setLastPos(vp);
     }
+    sidebar.finishMove();
 });
 
 // viewport jQuery plugin
@@ -212,7 +228,6 @@ $('#container-inner').scroll(function() {
 });
 
 $(document).ready(function() {
-
     $( "#tabs" ).tabs();
 
     // on page load, if sidebar cookie is scrolled, go back to position
@@ -225,14 +240,20 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
-    // on page load, if sidebar cookie is collapsed, collapse sidebar
-    if (($.cookie('sbar') !== null) && ($.cookie('sbar') === 'closed')) {
-        $('.toggle-bar').toggleClass('toggle-bar-open toggle-bar-closed');
-        $('.toggle-bar-handle').toggleClass('toggle-bar-handle-open toggle-bar-handle-closed');
-        $('.toggle-bar-handle span').toggleClass('icon-chevron-left icon-chevron-right');
-        $('.sidebar').toggleClass('sidebar-min');
-        $('.sidebar .hideable').toggleClass('hide');
-        $('.row-fluid-content').toggleClass('row-fluid-content-max');
+    if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
+        $.cookie('MesdPresentationSidebarSize', 240, { path: '/', expires: 30  });
+        $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
+        sidebar.setCurrPos(240);
+        sidebar.finishMove();
+    } else {
     }
 
+    if ($.cookie('MesdPresentationSidebarSize') < 60 ) {
+        $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
+    } else {
+        sidebar.setCurrPos(60);
+        sidebar.finishMove();
+    }
+
+    // fix up some odd issues if they login without a cookie.
 });

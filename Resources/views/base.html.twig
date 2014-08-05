@@ -41,9 +41,7 @@
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
                                             <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
+                                            <span class="fa fa-bars"></span>
                                         </button>
                                         <a class="brand" href="#">
                                             {% block navbarContentLogo %}
@@ -61,7 +59,9 @@
                                                 {% block navbarContentWidgets %}
                                                     {% include 'MesdPresentationBundle::searchBar.html.twig' %}
                                                 {% endblock navbarContentWidgets %}
-                                                {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                                {% block useMenu %}
+                                                    {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                                {% endblock useMenu %}
                                             {% endblock navbarContentRight %}
                                         </ul>
                                     </div><!-- END nav-collapse -->
@@ -73,43 +73,45 @@
 
                 {% block containerOuter %}
                     <div id="container-outer" class="container-outer wrapper">
-
-                        {% block sidebar %}
-                            {{ render(controller('MesdPresentationBundle:Default:sidebar', {
-                                'route': app.request.get('_route'),
-                                'options': { 'type': '' },
-                                'menu': {
-                                    'Fuid Grid': {
-                                        'path': '#fluidGridSystem',
-                                        'title': 'fluid grid',
-                                        'icon': 'fa fa-desktop'
-                                    },
-                                    'Responsive': {
-                                        'path': '#responsive',
-                                        'title': 'responsive',
-                                        'icon': 'fa fa-mobile-phone'
-                                    },
-                                    'Typography': {
-                                        'path': '#typography',
-                                        'title': 'typography',
-                                        'icon': 'fa fa-font'
-                                    },
-                                    'Table': {
-                                        'path': '#tables',
-                                        'title': 'table',
-                                        'icon': 'fa fa-table'
-                                    },
-                                    'Form': {
-                                        'path': '#forms',
-                                        'title': 'form',
-                                        'icon': 'fa fa-list-alt'
-                                    }
-                                }}))
-                            }}
-                        {% endblock sidebar %}
-
+                        {% block sidebarOuter %}
+                        <aside id="sidebar" class="{{ sidebarclass }}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+                            {% block sidebar %}
+                                {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+                                    'route': app.request.get('_route'),
+                                    'options': { 'type': '' },
+                                    'menu': {
+                                        'Fuid Grid': {
+                                            'path': '#fluidGridSystem',
+                                            'title': 'fluid grid',
+                                            'icon': 'fa fa-desktop'
+                                        },
+                                        'Responsive': {
+                                            'path': '#responsive',
+                                            'title': 'responsive',
+                                            'icon': 'fa fa-mobile-phone'
+                                        },
+                                        'Typography': {
+                                            'path': '#typography',
+                                            'title': 'typography',
+                                            'icon': 'fa fa-font'
+                                        },
+                                        'Table': {
+                                            'path': '#tables',
+                                            'title': 'table',
+                                            'icon': 'fa fa-table'
+                                        },
+                                        'Form': {
+                                            'path': '#forms',
+                                            'title': 'form',
+                                            'icon': 'fa fa-list-alt'
+                                        }
+                                    }}))
+                                }}
+                            {% endblock sidebar %}
+                        </aside>
+                        {% endblock sidebarOuter %}
                         {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid">
+                            <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
 
                                 {% block toolbarTop %}
                                     <div id="toolbar-top" class="toolbar section section-white">
@@ -223,7 +225,6 @@
                 {% block analytics %}
                     {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
                 {% endblock analytics %}
-
             {% endblock body %}
         </body>
 

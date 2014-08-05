@@ -1,5 +1,5 @@
 {% stylesheets
-          '@MesdPresentationBundle/Resources/public/less/theme.less' 
+          '@MesdPresentationBundle/Resources/public/less/theme.less'
           filter='less'
           output='bundles/mesdpresentation/css/mesdpresentation-less.css'
      %}
@@ -12,11 +12,3 @@
      %}
      <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
-{#} Are we even still using this?
-{% stylesheets
-          '@MesdPresentationBundle/Resources/public/css/introjs/*'
-          filter='cssrewrite'
-     %}
-     <link rel="stylesheet" href="{{ asset_url }}" />
-{% endstylesheets %}
-{#}
