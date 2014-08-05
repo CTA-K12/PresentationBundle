@@ -243,7 +243,7 @@ $(document).ready(function() {
     if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
         $.cookie('MesdPresentationSidebarSize', 240, { path: '/', expires: 30  });
         $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
-        sidebar.setCurrPos(xcoord);
+        sidebar.setCurrPos(240);
         sidebar.finishMove();
     } else {
     }
@@ -251,6 +251,8 @@ $(document).ready(function() {
     if ($.cookie('MesdPresentationSidebarSize') < 60 ) {
         $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
     } else {
+        sidebar.setCurrPos(60);
+        sidebar.finishMove();
     }
 
     // fix up some odd issues if they login without a cookie.
