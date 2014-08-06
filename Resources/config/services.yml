@@ -1,15 +1,15 @@
 parameters:
-    presentation.container.class:    Mesd\PresentationBundle\Twig\ContainerExtension
+    presentation.config.class:       Mesd\PresentationBundle\Twig\ConfigExtension
     presentation.gravatar.class:     Mesd\PresentationBundle\Twig\GravatarExtension
     presentation.placeholder.class:  Mesd\PresentationBundle\Twig\PlaceholderExtension
     presentation.highlighter.class:  Mesd\PresentationBundle\Twig\HighlighterExtension
     presentation.interval.class:     Mesd\PresentationBundle\Twig\IntervalExtension
     presentation.breadcrumb.class:   Mesd\PresentationBundle\Twig\BreadcrumbExtension
-    presentation.routeHelper.class: Mesd\PresentationBundle\Twig\RouteHelperExtension
+    presentation.routeHelper.class:  Mesd\PresentationBundle\Twig\RouteHelperExtension
 
 services:
-    presentation.twig.container_extension:
-        class: %presentation.container.class%
+    presentation.twig.config_extension:
+        class: %presentation.config.class%
         arguments: [@service_container]
         tags:
             - { name: twig.extension }
