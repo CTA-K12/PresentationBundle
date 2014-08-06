@@ -1,19 +1,19 @@
 var delay = (function(){
     var timer = 0;
-        return function(callback, ms){
-            clearTimeout (timer);
-            timer = setTimeout(callback, ms);
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
     };
 })();
 
 // this sidebar object
 var sidebar = new function () {
     // attributes
-    this.max     =  240;
-    this.min     =   60;
-    this.currPos =    0;
-    this.lastPos =    0;
-    this.timer   = null;
+    this.max     =  maximized;
+    this.min     =  minimized;
+    this.currPos =  0        ;
+    this.lastPos =  0        ;
+    this.timer   =  null     ;
 
     // gets sidebar min
     this.getMin = function()
@@ -54,6 +54,8 @@ var sidebar = new function () {
         $('.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
+
+        $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/', expires: 30 });
     }
 
     // gets last position of sidebar
@@ -88,14 +90,15 @@ var sidebar = new function () {
     }
 
     this.relabel = function(){
-        if (this.getCurrPos() > threshold * maximized) {
+        if (this.getCurrPos() > threshold * sidebar.max) {
             $('.sidebar').find('.hideable').removeClass('hide');
             $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/', expires: 30 });
-         } else {
+        } else {
             $('.sidebar').find('.hideable').addClass('hide');
             $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
         }
-        if ( this.getCurrPos() == minimized ) {
+
+        if ( this.getCurrPos() == sidebar.min ) {
             $('.sidebar').addClass('sidebar-closed');
             $('.sidebar').removeClass('sidebar-open');
         } else {
@@ -112,25 +115,50 @@ var sidebar = new function () {
 }
 
 
+// $('.drag-bar-handle').mouseover(function(e){
+//     e.preventDefault();
+// alert('over');
+// });
+
+
+
 
 $('.drag-bar-handle').dblclick(function(e){
-    $('.sidebar').find('.hideable').toggleClass('hide');
     e.preventDefault();
+    $('.sidebar').find('.hideable').toggleClass('hide');
     var xcoord = e.pageX;
-    if(maximized >= e.pageX - 6 && maximized <= e.pageX + 6){
-        xcoord = minimized;
+
+    if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
+        xcoord = sidebar.min;
     }
-    else if(minimized <= e.pageX + 6 && minimized >= e.pageX - 6){
-        xcoord = maximized;
+    else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
+        xcoord = sidebar.max;
     }
-    else if(maximized > e.pageX - 1){
-        xcoord = minimized;
+    else if(sidebar.max > e.pageX - 1){
+        xcoord = sidebar.min;
     }
     else{
-        xcoord = maximized;
+        xcoord = sidebar.max;
     }
-    sidebar.setLastPos(xcoord);
-    sidebar.setCurrPos(xcoord);
+
+    // This next bit is for behat testing.
+    // I know it looks inefficient
+
+    // DL Aug 06 2014
+
+    if (e.pageX) {
+        sidebar.setLastPos(xcoord);
+        sidebar.setCurrPos(xcoord);
+    } else {
+        if ($('.sidebar').hasClass('sidebar-closed')) {
+            sidebar.setLastPos(240);
+            sidebar.setCurrPos(240);
+        } else {
+            sidebar.setLastPos(60);
+            sidebar.setCurrPos(60);
+        }
+    }
+
     sidebar.finishMove();
 });
 
@@ -257,9 +285,9 @@ $(document).ready(function() {
 
     if ($.cookie('MesdPresentationSidebarSize') < 60 ) {
         $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
-    } else {
         sidebar.setCurrPos(60);
         sidebar.finishMove();
+    } else {
     }
 
     // fix up some odd issues if they login without a cookie.
