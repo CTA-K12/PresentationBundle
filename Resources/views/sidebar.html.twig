@@ -5,59 +5,59 @@
 {% else %}
     {% set sidebarclass = 'sidebar' %}
 {% endif %}
-        {% if 'dropdown' == type %}
-            <div class="navbar">
-                <div class="btn btn-navbar" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </div><!-- END btn-navbar -->
-                <div class="nav-collapse sidebar-collapse">
-                {% endif %}
-
-                <ul class="nav">
-                    {% for k,v in menu %}
-                        {#  set currentPath = path(route)
-                            split the currentPath and v['path']
-                            do a for loop on path
-                            if each value of currentPath is found in v['path']
-                            set to active
-                            if not, don't set active
-                            ----------------------------------------------------
-                            this method is checking that all child paths match
-                            for example:
-
-                            if menu path was /foo/bar/
-                            for each current path:
-                                menu         | current         | pass/fail
-                                -------------+-----------------+----------
-                                /foo/bar     | /foo/bar        | PASS
-                                /foo/bar     | /foo/foo/bar    | FAIL
-                                /foo/bar     | /foo/bar/new    | PASS
-                                /foo/bar     | /foo/bar/1/edit | PASS
-                                /foo/bar/new | /foo/bar        | FAIL
-
-                                #}
-                        {#}
-                        {% if path(route) == v['path'] %}
-                            <li class="active">
-                        {% else %}
-                            <li>
-                        {% endif %}
-                        {#}
-                        {#{ path(route)|split(v['path']) }#}
-                        <li>
-                            <a href="{{ v['path'] }}" title="{{ v['title'] }}">
-                                <span class="fa icon {{ v['icon'] }}"></span>
-                                <span class="pull-right hideable {% if app.request.cookies.has('hideSidebarLabels') %}hide{% endif %}">{{ k }}</span>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                {% if 'dropdown' == type %}
-                </div><!-- END nav-collapse -->
-            </div><!-- END navbar -->
+{% if 'dropdown' == type %}
+    <div class="navbar">
+        <div class="btn btn-navbar" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div><!-- END btn-navbar -->
+        <div class="nav-collapse sidebar-collapse">
         {% endif %}
 
-        {% include 'MesdPresentationBundle::sidebarshim.html.twig' %}
+        <ul class="nav">
+            {% for k,v in menu %}
+                {#  set currentPath = path(route)
+                    split the currentPath and v['path']
+                    do a for loop on path
+                    if each value of currentPath is found in v['path']
+                    set to active
+                    if not, don't set active
+                    ----------------------------------------------------
+                    this method is checking that all child paths match
+                    for example:
+
+                    if menu path was /foo/bar/
+                    for each current path:
+                        menu         | current         | pass/fail
+                        -------------+-----------------+----------
+                        /foo/bar     | /foo/bar        | PASS
+                        /foo/bar     | /foo/foo/bar    | FAIL
+                        /foo/bar     | /foo/bar/new    | PASS
+                        /foo/bar     | /foo/bar/1/edit | PASS
+                        /foo/bar/new | /foo/bar        | FAIL
+
+                        #}
+                {#}
+                {% if path(route) == v['path'] %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                {#}
+                {#{ path(route)|split(v['path']) }#}
+                <li>
+                    <a href="{{ v['path'] }}" title="{{ v['title'] }}">
+                        <span class="fa icon {{ v['icon'] }}"></span>
+                        <span class="pull-right hideable {% if app.request.cookies.has('hideSidebarLabels') %}hide{% endif %}">{{ k }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if 'dropdown' == type %}
+        </div><!-- END nav-collapse -->
+    </div><!-- END navbar -->
+{% endif %}
+
+{% include 'MesdPresentationBundle::sidebarshim.html.twig' %}

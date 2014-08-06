@@ -74,13 +74,18 @@
                 {% block containerOuter %}
                     <div id="container-outer" class="container-outer wrapper">
                         {% block sidebarOuter %}
-                        <aside id="sidebar" class="{{ sidebarclass }}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
-                            {% block sidebar %}
+                            {# conditional added Aug 05 2014 by DL #}
+                            {# Probably a better blocking strategy #}
+                            {# to allow overridding just the inner #}
+                            {# is appropriate will wait for CH     #}
+                            {# resolution                          #}
+                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+                            {% block sidebarInner %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
                                     'options': { 'type': '' },
                                     'menu': {
-                                        'Fuid Grid': {
+                                        'Fluid Grid': {
                                             'path': '#fluidGridSystem',
                                             'title': 'fluid grid',
                                             'icon': 'fa fa-desktop'
@@ -107,7 +112,7 @@
                                         }
                                     }}))
                                 }}
-                            {% endblock sidebar %}
+                            {% endblock sidebarInner %}
                         </aside>
                         {% endblock sidebarOuter %}
                         {% block containerInner %}
