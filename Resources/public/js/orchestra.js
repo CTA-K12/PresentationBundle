@@ -95,6 +95,13 @@ var sidebar = new function () {
             $('.sidebar').find('.hideable').addClass('hide');
             $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
         }
+        if ( this.getCurrPos() == minimized ) {
+            $('.sidebar').addClass('sidebar-closed');
+            $('.sidebar').removeClass('sidebar-open');
+        } else {
+            $('.sidebar').removeClass('sidebar-closed');
+            $('.sidebar').addClass('sidebar-open');
+        }
     }
 
     // remove labels if sidebar closed
