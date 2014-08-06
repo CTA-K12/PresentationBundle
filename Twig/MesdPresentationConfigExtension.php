@@ -1,13 +1,12 @@
 <?php
-// Mesd/PresentationBundle/Twig/ConfigExtension.php
+
 namespace Mesd\PresentationBundle\Twig;
 
 use Twig_Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-//use Symfony\Component\Locale\Locale;
 
 
-class ConfigExtension extends Twig_Extension
+class MesdPresentationConfigExtension extends Twig_Extension
 {
     protected $container;
 
@@ -33,7 +32,7 @@ class ConfigExtension extends Twig_Extension
 
     public function getName()
     {
-        return 'config_extension';
+        return 'mesd_presentation_config_extension';
     }
 
 }

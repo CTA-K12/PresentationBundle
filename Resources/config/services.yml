@@ -1,5 +1,5 @@
 parameters:
-    presentation.config.class:       Mesd\PresentationBundle\Twig\ConfigExtension
+    presentation.config.class:       Mesd\PresentationBundle\Twig\MesdPresentationConfigExtension
     presentation.gravatar.class:     Mesd\PresentationBundle\Twig\GravatarExtension
     presentation.placeholder.class:  Mesd\PresentationBundle\Twig\PlaceholderExtension
     presentation.highlighter.class:  Mesd\PresentationBundle\Twig\HighlighterExtension
