@@ -10,12 +10,18 @@ var delay = (function(){
 
 // this sidebar object
 var sidebar = new function () {
-    // attributes
-    this.max     =  maximized;
-    this.min     =  minimized;
-    this.currPos =  0        ;
-    this.lastPos =  0        ;
-    this.timer   =  null     ;
+    // attributes; raw vlaues are currently
+    // in Resources/views/Block/settings.js.twig
+
+    this.max      =  maximized;
+    this.min      =  minimized;
+
+    // if doubt, default 60
+    this.currPos  =  60       ;
+    this.lastPos  =  60       ;
+
+
+    this.timer    =  null     ;
 
     // gets sidebar min
     this.getMin = function()
@@ -68,44 +74,58 @@ var sidebar = new function () {
     // sets last position of sidebar to pos
     this.setLastPos = function(pos)
     {
+        console.log('setting last pos to');
+        console.log(pos);
         this.lastPos = pos;
     }
 
     //returns 0 = min, -1 = between, 1 = max
-    this.isMinOrMax = function()
+    this.isMin = function()
     {
-        var currentPos = this.currPos;
-
-        if(currentPos >= this.max) {
-            // is current position at or greater than maximum sidebar?
-            return 1;
-        } else if(currentPos > this.min) {
-            // is current position greater than minimum sidebar,
-            // but smaller than maximum sidebar?
-            return -1;
-        } else {
-            // if no on both, than it's smaller or equal to
-            // the minimum sidar
-            return 0;
-        }
+        return this.currPos <= this.min;
     }
 
+    //returns 0 = min, -1 = between, 1 = max
+    this.isMax = function()
+    {
+        return this.currPos >= this.max;
+    }
+
+
     this.relabel = function(){
-        if (this.getCurrPos() > threshold * sidebar.max) {
-            $('.sidebar').find('.hideable').removeClass('hide');
-            $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/', expires: 30 });
+
+        var vp = $(window).viewportW();
+        var cp = this.getCurrPos();
+        var th = threshold * this.max;
+
+        if ( vp < mdMin ) {
+
+            // always hide labels at table size
+            this.hidelabel();
+
+        } else if (this.getCurrPos() < threshold * this.max ) {
+            this.hidelabel();
         } else {
-            $('.sidebar').find('.hideable').addClass('hide');
-            $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
+            this.showlabel();
         }
 
-        if ( this.getCurrPos() == sidebar.min ) {
+        if ( this.getCurrPos() == this.min ) {
             $('.sidebar').addClass('sidebar-closed');
             $('.sidebar').removeClass('sidebar-open');
         } else {
             $('.sidebar').removeClass('sidebar-closed');
             $('.sidebar').addClass('sidebar-open');
         }
+    }
+
+    this.showlabel = function(){
+        $('.sidebar').find('.hideable').removeClass('hide');
+        $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/', expires: 30 });
+    }
+
+    this.hidelabel = function(){
+        $('.sidebar').find('.hideable').addClass('hide');
+        $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
     }
 
     // remove labels if sidebar closed
@@ -122,102 +142,141 @@ var sidebar = new function () {
 // });
 
 
-
-
 $('.drag-bar-handle').dblclick(function(e){
     e.preventDefault();
-    $('.sidebar').find('.hideable').toggleClass('hide');
-    var xcoord = e.pageX;
 
-    if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
-        xcoord = sidebar.min;
-    }
-    else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
-        xcoord = sidebar.max;
-    }
-    else if(sidebar.max > e.pageX - 1){
-        xcoord = sidebar.min;
-    }
-    else{
-        xcoord = sidebar.max;
-    }
+    var vp = $(window).viewportW();
+    if ( vp >= mdMin ) {
 
-    // This next bit is for behat testing.
-    // I know it looks inefficient
+        $('.sidebar').find('.hideable').toggleClass('hide');
+        var xcoord = e.pageX;
 
-    // DL Aug 06 2014
-
-    if (e.pageX) {
-        sidebar.setLastPos(xcoord);
-        sidebar.setCurrPos(xcoord);
-    } else {
-        if ($('.sidebar').hasClass('sidebar-closed')) {
-            sidebar.setLastPos(240);
-            sidebar.setCurrPos(240);
-        } else {
-            sidebar.setLastPos(60);
-            sidebar.setCurrPos(60);
+        if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
+            xcoord = sidebar.min;
         }
-    }
+        else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
+            xcoord = sidebar.max;
+        }
+        else if(sidebar.max > e.pageX - 1){
+            xcoord = sidebar.min;
+        }
+        else{
+            xcoord = sidebar.max;
+        }
 
-    sidebar.finishMove();
+        // This next bit is for behat testing.
+        // I know it looks inefficient
+
+        // DL Aug 06 2014
+
+        if (e.pageX) {
+            sidebar.setLastPos(xcoord);
+            sidebar.setCurrPos(xcoord);
+        } else {
+            if ($('.sidebar').hasClass('sidebar-closed')) {
+                sidebar.setLastPos(240);
+                sidebar.setCurrPos(240);
+            } else {
+                sidebar.setLastPos(60);
+                sidebar.setCurrPos(60);
+            }
+        }
+
+        sidebar.finishMove();
+    } else {
+        // don't open
+    }
 });
 
 
 $('.drag-bar').mousedown(function(e){
     e.preventDefault();
-    $(document).mousemove(function(e){
-        var xcoord = e.pageX - 1;
-        if(0 >= e.pageX - 1){
-            xcoord = 0;
-        }
-        else if($(window).viewportW() - 2 <= e.pageX){
-            xcoord = $(window).viewportW() - 2;
-        }
-        else{
-            xccord = e.pageX - 1;
-        }
-        if (xcoord < sidebar.min) {
-            xcoord = sidebar.min;
-        }
-        sidebar.setCurrPos(xcoord);
-        sidebar.finishMove();
-        // delay(function(){ sidebar.finishMove();}, quiet)
-    });
+    var vp = $(window).viewportW();
+    if ( vp >= mdMin ) {
+        $(document).mousemove(function(e){
+            var xcoord = e.pageX - 1;
+            if(0 >= e.pageX - 1){
+                xcoord = 0;
+            }
+            else if($(window).viewportW() - 2 <= e.pageX){
+                xcoord = $(window).viewportW() - 2;
+            }
+            else{
+                xccord = e.pageX - 1;
+            }
+            if (xcoord < sidebar.min) {
+                xcoord = sidebar.min;
+            }
+            sidebar.setCurrPos(xcoord);
+            sidebar.setLastPos(xcoord);
+            sidebar.finishMove();
+        });
+    } else {
+        // don't open
+    }
 });
 
 
 $(document).mouseup(function(e){
-    sidebar.setLastPos(sidebar.getCurrPos());
+    var vp = $(window).viewportW();
+    if ( vp < mdMin ) {
+        sidebar.setLastPos(sidebar.getCurrPos());
+    } else {
+        // don't open
+    }
     $(document).unbind('mousemove');
 });
 
 $(window).resize(function(){
-    var vp = $(window).viewportW();
-    // if viewport < breakpoint && c sidebar == max
-    //    set last position = current position
-    //    set current position = minimum position
-    if((vp < mdMin) && (sidebar.getMin() < sidebar.getCurrPos())) {
-        sidebar.setLastPos(sidebar.getCurrPos());
-        sidebar.setCurrPos(sidebar.getMin());
-    }
-    // if viewport >= breakpoint && c sidebar != max and p sidebar == max
-    //    set current position = last postion
-    //    set last position = minimum position
-    else if((vp >= mdMin) && (1 != sidebar.isMinOrMax()) && (sidebar.getMin() < sidebar.getLastPos())) {
-        sidebar.setCurrPos(sidebar.getLastPos());
-        sidebar.setLastPos(sidebar.getMin());
-    }
-    // if viewport >= breakpoint && c sidebar == max
-    //    do nothing
-    else if((vp > mdMin) && (sidebar.getLastPos() <= sidebar.getMin())) {
-        // do nothing
-    }
-    else if(vp <= sidebar.getCurrPos()) {
-        sidebar.setCurrPos(vp);
-        sidebar.setLastPos(vp);
-    }
-    sidebar.finishMove();
+        var vp = $(window).viewportW();
+
+        if(vp <= sidebar.getCurrPos()) {
+            console.log('micro: vp <= sidebar.getCurrPos()')
+
+            // if size is smaller than minimum,
+            // resize sidebar to current size
+
+            sidebar.setCurrPos(vp);
+            sidebar.setLastPos(vp);
+
+        } else if(vp < mdMin) {
+
+            console.log('tablet: vp < mdMin')
+
+            // if tablet size or smaller, close sidebar
+            // and remember last position
+            console.log('current pos:');
+            console.log(sidebar.getCurrPos());
+
+            if ( sidebar.isMin() ) {
+            } else if ( sidebar.isMax() ) {
+                // sidebar.setLastPos(sidebar.getMax());
+                sidebar.setLastPos(240);
+            } else {
+                sidebar.setLastPos(sidebar.getCurrPos());
+            }
+            sidebar.setCurrPos(sidebar.getMin());
+
+        // }   else if(1 == sidebar.isMin) {
+
+            // if we are at minimum already
+            // and size is tablet or greater,
+            // do nothing
+
+        // }   else if (1 == sidebar.isMax ) {
+
+            // if we are at maximum already
+            // and size is tablet or greater,
+            // do nothing
+
+        } else {
+            console.log('normal size: move');
+            sidebar.setCurrPos(sidebar.getLastPos());
+            console.log('last pos:');
+            console.log(sidebar.getLastPos());
+        }
+
+        sidebar.finishMove();
 });
 
 // viewport jQuery plugin
