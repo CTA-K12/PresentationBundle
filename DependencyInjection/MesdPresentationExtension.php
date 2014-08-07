@@ -26,7 +26,7 @@ class MesdPresentationExtension extends Extension
         foreach( $config as $parameter => $value ) {
 
             $container->setParameter(
-                'mesd_presentation__' . $parameter,
+                'mesd_presentation.' . $parameter,
                 $value
             );
         }

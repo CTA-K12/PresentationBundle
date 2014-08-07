@@ -24,7 +24,7 @@ class MesdPresentationConfigExtension extends Twig_Extension
                 );
 
         foreach ( $keys as $k => $v ) {
-            $params[$v] = $this->container->getParameter($v);
+            $params[str_replace('.', '_', $v)] = $this->container->getParameter($v);
         }
 
         return $params;
