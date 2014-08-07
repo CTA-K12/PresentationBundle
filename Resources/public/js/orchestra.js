@@ -1,3 +1,5 @@
+//inhibits recurring callback for duration of quiet before executing
+
 var delay = (function(){
     var timer = 0;
     return function(callback, ms){
@@ -55,7 +57,6 @@ var sidebar = new function () {
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
 
-        $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/', expires: 30 });
     }
 
     // gets last position of sidebar
