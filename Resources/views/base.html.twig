@@ -195,14 +195,14 @@
                                     {% block footerContentLeft %}
                                         <p class="h-card">
                                             <span>&copy; {{ "now"|date("Y") }}</span>
-                                            <abbr class="p-name name" title="{{ mesd_presentation__org_name }}">{{ mesd_presentation__org_abbreviation }}</abbr>
-                                            <span class="p-adr adr">{{ mesd_presentation__org_address }}</span>
+                                            <abbr class="p-name name" title="{{ mesd_presentation_org_name }}">{{ mesd_presentation_org_abbreviation }}</abbr>
+                                            <span class="p-adr adr">{{ mesd_presentation_org_address }}</span>
                                         </p>
                                     {% endblock footerContentLeft %}
                                 </div>
                                 <div class="footer-center col-md-1-3">
                                     {% block footerContentCenter %}
-                                        <p>version: {{ mesd_presentation__app_version }}</p>
+                                        <p>version: {{ mesd_presentation_app_version }}</p>
                                     {% endblock footerContentCenter %}
                                 </div>
                                 <div class="footer-right col-md-1-3">
