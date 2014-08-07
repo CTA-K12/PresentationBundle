@@ -74,8 +74,6 @@ var sidebar = new function () {
     // sets last position of sidebar to pos
     this.setLastPos = function(pos)
     {
-        console.log('setting last pos to');
-        console.log(pos);
         this.lastPos = pos;
     }
 
@@ -128,18 +126,21 @@ var sidebar = new function () {
         $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
     }
 
+    this.close = function() {
+        $.cookie('MesdPresentationSidebarClosed', 1, { path: '/', expires: 30 });
+    }
+
+    this.open = function() {
+        // $.removeCookie('MesdPresentationSidebarClosed');
+        $.cookie('MesdPresentationSidebarClosed', 0, { path: '/', expires: 30 });
+    }
+
     // remove labels if sidebar closed
     this.finishMove = function() {
         this.relabel();
         $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/', expires: 30 });
     }
 }
-
-
-// $('.drag-bar-handle').mouseover(function(e){
-//     e.preventDefault();
-// alert('over');
-// });
 
 
 $('.drag-bar-handle').dblclick(function(e){
@@ -149,43 +150,45 @@ $('.drag-bar-handle').dblclick(function(e){
     if ( vp >= mdMin ) {
 
         $('.sidebar').find('.hideable').toggleClass('hide');
-        var xcoord = e.pageX;
-
-        if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
-            xcoord = sidebar.min;
-        }
-        else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
-            xcoord = sidebar.max;
-        }
-        else if(sidebar.max > e.pageX - 1){
-            xcoord = sidebar.min;
-        }
-        else{
-            xcoord = sidebar.max;
-        }
-
-        // This next bit is for behat testing.
-        // I know it looks inefficient
-
-        // DL Aug 06 2014
-
         if (e.pageX) {
+            var xcoord = e.pageX;
+
+            if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
+                xcoord = sidebar.min;
+            }
+            else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
+                xcoord = sidebar.max;
+            }
+            else if(sidebar.max > e.pageX - 1){
+                xcoord = sidebar.min;
+            }
+            else{
+                xcoord = sidebar.max;
+            }
+
             sidebar.setLastPos(xcoord);
             sidebar.setCurrPos(xcoord);
+
+            if (sidebar.min == xcoord) {
+                sidebar.close();
+            } else {
+                sidebar.open();
+            }
+
         } else {
             if ($('.sidebar').hasClass('sidebar-closed')) {
+                sidebar.open();
                 sidebar.setLastPos(240);
                 sidebar.setCurrPos(240);
             } else {
+                sidebar.close();
                 sidebar.setLastPos(60);
                 sidebar.setCurrPos(60);
             }
         }
-
-        sidebar.finishMove();
-    } else {
-        // don't open
     }
+
+    sidebar.finishMove();
 });
 
 
@@ -228,10 +231,9 @@ $(document).mouseup(function(e){
 });
 
 $(window).resize(function(){
-        var vp = $(window).viewportW();
+    var vp = $(window).viewportW();
 
-        if(vp <= sidebar.getCurrPos()) {
-            console.log('micro: vp <= sidebar.getCurrPos()')
+    if(vp <= sidebar.getCurrPos()) {
 
             // if size is smaller than minimum,
             // resize sidebar to current size
@@ -241,12 +243,9 @@ $(window).resize(function(){
 
         } else if(vp < mdMin) {
 
-            console.log('tablet: vp < mdMin')
 
             // if tablet size or smaller, close sidebar
             // and remember last position
-            console.log('current pos:');
-            console.log(sidebar.getCurrPos());
 
             if ( sidebar.isMin() ) {
             } else if ( sidebar.isMax() ) {
@@ -270,14 +269,11 @@ $(window).resize(function(){
             // do nothing
 
         } else {
-            console.log('normal size: move');
             sidebar.setCurrPos(sidebar.getLastPos());
-            console.log('last pos:');
-            console.log(sidebar.getLastPos());
         }
 
         sidebar.finishMove();
-});
+    });
 
 // viewport jQuery plugin
 // like css media query, returns the height and width
@@ -340,14 +336,17 @@ $(document).ready(function() {
         $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
         sidebar.setCurrPos(240);
         sidebar.finishMove();
+        sidebar.open();
     } else {
     }
 
-    if ($.cookie('MesdPresentationSidebarSize') < 60 ) {
+    if ($.cookie('MesdPresentationSidebarSize') <= 60 ) {
         $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
         sidebar.setCurrPos(60);
         sidebar.finishMove();
+        sidebar.close();
     } else {
+        sidebar.open();
     }
 
     // fix up some odd issues if they login without a cookie.
