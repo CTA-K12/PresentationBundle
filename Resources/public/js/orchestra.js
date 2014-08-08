@@ -331,6 +331,10 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
+    if ($.cookie('MesdPresentationSidebarSize') == null ){
+        $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
+    }
+
     if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
         $.cookie('MesdPresentationSidebarSize', 240, { path: '/', expires: 30  });
         $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
