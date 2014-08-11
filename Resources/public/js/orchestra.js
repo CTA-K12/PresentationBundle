@@ -13,15 +13,16 @@ var sidebar = new function () {
     // attributes; raw vlaues are currently
     // in Resources/views/Block/settings.js.twig
 
-    this.max      =  maximized;
-    this.min      =  minimized;
+    this.max        =  maximized;
+    this.min        =  minimized;
 
     // if doubt, default 60
-    this.currPos  =  60       ;
-    this.lastPos  =  60       ;
+    this.currPos    =  60       ;
+    this.lastPos    =  60       ;
 
 
-    this.timer    =  null     ;
+    this.timer      =  null     ;
+    this.expandable = false     ;
 
     // gets sidebar min
     this.getMin = function()
@@ -89,6 +90,12 @@ var sidebar = new function () {
         return this.currPos >= this.max;
     }
 
+    this.alwaysExpandable = function(newValue)
+    {
+        this.expandable = newValue || this.expandable;
+        this.expandable = !!this.expandable; // recast to boolean
+        return !!this.expandable;
+    }
 
     this.relabel = function(){
 
@@ -147,7 +154,7 @@ $('.drag-bar-handle').dblclick(function(e){
     e.preventDefault();
 
     var vp = $(window).viewportW();
-    if ( vp >= mdMin ) {
+    if ( vp >= mdMin || sidebar.alwaysExpandable() ) {
 
         $('.sidebar').find('.hideable').toggleClass('hide');
         if (e.pageX) {
@@ -195,7 +202,7 @@ $('.drag-bar-handle').dblclick(function(e){
 $('.drag-bar').mousedown(function(e){
     e.preventDefault();
     var vp = $(window).viewportW();
-    if ( vp >= mdMin ) {
+    if ( vp >= mdMin || sidebar.alwaysExpandable() ) {
         $(document).mousemove(function(e){
             var xcoord = e.pageX - 1;
             if(0 >= e.pageX - 1){
@@ -241,7 +248,7 @@ $(window).resize(function(){
             sidebar.setCurrPos(vp);
             sidebar.setLastPos(vp);
 
-        } else if(vp < mdMin) {
+        } else if(vp < mdMin ) {
 
 
             // if tablet size or smaller, close sidebar
@@ -331,6 +338,11 @@ $(document).ready(function() {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
+
+    if ( $('.always-expandable').length ) {
+        sidebar.alwaysExpandable(true);
+    }
+
     if ($.cookie('MesdPresentationSidebarSize') == null ){
         $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
     }
@@ -353,5 +365,13 @@ $(document).ready(function() {
         sidebar.open();
     }
 
+    var vp = $(window).viewportW();
+
+    if (vp < mdMin) {
+        sidebar.setCurrPos(60);
+        sidebar.finishMove();
+        sidebar.close();
+    }
+
     // fix up some odd issues if they login without a cookie.
-});
+})
