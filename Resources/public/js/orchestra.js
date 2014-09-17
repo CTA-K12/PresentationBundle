@@ -333,8 +333,14 @@ $(document).ready(function() {
         $('#sidebar').scrollTop($.cookie('sscroll'));
     }
 
+
     // on page load, if container-inner cookie is scrolled, go back to position
-    if ($.cookie('cscroll') !== null) {
+
+    // if there is a div.alert ... then do not scroll
+    // this may be modified by user settings
+    // DL Sept 17, 2014
+
+    if ($.cookie('cscroll') !== null && (0 === $('div.alert').length)) {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
