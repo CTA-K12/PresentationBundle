@@ -1,179 +1,145 @@
-//inhibits recurring callback for duration of quiet before executing
+// TODO
+// what is always-expandable
+// and if it is what i think it is, why isn't it controlled by css?
 
-var delay = (function(){
+// inhibits recurring callback for duration of quiet before executing
+var delay = (function() {
     var timer = 0;
     return function(callback, ms){
-        clearTimeout (timer);
+        clearTimeout(timer);
         timer = setTimeout(callback, ms);
     };
 })();
 
 // this sidebar object
-var sidebar = new function () {
+var sidebar = new function() {
     // attributes; raw vlaues are currently
     // in Resources/views/Block/settings.js.twig
-
-    this.max        =  maximized;
-    this.min        =  minimized;
-
-    // if doubt, default 60
-    this.currPos    =  60       ;
-    this.lastPos    =  60       ;
-
-
-    this.timer      =  null     ;
-    this.expandable = false     ;
-
-    // gets sidebar min
-    this.getMin = function()
-    {
-        return this.min;
-    }
-
-    // sets sidebar min
-    this.setMin = function(setMin)
-    {
-        this.min = min;
-    }
-
-    // gets sidebar max
-    function getMax()
-    {
-        return this.max;
-    }
-
-    // sets sidebar max
-    this.setMax = function(setMax)
-    {
-        this.max = max;
-    }
-
-    // gets current position of sidebar
-    this.getCurrPos = function()
-    {
-        return this.currPos;
-    }
+    this.max        = maximized;
+    this.min        = minimized;
+    this.currPos    = 60;        // if doubt, default 60
+    this.lastPos    = 60;
+    this.timer      = null;
+    this.expandable = false;
 
     // sets current position of sidebar to pos
-    this.setCurrPos = function(pos)
-    {
+    this.setCurrPos = function(pos) {
         this.currPos = pos;
 
         $('.sidebarOuter').css('width', this.currPos);
         $('.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
-
-    }
-
-    // gets last position of sidebar
-    this.getLastPos = function()
-    {
-        return this.lastPos;
-    }
-
-    // sets last position of sidebar to pos
-    this.setLastPos = function(pos)
-    {
-        this.lastPos = pos;
-    }
+    };
 
     //returns 0 = min, -1 = between, 1 = max
-    this.isMin = function()
-    {
+    this.isMin = function() {
         return this.currPos <= this.min;
-    }
+    };
 
     //returns 0 = min, -1 = between, 1 = max
-    this.isMax = function()
-    {
+    this.isMax = function() {
         return this.currPos >= this.max;
-    }
+    };
 
-    this.alwaysExpandable = function(newValue)
-    {
+    // TODO
+    // what does this do? curtis
+
+    // Reponse to undated comment
+    // sets the javascript object value to determine
+    // if the sidebar should always be moveable
+    // DL Sep 26 2014
+    this.alwaysExpandable = function(newValue) {
         this.expandable = newValue || this.expandable;
         this.expandable = !!this.expandable; // recast to boolean
         return !!this.expandable;
-    }
+    };
 
-    this.relabel = function(){
+    // TODO
+    this.relabel = function() {
 
+        // get window width
         var vp = $(window).viewportW();
-        var cp = this.getCurrPos();
+        // get current position
+        var cp = this.currPos;
         var th = threshold * this.max;
 
-        if ( vp < mdMin ) {
-
-            // always hide labels at table size
+        if (vp < mdMin) {
+            // always hide labels at tablet size
             this.hidelabel();
-
-        } else if (this.getCurrPos() < threshold * this.max ) {
+        } else if (this.currPos < threshold * this.max) {
             this.hidelabel();
         } else {
             this.showlabel();
         }
 
-        if ( this.getCurrPos() == this.min ) {
+        if (this.currPos == this.min) {
             $('.sidebar').addClass('sidebar-closed');
             $('.sidebar').removeClass('sidebar-open');
         } else {
             $('.sidebar').removeClass('sidebar-closed');
             $('.sidebar').addClass('sidebar-open');
         }
-    }
+    };
 
-    this.showlabel = function(){
+    this.showlabel = function() {
         $('.sidebar').find('.hideable').removeClass('hide');
-        $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/', expires: 30 });
-    }
+        $.removeCookie('MesdPresentationHideSidebarLabels', {path: '/', expires: 30});
+    };
 
-    this.hidelabel = function(){
+    this.hidelabel = function() {
         $('.sidebar').find('.hideable').addClass('hide');
-        $.cookie('MesdPresentationHideSidebarLabels', 1, { path: '/', expires: 30 });
-    }
+        $.cookie('MesdPresentationHideSidebarLabels', 1, {path: '/', expires: 30});
+    };
 
     this.close = function() {
-        $.cookie('MesdPresentationSidebarClosed', 1, { path: '/', expires: 30 });
-    }
+        $.cookie('MesdPresentationSidebarClosed', 1, {path: '/', expires: 30});
+    };
 
     this.open = function() {
         // $.removeCookie('MesdPresentationSidebarClosed');
-        $.cookie('MesdPresentationSidebarClosed', 0, { path: '/', expires: 30 });
-    }
+        $.cookie('MesdPresentationSidebarClosed', 0, {path: '/', expires: 30});
+    };
 
     // remove labels if sidebar closed
     this.finishMove = function() {
         this.relabel();
-        $.cookie('MesdPresentationSidebarSize', this.getCurrPos(), { path: '/', expires: 30 });
-    }
-}
+        $.cookie('MesdPresentationSidebarSize', this.currPos, {path: '/', expires: 30});
+    };
 
+    this.hideHandle = function(){
+        $('.drag-bar').addClass('hide');
+    };
 
-$('.drag-bar-handle').dblclick(function(e){
+    this.showHandle = function(){
+        $('.drag-bar').removeClass('hide');
+    };
+
+};
+
+$('.drag-bar-handle').dblclick(function(e) {
     e.preventDefault();
 
     var vp = $(window).viewportW();
-    if ( vp >= mdMin || sidebar.alwaysExpandable() ) {
+    // if viewport is larger than mdmin or always expandable
+    // allow moveable
+    if (vp >= mdMin || sidebar.alwaysExpandable()) {
 
         $('.sidebar').find('.hideable').toggleClass('hide');
         if (e.pageX) {
             var xcoord = e.pageX;
 
-            if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6){
+            if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6) {
                 xcoord = sidebar.min;
-            }
-            else if(sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6){
+            } else if (sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6) {
                 xcoord = sidebar.max;
-            }
-            else if(sidebar.max > e.pageX - 1){
+            } else if (sidebar.max > e.pageX - 1) {
                 xcoord = sidebar.min;
-            }
-            else{
+            } else {
                 xcoord = sidebar.max;
             }
 
-            sidebar.setLastPos(xcoord);
+            sidebar.lastPos = xcoord;
             sidebar.setCurrPos(xcoord);
 
             if (sidebar.min == xcoord) {
@@ -185,11 +151,11 @@ $('.drag-bar-handle').dblclick(function(e){
         } else {
             if ($('.sidebar').hasClass('sidebar-closed')) {
                 sidebar.open();
-                sidebar.setLastPos(240);
+                sidebar.lastPos = 240;
                 sidebar.setCurrPos(240);
             } else {
                 sidebar.close();
-                sidebar.setLastPos(60);
+                sidebar.lastPos = 60;
                 sidebar.setCurrPos(60);
             }
         }
@@ -198,41 +164,43 @@ $('.drag-bar-handle').dblclick(function(e){
     sidebar.finishMove();
 });
 
-
 $('.drag-bar').mousedown(function(e){
     e.preventDefault();
+    // get the viewport width
     var vp = $(window).viewportW();
-    if ( vp >= mdMin || sidebar.alwaysExpandable() ) {
-        $(document).mousemove(function(e){
+
+    // if viewport is larger than mdmin or always expandable
+    // allow moveable
+    if (vp >= mdMin || sidebar.alwaysExpandable()) {
+        $(document).mousemove(function(e) {
             var xcoord = e.pageX - 1;
-            if(0 >= e.pageX - 1){
+            if (0 >= e.pageX - 1) {
                 xcoord = 0;
-            }
-            else if($(window).viewportW() - 2 <= e.pageX){
-                xcoord = $(window).viewportW() - 2;
-            }
-            else{
+            } else if (vp - 2 <= e.pageX) {
+                xcoord = vp - 2;
+            } else {
                 xccord = e.pageX - 1;
             }
             if (xcoord < sidebar.min) {
                 xcoord = sidebar.min;
             }
+            sidebar.lastPos = xcoord;
             sidebar.setCurrPos(xcoord);
-            sidebar.setLastPos(xcoord);
             sidebar.finishMove();
         });
     } else {
-        // don't open
+        // do nothing
     }
 });
 
-
 $(document).mouseup(function(e){
+    // get window width
     var vp = $(window).viewportW();
-    if ( vp < mdMin ) {
-        sidebar.setLastPos(sidebar.getCurrPos());
+
+    if (vp < mdMin) {
+        sidebar.lastPos = sidebar.currPos;
     } else {
-        // don't open
+        // do nothing
     }
     $(document).unbind('mousemove');
 });
@@ -240,28 +208,25 @@ $(document).mouseup(function(e){
 $(window).resize(function(){
     var vp = $(window).viewportW();
 
-    if(vp <= sidebar.getCurrPos()) {
+    if (vp <= sidebar.currPos) {
 
             // if size is smaller than minimum,
             // resize sidebar to current size
-
             sidebar.setCurrPos(vp);
-            sidebar.setLastPos(vp);
+            sidebar.lastPos = vp;
 
-        } else if(vp < mdMin ) {
-
+        } else if (vp < mdMin) {
 
             // if tablet size or smaller, close sidebar
             // and remember last position
-
-            if ( sidebar.isMin() ) {
-            } else if ( sidebar.isMax() ) {
-                // sidebar.setLastPos(sidebar.getMax());
-                sidebar.setLastPos(240);
+            if (sidebar.isMin()) {
+                // do nothing
+            } else if (sidebar.isMax()) {
+                sidebar.lastPos = 240;
             } else {
-                sidebar.setLastPos(sidebar.getCurrPos());
+                sidebar.lastPos = sidebar.currPos;
             }
-            sidebar.setCurrPos(sidebar.getMin());
+            sidebar.setCurrPos(sidebar.min);
 
         // }   else if(1 == sidebar.isMin) {
 
@@ -276,7 +241,13 @@ $(window).resize(function(){
             // do nothing
 
         } else {
-            sidebar.setCurrPos(sidebar.getLastPos());
+            sidebar.setCurrPos(sidebar.lastPos);
+        }
+
+        if (vp >= mdMin || sidebar.alwaysExpandable()) {
+            sidebar.showHandle();
+        } else {
+            sidebar.hideHandle();
         }
 
         sidebar.finishMove();
@@ -309,9 +280,10 @@ $(window).resize(function(){
         }
         return e[a + 'Height'];
     };
-}( jQuery ));
+}(jQuery));
 
-$(function () {
+// set tooltips from bootstrap to all data-toggle=tooltip
+$(function() {
     $('[data-toggle=tooltip]').tooltip();
 });
 
@@ -326,38 +298,46 @@ $('#container-inner').scroll(function() {
 });
 
 $(document).ready(function() {
-    $( "#tabs" ).tabs();
-
     // on page load, if sidebar cookie is scrolled, go back to position
     if ($.cookie('sscroll') !== null) {
         $('#sidebar').scrollTop($.cookie('sscroll'));
     }
 
+
     // on page load, if container-inner cookie is scrolled, go back to position
-    if ($.cookie('cscroll') !== null) {
+
+    // if there is a div.alert ... then do not scroll
+    // this may be modified by user settings
+    // user settings not yet implemented
+    // DL Sept 17, 2014
+
+    if ($.cookie('cscroll') !== null && (0 === $('div.alert').length)) {
         $('#container-inner').scrollTop($.cookie('cscroll'));
     }
 
-
-    if ( $('.always-expandable').length ) {
+    if ($('.always-expandable').length) {
         sidebar.alwaysExpandable(true);
     }
 
-    if ($.cookie('MesdPresentationSidebarSize') == null ){
-        $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
+    // set cookies to minimum if null
+    if ($.cookie('MesdPresentationSidebarSize') === null) {
+        $.cookie('MesdPresentationSidebarSize', 60, {path: '/', expires: 30});
     }
 
-    if ($.cookie('MesdPresentationSidebarSize') <= 0 ) {
-        $.cookie('MesdPresentationSidebarSize', 240, { path: '/', expires: 30  });
-        $.removeCookie('MesdPresentationHideSidebarLabels', { path: '/' });
+    // set cookies to open if zero or greater
+    if ($.cookie('MesdPresentationSidebarSize') <= 0) {
+        $.cookie('MesdPresentationSidebarSize', 240, {path: '/', expires: 30 });
+        $.removeCookie('MesdPresentationHideSidebarLabels', {path: '/'});
         sidebar.setCurrPos(240);
         sidebar.finishMove();
         sidebar.open();
     } else {
+        // do nothing
     }
 
+    // set cookies to minimum if 60 and under
     if ($.cookie('MesdPresentationSidebarSize') <= 60 ) {
-        $.cookie('MesdPresentationSidebarSize', 60, { path: '/', expires: 30 });
+        $.cookie('MesdPresentationSidebarSize', 60, {path: '/', expires: 30});
         sidebar.setCurrPos(60);
         sidebar.finishMove();
         sidebar.close();
@@ -365,13 +345,28 @@ $(document).ready(function() {
         sidebar.open();
     }
 
+    // set the viewport width
     var vp = $(window).viewportW();
+
+    // TODO what's happening here?
+
+    // Response to undated comment:
+    // If we go to to less than tablet size via shrinking,
+    // minimize sidebar
+    // DL Sep 26 2014
 
     if (vp < mdMin) {
         sidebar.setCurrPos(60);
         sidebar.finishMove();
         sidebar.close();
+        sidebar.hideHandle();
+    } else {
+        sidebar.showHandle();
     }
 
-    // fix up some odd issues if they login without a cookie.
-})
+    // TODO fix up some odd issues if they login without a cookie.
+
+    // Response to undated comment:
+    // What are those issues?
+    // DL Sep 26 2014
+});
