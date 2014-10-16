@@ -30,25 +30,30 @@ var sidebar = new function() {
         $('.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
-    }
+    };
 
     //returns 0 = min, -1 = between, 1 = max
     this.isMin = function() {
         return this.currPos <= this.min;
-    }
+    };
 
     //returns 0 = min, -1 = between, 1 = max
     this.isMax = function() {
         return this.currPos >= this.max;
-    }
+    };
 
     // TODO
     // what does this do? curtis
+
+    // Reponse to undated comment
+    // sets the javascript object value to determine
+    // if the sidebar should always be moveable
+    // DL Sep 26 2014
     this.alwaysExpandable = function(newValue) {
         this.expandable = newValue || this.expandable;
         this.expandable = !!this.expandable; // recast to boolean
         return !!this.expandable;
-    }
+    };
 
     // TODO
     this.relabel = function() {
@@ -60,7 +65,7 @@ var sidebar = new function() {
         var th = threshold * this.max;
 
         if (vp < mdMin) {
-            // always hide labels at table size (TODO what is table size?)
+            // always hide labels at tablet size
             this.hidelabel();
         } else if (this.currPos < threshold * this.max) {
             this.hidelabel();
@@ -75,38 +80,49 @@ var sidebar = new function() {
             $('.sidebar').removeClass('sidebar-closed');
             $('.sidebar').addClass('sidebar-open');
         }
-    }
+    };
 
     this.showlabel = function() {
         $('.sidebar').find('.hideable').removeClass('hide');
         $.removeCookie('MesdPresentationHideSidebarLabels', {path: '/', expires: 30});
-    }
+    };
 
     this.hidelabel = function() {
         $('.sidebar').find('.hideable').addClass('hide');
         $.cookie('MesdPresentationHideSidebarLabels', 1, {path: '/', expires: 30});
-    }
+    };
 
     this.close = function() {
         $.cookie('MesdPresentationSidebarClosed', 1, {path: '/', expires: 30});
-    }
+    };
 
     this.open = function() {
         // $.removeCookie('MesdPresentationSidebarClosed');
         $.cookie('MesdPresentationSidebarClosed', 0, {path: '/', expires: 30});
-    }
+    };
 
     // remove labels if sidebar closed
     this.finishMove = function() {
         this.relabel();
         $.cookie('MesdPresentationSidebarSize', this.currPos, {path: '/', expires: 30});
-    }
-}
+    };
+
+    this.hideHandle = function(){
+        $('.drag-bar').addClass('hide');
+    };
+
+    this.showHandle = function(){
+        $('.drag-bar').removeClass('hide');
+    };
+
+};
 
 $('.drag-bar-handle').dblclick(function(e) {
     e.preventDefault();
 
     var vp = $(window).viewportW();
+    // if viewport is larger than mdmin or always expandable
+    // allow moveable
     if (vp >= mdMin || sidebar.alwaysExpandable()) {
 
         $('.sidebar').find('.hideable').toggleClass('hide');
@@ -153,7 +169,7 @@ $('.drag-bar').mousedown(function(e){
     // get the viewport width
     var vp = $(window).viewportW();
 
-    // if viewport is larger than mdmin or alway expandable
+    // if viewport is larger than mdmin or always expandable
     // allow moveable
     if (vp >= mdMin || sidebar.alwaysExpandable()) {
         $(document).mousemove(function(e) {
@@ -228,6 +244,12 @@ $(window).resize(function(){
             sidebar.setCurrPos(sidebar.lastPos);
         }
 
+        if (vp >= mdMin || sidebar.alwaysExpandable()) {
+            sidebar.showHandle();
+        } else {
+            sidebar.hideHandle();
+        }
+
         sidebar.finishMove();
     });
 
@@ -286,6 +308,7 @@ $(document).ready(function() {
 
     // if there is a div.alert ... then do not scroll
     // this may be modified by user settings
+    // user settings not yet implemented
     // DL Sept 17, 2014
 
     if ($.cookie('cscroll') !== null && (0 === $('div.alert').length)) {
@@ -297,7 +320,7 @@ $(document).ready(function() {
     }
 
     // set cookies to minimum if null
-    if ($.cookie('MesdPresentationSidebarSize') == null) {
+    if ($.cookie('MesdPresentationSidebarSize') === null) {
         $.cookie('MesdPresentationSidebarSize', 60, {path: '/', expires: 30});
     }
 
@@ -326,11 +349,24 @@ $(document).ready(function() {
     var vp = $(window).viewportW();
 
     // TODO what's happening here?
+
+    // Response to undated comment:
+    // If we go to to less than tablet size via shrinking,
+    // minimize sidebar
+    // DL Sep 26 2014
+
     if (vp < mdMin) {
         sidebar.setCurrPos(60);
         sidebar.finishMove();
         sidebar.close();
+        sidebar.hideHandle();
+    } else {
+        sidebar.showHandle();
     }
 
     // TODO fix up some odd issues if they login without a cookie.
-})
+
+    // Response to undated comment:
+    // What are those issues?
+    // DL Sep 26 2014
+});
