@@ -33,16 +33,6 @@
 @link-hover-color:      darken(@link-color, 15%);
 
 
-//== Typography
-//
-//## Font, line-height, and color for body text, headings, and more.
-
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
-
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
 @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
 
@@ -845,13 +835,19 @@
 //** Point at which the navbar becomes uncollapsed.
 @grid-float-breakpoint:                          @screen-md-min;
 
-// Typpography
+//== Typography
+// -------------------------
+@font-family-sans-serif:  "lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace:   "source-code-pro", Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
 @font-size-base:                                           12px;
 @line-height-computed:                                     17px;
 
 // Colors
+// -------------------------
 //@brand-primary:                                     @mesd-river;
-
 @brand-caution:                                         #f89406;
 @btn-caution-color:                                     #ffffff;
 @btn-caution-bg:                                 @brand-caution;
@@ -870,9 +866,26 @@
 
 // Accent colors
 // -------------------------
-@pink:                  #c3325f;
-@purple:                #7a43b6;
-@aqua:                     #fff; // NOT DEFINED YET
+// OLD COLORS
+//@pink:                  #c3325f;
+//@purple:                #7a43b6;
+// NEW COLORS
+@aqua:    #7fdbff;
+@blue:    #0074d9;
+@navy:    #001f3f;
+@teal:    #39cccc;
+@green:   #2ecc40;
+@olive:   #3d9970;
+@lime:    #01ff70;
+@yellow:  #ffdc00;
+@orange:  #ff851b;
+@red:     #ff4136;
+@fuchsia: #f012be;
+@purple:  #b10dc9;
+@maroon:  #85144b;
+@white:   #ffffff;
+@silver:  #dddddd;
+@black:   #111111;
 
 // Application colors
 // -------------------------
@@ -883,17 +896,21 @@
 @mesd-stumptown:         #2c1a05; // rgba(44, 26, 5, 1);
 
 // Scaffolding
+// -------------------------
 @body-bg:                  @gray-lighter;
 
 // Sidebar
+// -------------------------
 @sidebar-base-width:               240px;
 @sidebar-base-closed-width:         60px;
 
 // Navbar
+// -------------------------
 @navbar-height:                     40px;
 @footer-height:                     20px;
 
 // Badges
+// -------------------------
 @badge-default-bg:            @gray-light;
 @badge-primary-bg:            @brand-primary;
 @badge-success-bg:            @brand-success;
@@ -903,34 +920,42 @@
 @badge-caution-bg:            @brand-caution;
 
 // Buttons
+// -------------------------
 @btn-caution-color:           #fff;
 @btn-caution-bg:              @brand-caution;
 @btn-caution-border:          darken(@btn-caution-bg, 5%);
 
 // Forms
+// -------------------------
 @search-border-radius:        @border-radius-base * 5; // while arbitrary, it does ensure the edges are rounded
 
 // Form states and alerts
+// -------------------------
 @state-caution-text:          #915e16;
 @state-caution-bg:            #f7e5c3;
 @state-caution-border:        darken(spin(@state-caution-bg, -10), 5%);
 
 // Labels
+// -------------------------
 @label-caution-bg:            @brand-caution;
 
 // Alerts
+// -------------------------
 @alert-caution-bg:            @state-caution-bg;
 @alert-caution-text:          @state-caution-text;
 @alert-caution-border:        @state-caution-border;
 
 // Progress bars
+// -------------------------
 @progress-bar-caution-bg:     @brand-caution;
 
 // Panels
+// -------------------------
 @panel-caution-text:          @state-caution-text;
 @panel-caution-border:        @state-caution-border;
 @panel-caution-heading-bg:    @state-caution-bg;
 
 // Font paths
+// -------------------------
 @lato-font-path:              "../font/lato";
 @source-code-pro-font-path:   "../font/source-code-pro";
