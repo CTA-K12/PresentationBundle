@@ -1,0 +1,71 @@
+{% extends 'MesdPresentationBundle::splash.html.twig' %}
+
+{% trans_default_domain 'MesdUserBundle' %}
+
+{% block navbarContentLeft %}
+{% endblock navbarContentLeft %}
+
+{% block navbarContentRight %}
+{% endblock navbarContentRight %}
+
+{% block containerOuter %}
+
+    <div class="section section-splash section-splash-medium">
+        <div class="section-header">
+            {% block subtitle %}
+                {% if subtitle is defined %}
+                    <h1 class="page-title">{{ subtitle }}</h1>
+                {% elseif pagetitle is defined %}
+                    <h1 class="page-title">{{ pagetitle }}</h1>
+                {% else %}
+                    <h1>{{ mesd_presentation__app_name }} Login</h1>
+                {% endif %}
+            {% endblock subtitle %}
+        </div>
+        <div class="section-body">
+            {% block panelBody %}
+                {% if error is defined %}
+                    {% if error %}
+                        <div>{{ error|trans }}</div>
+                    {% endif %}
+                {% endif %}
+                <form action="{{ routeHelper(mesd_presentation__login_check_path) }}" method="post" role="form">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="_username" class="form-control" placeholder="Username" value="{{ last_username }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="_password" class="form-control" placeholder="Password" />
+                    </div>
+            {% endblock panelBody %}
+        </div>
+        <div class="section-footer">
+            {% block panelFooter %}
+                    <div class="form-group">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <label for="remember_me">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" checked />
+                                {{ 'security.login.remember_me'|trans }}
+                            </label>
+                        {% else %}
+                            <label for="remember_me">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                {{ 'security.login.remember_me'|trans }}
+                            </label>
+                        {% endif %}
+                        {% if mesd_presentation__allow_registration %}
+                            <a href="{{ routeHelper(mesd_presentation__registration_path) }}" class="btn btn-link">{{ mesd_presentation__registration_text }}</a>
+                        {% endif %}
+                        {% if mesd_presentation__allow_password_reset %}
+                            <a href="{{ routeHelper(mesd_presentation__password_reset_path) }}" class="btn btn-link">{{ mesd_presentation__password_reset_text }}</a>
+                        {% endif %}
+                        <button type="submit" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</button>
+                    </div>
+                </form>
+            {% endblock panelFooter %}
+        </div>
+    </div>
+
+{% endblock containerOuter %}

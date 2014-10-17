@@ -1,7 +1,7 @@
 /*!
- * MESD v0.1
+ * MESD v0.2.3
  *
- * Copyright 2013 MESD
+ * Copyright 2014 MESD
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -15,9 +15,13 @@
 @import "variables.less";
 @import "mixins.less";
 
-// Reset
+// Reset and dependencies
 @import "bootstrap/normalize.less";
 @import "bootstrap/print.less";
+/**
+ * Substituted for font-awesome.
+ */
+//@import "bootstrap/glyphicons.less"; 
 
 // Core CSS
 @import "bootstrap/scaffolding.less";
@@ -50,6 +54,7 @@
 @import "bootstrap/list-group.less";
 @import "bootstrap/panels.less";
 @import "mesd/sections.less";
+@import "bootstrap/responsive-embed.less";
 @import "bootstrap/wells.less";
 @import "bootstrap/close.less";
 @import "mesd/scrollbars.less";
@@ -61,24 +66,11 @@
 @import "bootstrap/modals.less";
 @import "bootstrap/tooltip.less";
 @import "bootstrap/popovers.less";
-@import "bootstrap/carousel.less";
-@import "mesd/bootstrap-2-theme.less";
-
-// MESD LESS files
-//@import "mesd/layouts.less";
-//@import "mesd/scrollbars.less";
-//@import "mesd/colors.less";
-//@import "mesd/typography.less";
-//@import "mesd/forms.less";
-//@import "mesd/tables.less";
-//@import "mesd/dropdowns.less";
-//@import "mesd/buttons.less";
-//@import "mesd/navbar.less";
-//@import "mesd/panels.less";
-//@import "mesd/toolbars.less";
-//@import "mesd/modals.less";
-//@import "mesd/pills-lozenges.less";
-//@import "mesd/progress-bars.less";
+/**
+ * Not used.
+ * @TODO: Remove JS files associated with carousel.
+ */
+//@import "bootstrap/carousel.less";
 
 // Font-awesome
 @import "font-awesome/variables.less";
@@ -93,7 +85,6 @@
 @import "font-awesome/rotated-flipped.less";
 @import "font-awesome/stacked.less";
 @import "font-awesome/icons.less";
-
 
 // Other fonts
 @import "lato/lato-font.less";

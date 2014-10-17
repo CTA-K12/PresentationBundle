@@ -49,7 +49,7 @@
                 <li>
                     <a href="{{ v['path'] }}" title="{{ v['title'] }}">
                         <span class="fa icon {{ v['icon'] }}"></span>
-                        <span class="pull-right hideable {% if app.request.cookies.has('hideSidebarLabels') %}hide{% endif %}">{{ k }}</span>
+                        <span class="pull-right hideable {% if app.request.cookies.has('MesdPresentationHideSidebarLabels') %}hide{% endif %}">{{ k }}</span>
                     </a>
                 </li>
             {% endfor %}
