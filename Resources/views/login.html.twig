@@ -32,7 +32,7 @@
                     <div class="form-group">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             Logged in as: {{  app.user.username }}
-                            <a href="{{ routeHelper(logout_path) }}">Logout</a>
+                            <a href="{{ routeHelper(mesd_presentation_logout_path) }}">Logout</a>
                         {% endif %}
                     </div>
                     <div class="form-group">
