@@ -24,7 +24,7 @@
             {% block panelBody %}
                 {% if error is defined %}
                     {% if error %}
-                        <div>{{ error }}</div>
+                        <div>{{ error.message }}</div>
                     {% endif %}
                 {% endif %}
                 <form action="{{ routeHelper(mesd_presentation_login_check_path) }}" method="post" role="form">
