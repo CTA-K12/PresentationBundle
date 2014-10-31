@@ -98,8 +98,8 @@ class DefaultController extends Controller
         }
         return $this->render('MesdPresentationBundle::sidebar.html.twig', array(
             'route' => $route,
-            'menu' => $menu,
-            'type' => $type
+            'menu'  => $menu,
+            'type'  => $type
         ));
     }
 }
