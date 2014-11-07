@@ -1,8 +1,3 @@
-body {
-    /*font-size:           12px;
-    line-height:         16px;*/
-}
-
 /* Typography */
 p label,
 p.list-header {
@@ -12,7 +7,6 @@ p.list-header {
 .todo {
     color: #000000;
 }
-
 
 /* Scaffolding and Layout */
 .sidebar-inverse {
@@ -81,17 +75,6 @@ p.list-header {
 }
 */
 
-/* Login Screen */
-
-.login {
-    background-color: #ffffff;
-    max-width:          400px;
-    padding:             20px;
-    margin:            0 auto;
-    border: 1px solid #eeeeee;
-    border-radius:        5px;
-}
-
 /* Forms */
 
 .btn-toolbar form {
@@ -100,31 +83,6 @@ p.list-header {
 
 .btn-group + form {
     margin-left: 5px;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-select,
-textarea,
-.uneditable-input {
-    width: 100%;
-    height: 100%;
-    text-indent: 8px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 .well-label {
