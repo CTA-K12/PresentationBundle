@@ -21,15 +21,6 @@
     }
 }
 
-// Fluid container
-//
-// Utilizes the mixin meant for fixed width containers, but without any defined
-// width for fluid, full width layouts.
-
-.container-fluid {
-    .container-fixed();
-}
-
 // mobile first defaults
 .row {
     .make-row();
@@ -157,3 +148,14 @@ div[class*=' col-xs-'] {
     .the-loop (@size, @fraction-array, @total-columns, @k - 1);
 
 }
+
+// MESD Override
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but without any defined
+// width for fluid, full width layouts.
+
+//.container-fluid {
+//    .container-fixed();
+//}
