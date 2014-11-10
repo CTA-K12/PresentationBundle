@@ -11,6 +11,13 @@
   &:extend(.clearfix all);
 }
 
+// Creates a wrapper for a series of columns
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  &:extend(.clearfix all);
+}
+
 // Generate the extra small columns
 .make-xs-column(@columns; @gutter: @grid-gutter-width) {
   position: relative;
@@ -112,12 +119,4 @@
   @media (min-width: @screen-lg-min) {
     right: percentage((@columns / @grid-columns));
   }
-}
-
-// MESD OVERRIDES
-// Creates a wrapper for a series of columns
-.make-row(@gutter: @grid-gutter-width) {
-  margin-left:  (@gutter / -3);
-  margin-right: (@gutter / -3);
-  &:extend(.clearfix all);
 }
