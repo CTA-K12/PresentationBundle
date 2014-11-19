@@ -1,0 +1,23 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding:              0px;
+  margin-bottom:        0px;
+  list-style:          none;
+  background-color: inherit;
+
+  > li {
+    display: inline-block;
+    &.separator {
+            padding:             0 5px;
+            color:   @breadcrumb-color;
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}
