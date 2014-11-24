@@ -20,18 +20,7 @@
                     </div>
                 {% endblock toolbarTop %}
 
-                {% block flashMessage %}
-                    {% for type in ['danger', 'warning', 'info', 'success'] %}
-                        {% for flashMessage in app.session.flashbag.get(type) %}
-                            {% if flashMessage is defined %}
-                                <div class="{{"alert alert-dismissable alert-"~type}}">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    {{ flashMessage|raw }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                {% endblock flashMessage %}
+                {% include 'MesdPresentationBundle::flash.html.twig' %}
 
                 {% block content %}
                     <div id="content" class="content section section-white">
