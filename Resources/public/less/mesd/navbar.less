@@ -107,8 +107,8 @@
 .container-fluid {
   > .navbar-header,
   > .navbar-collapse {
-    margin-right: -@navbar-padding-horizontal;
-    margin-left:  -@navbar-padding-horizontal;
+    margin-right: @navbar-padding-horizontal;
+    margin-left:  @navbar-padding-horizontal;
 
     @media (min-width: @grid-float-breakpoint) {
       margin-right: 0;
@@ -178,6 +178,10 @@
     .navbar > .container-fluid & {
       margin-left: -@navbar-padding-horizontal;
     }
+    img {
+        margin-left: @navbar-padding-horizontal;
+        padding-top: 2px;
+    }
   }
 }
 
@@ -190,7 +194,7 @@
 .navbar-toggle {
   position: relative;
   float: right;
-  margin-right: @navbar-padding-horizontal;
+  margin-right: 0;
   padding: 9px 10px;
   .navbar-vertical-align(34px);
   background-color: transparent;

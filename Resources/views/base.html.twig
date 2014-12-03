@@ -46,11 +46,11 @@
                                             <span class="icon-bar"></span>
                                             <span class="icon-bar"></span>
                                         </button>
-                                        <a class="navbar-brand" href="#">
-                                            {% block navbarContentLogo %}
+                                        {% block navbarContentLogo %}
+                                            <a class="navbar-brand" href="#">
                                                 <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
-                                            {% endblock navbarContentLogo %}
-                                        </a>
+                                            </a>
+                                        {% endblock navbarContentLogo %}
                                     </div>
 
                                     <div class="collapse navbar-collapse main-collapse" id="navbar-main">
