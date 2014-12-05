@@ -1,15 +1,24 @@
 <!DOCTYPE html>
     <html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
         <head>
+            <style>
+                .fa-sub {
+                    position: relative;
+                    left: -.8em;
+                    width: .2em;
+                    vertical-align: -.25em;
+                    text-shadow: 0 0 1px black; // optional contrast
+                }
+            </style>
             {% block head %}
 
                 {% block meta %}
                     {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
                 {% endblock meta %}
 
-                {% block title %}
+                {%- block title %}
                     {% include 'MesdPresentationBundle:Block:title.html.twig' %}
-                {% endblock title%}
+                {% endblock title -%}
 
                 {% block stylesheets %}
                     {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
@@ -160,9 +169,19 @@
                                         <div class="section-header">
                                             {% block contentHeader %}
                                                 {% block pageTitle %}
-                                                    <h1 class="page-title">{% if pageTitle is defined %}{{ pageTitle|raw }}{% endif %}
+                                                    <h1 class="page-title">
+                                                    {%- block pageIcon -%}
+                                                        {%- if pageIcon is defined %}
+                                                            {%- include 'MesdPresentationBundle:Block:pageIcon.html.twig' -%}
+                                                        {%- endif -%}
+                                                    {%- endblock pageIcon -%}
+                                                    {% if pageTitle is defined %}
+                                                        {{ pageTitle|raw }}
+                                                    {% endif %}
                                                         {% block pageSubtitle %}
-                                                            {% if pageSubtitle is defined %}<small>{{ pageSubtitle|raw }}</small>{% endif %}
+                                                            {% if pageSubtitle is defined %}
+                                                                <small>{{ pageSubtitle|raw }}</small>
+                                                            {% endif %}
                                                         {% endblock pageSubtitle %}
                                                     </h1>
                                                 {% endblock pageTitle %}
