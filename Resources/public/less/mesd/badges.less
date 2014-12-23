@@ -80,5 +80,13 @@
   }
 }
 
-
-
+// badge hovers/focuses
+.badge-variant(@color) {
+  background-color: @color;
+  &[href] {
+    &:hover,
+    &:focus {
+      background-color: darken(@color, 10%);
+    }
+  }
+}
