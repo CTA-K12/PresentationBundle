@@ -12,10 +12,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     {% block subtitle %}
-                        {% if subtitle is defined %}
+                        {% if pageTitle is defined %}
+                            <h1 class="page-title">{%if pageIcon is defined %}{{pageIcon|raw}} {% endif %}{{ pageTitle|raw }}</h1>
+                        {% elseif subtitle is defined %}
                             <h1 class="page-title">{{ subtitle|raw }}</h1>
-                        {% elseif pageTitle is defined %}
-                            <h1 class="page-title">{{ pageTitle|raw }}</h1>
                         {% else %}
                             <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Login</h1>
                         {% endif %}
