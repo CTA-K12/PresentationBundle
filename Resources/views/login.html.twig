@@ -7,7 +7,6 @@
 {% endblock navbarContentRight %}
 
 {% block containerOuter %}
-
     <div id="container-outer" class="container-outer wrapper">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -15,8 +14,8 @@
                     {% block subtitle %}
                         {% if subtitle is defined %}
                             <h1 class="page-title">{{ subtitle|raw }}</h1>
-                        {% elseif pagetitle is defined %}
-                            <h1 class="page-title">{{ pagetitle|raw }}</h1>
+                        {% elseif pageTitle is defined %}
+                            <h1 class="page-title">{{ pageTitle|raw }}</h1>
                         {% else %}
                             <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Login</h1>
                         {% endif %}
