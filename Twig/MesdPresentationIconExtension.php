@@ -7,11 +7,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 
-class IconExtension extends Twig_Extension
+class MesdPresentationIconExtension extends Twig_Extension
 {
     const LIST_STACK    =  "<span class=\"fa fa-reorder fa-sub fa-fw\"></span>";
     const EDIT_STACK    =  "<span class=\"fa fa-pencil fa-sub fa-fw\"></span>";
-    const NEW_STACK   =  "<span class=\"fa fa-plus fa-sub fa-fw\"></span>";
+    const NEW_STACK     =  "<span class=\"fa fa-plus fa-sub fa-fw\"></span>";
     const VIEW_STACK    =  "<span class=\"fa fa-search-plus fa-sub fa-fw\"></span>";
 
     public function __construct()
