@@ -6,7 +6,7 @@ parameters:
     presentation.interval.class:     Mesd\PresentationBundle\Twig\IntervalExtension
     presentation.breadcrumb.class:   Mesd\PresentationBundle\Twig\BreadcrumbExtension
     presentation.routeHelper.class:  Mesd\PresentationBundle\Twig\RouteHelperExtension
-    presentation.icon.class:         Mesd\PresentationBundle\Twig\IconExtension
+    presentation.icon.class:         Mesd\PresentationBundle\Twig\MesdPresentationIconExtension
 
 services:
     presentation.twig.config_extension:
