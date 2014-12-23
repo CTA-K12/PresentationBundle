@@ -16,7 +16,7 @@
         {% endif %}
 
         <ul class="nav">
-            {% for item in menu %}
+            {% for text, item in menu %}
                 {#  set currentPath = path(route)
                     split the currentPath and v['path']
                     do a for loop on path
@@ -49,7 +49,7 @@
                 <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
                     <a href="{{ item.path }}" title="{{ item.title }}">
                         <span class="fa icon {{ item.icon }}"></span>
-                        <span class="pull-right hideable {% if app.request.cookies.has('MesdPresentationHideSidebarLabels') %}hide{% endif %}">{{ item.text }}</span>
+                        <span class="pull-right hideable {% if app.request.cookies.has('MesdPresentationHideSidebarLabels') %}hide{% endif %}">{% if item.text is defined %}{{ item.text }}{% else %}{{ text }}{% endif %}</span>
                     </a>
                 </li>
             {% endfor %}
