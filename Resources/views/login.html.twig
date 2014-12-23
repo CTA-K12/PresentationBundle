@@ -23,6 +23,7 @@
                 </div>
                 <div class="modal-body">
                     {% block panelBody %}
+                        {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
                         {#} See:
                                 http://symfony.com/doc/current/cookbook/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
                             for more information
