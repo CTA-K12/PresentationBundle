@@ -13,6 +13,7 @@ class MesdPresentationIconExtension extends Twig_Extension
     const EDIT_STACK    =  "<span class=\"fa fa-pencil fa-sub fa-fw\"></span>";
     const NEW_STACK     =  "<span class=\"fa fa-plus fa-sub fa-fw\"></span>";
     const VIEW_STACK    =  "<span class=\"fa fa-search-plus fa-sub fa-fw\"></span>";
+    const CHECK_STACK    =  "<span class=\"fa fa-check fa-sub fa-fw\"></span>";
 
     public function __construct()
     {
@@ -48,6 +49,9 @@ class MesdPresentationIconExtension extends Twig_Extension
             case "index" ;
             case "list" :
                 $iconMod = self::LIST_STACK;
+                break;
+            case "check" :
+                $iconMod = self::CHECK_STACK;
                 break;
             default :
                 $iconMod = "";
