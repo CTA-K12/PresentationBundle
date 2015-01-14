@@ -89,9 +89,9 @@
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <div class="row">
                                 <div class="col-xs-5-12">
-                                    <a href=".." title="Home" class="btn btn-default form-control">
+                                    <a href="{{ routeHelper(mesd_presentation_login_target_path) }}" title="Home" class="btn btn-default form-control">
                                         <span class="fa fa-home"></span>&nbsp;
-                                        Go to home
+                                        Home
                                     </a>
                                 </div>
                                 <div class="col-xs-5-12 col-xs-offset-1-6">
