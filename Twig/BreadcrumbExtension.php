@@ -20,7 +20,7 @@ class BreadcrumbExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('breadcrumb', array($this, 'breadcrumbFunction')),
+            new \Twig_SimpleFunction('mesd_breadcrumb', array($this, 'breadcrumbFunction')),
         );
     }
 
@@ -36,7 +36,7 @@ class BreadcrumbExtension extends Twig_Extension
 
     public function getName()
     {
-        return 'breadcrumb_extension';
+        return 'presentation_crumb';
     }
 
 }

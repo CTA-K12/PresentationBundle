@@ -34,7 +34,7 @@ services:
         tags:
             - { name: twig.extension }
 
-    presentation.twig.breadcrumb_extension:
+    presentation.twig.presentation_crumb:
         class: %presentation.breadcrumb.class%
         scope: container
         arguments: [@service_container]
