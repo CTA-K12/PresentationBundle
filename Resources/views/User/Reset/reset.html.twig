@@ -1,0 +1,14 @@
+{% extends 'MesdPresentationBundle::splash.html.twig' %}
+
+{% trans_default_domain 'MesdUserBundle' %}
+
+{% block mesd_user_content %}
+
+    <form action="{{ path('mesd_user_reset_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="mesd_user_reset_reset">
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="{{ 'reset.reset.submit'|trans }}" />
+        </div>
+    </form>
+
+{% endblock mesd_user_content %}

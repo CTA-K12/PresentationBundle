@@ -151,4 +151,14 @@
 
 @media (min-width: @screen-md-min) {
   .modal-lg { width: @modal-lg; }
+  .modal-wide { width: 800px; }
+}
+
+// Scale up the modal
+@media (max-width: @screen-sm-max) {
+  // Automatically set modal's width for larger viewports
+  .modal-dialog {
+    width: 100%;
+    margin: 0 auto;
+  }
 }

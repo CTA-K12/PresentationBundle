@@ -1,7 +1,6 @@
-{% if pageTitle is defined %}
+{%- if pageTitle is defined %}
     {% set pageTitle = (pageTitle ~ ' | ' ~ mesd_presentation_app_abbreviation )|striptags %}
 {% else %}
     {% set pageTitle = mesd_presentation_app_abbreviation|striptags %}
-{% endif %}
-
+{% endif -%}
 <title>{{ pageTitle }}</title>

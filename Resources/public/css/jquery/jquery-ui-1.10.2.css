@@ -1,14 +1,14 @@
 /*! jQuery UI - v1.10.2 - 2013-04-15
 * http://jqueryui.com
-* Includes: jqueryjqueryui .ui.core.css, jqueryjqueryui .ui.resizable.css, jqueryjqueryui .ui.selectable.css, jqueryjqueryui .ui.accordion.css, jqueryjqueryui .ui.autocomplete.css, jqueryjqueryui .ui.button.css, jqueryjqueryui .ui.datepicker.css, jqueryjqueryui .ui.dialog.css, jqueryjqueryui .ui.menu.css, jqueryjqueryui .ui.progressbar.css, jqueryjqueryui .ui.slider.css, jqueryjqueryui .ui.spinner.css, jqueryjqueryui .ui.tabs.css, jqueryjqueryui .ui.tooltip.css
+* Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css
 * Copyright 2013 jQuery Foundation and other contributors Licensed MIT */
 
 /* Layout helpers
 ----------------------------------*/
-jqueryui .ui-helper-hidden {
+.ui-helper-hidden {
 	display: none;
 }
-jqueryui .ui-helper-hidden-accessible {
+.ui-helper-hidden-accessible {
 	border: 0;
 	clip: rect(0 0 0 0);
 	height: 1px;
@@ -18,7 +18,7 @@ jqueryui .ui-helper-hidden-accessible {
 	position: absolute;
 	width: 1px;
 }
-jqueryui .ui-helper-reset {
+.ui-helper-reset {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -28,19 +28,19 @@ jqueryui .ui-helper-reset {
 	font-size: 100%;
 	list-style: none;
 }
-jqueryui .ui-helper-clearfix:before,
-jqueryui .ui-helper-clearfix:after {
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
 	content: "";
 	display: table;
 	border-collapse: collapse;
 }
-jqueryui .ui-helper-clearfix:after {
+.ui-helper-clearfix:after {
 	clear: both;
 }
-jqueryui .ui-helper-clearfix {
+.ui-helper-clearfix {
 	min-height: 0; /* support: IE7 */
 }
-jqueryui .ui-helper-zfix {
+.ui-helper-zfix {
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -50,14 +50,14 @@ jqueryui .ui-helper-zfix {
 	filter:Alpha(Opacity=0);
 }
 
-jqueryui .ui-front {
+.ui-front {
 	z-index: 100;
 }
 
 
 /* Interaction Cues
 ----------------------------------*/
-jqueryui .ui-state-disabled {
+.ui-state-disabled {
 	cursor: default !important;
 }
 
@@ -66,7 +66,7 @@ jqueryui .ui-state-disabled {
 ----------------------------------*/
 
 /* states and images */
-jqueryui .ui-icon {
+.ui-icon {
 	display: block;
 	text-indent: -99999px;
 	overflow: hidden;
@@ -78,87 +78,87 @@ jqueryui .ui-icon {
 ----------------------------------*/
 
 /* Overlays */
-jqueryui .ui-widget-overlay {
+.ui-widget-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 }
-jqueryui .ui-resizable {
+.ui-resizable {
 	position: relative;
 }
-jqueryui .ui-resizable-handle {
+.ui-resizable-handle {
 	position: absolute;
 	font-size: 0.1px;
 	display: block;
 }
-jqueryui .ui-resizable-disabled .ui-resizable-handle,
-jqueryui .ui-resizable-autohide .ui-resizable-handle {
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
 	display: none;
 }
-jqueryui .ui-resizable-n {
+.ui-resizable-n {
 	cursor: n-resize;
 	height: 7px;
 	width: 100%;
 	top: -5px;
 	left: 0;
 }
-jqueryui .ui-resizable-s {
+.ui-resizable-s {
 	cursor: s-resize;
 	height: 7px;
 	width: 100%;
 	bottom: -5px;
 	left: 0;
 }
-jqueryui .ui-resizable-e {
+.ui-resizable-e {
 	cursor: e-resize;
 	width: 7px;
 	right: -5px;
 	top: 0;
 	height: 100%;
 }
-jqueryui .ui-resizable-w {
+.ui-resizable-w {
 	cursor: w-resize;
 	width: 7px;
 	left: -5px;
 	top: 0;
 	height: 100%;
 }
-jqueryui .ui-resizable-se {
+.ui-resizable-se {
 	cursor: se-resize;
 	width: 12px;
 	height: 12px;
 	right: 1px;
 	bottom: 1px;
 }
-jqueryui .ui-resizable-sw {
+.ui-resizable-sw {
 	cursor: sw-resize;
 	width: 9px;
 	height: 9px;
 	left: -5px;
 	bottom: -5px;
 }
-jqueryui .ui-resizable-nw {
+.ui-resizable-nw {
 	cursor: nw-resize;
 	width: 9px;
 	height: 9px;
 	left: -5px;
 	top: -5px;
 }
-jqueryui .ui-resizable-ne {
+.ui-resizable-ne {
 	cursor: ne-resize;
 	width: 9px;
 	height: 9px;
 	right: -5px;
 	top: -5px;
 }
-jqueryui .ui-selectable-helper {
+.ui-selectable-helper {
 	position: absolute;
 	z-index: 100;
 	border: 1px dotted black;
 }
-jqueryui .ui-accordion .ui-accordion-header {
+.ui-accordion .ui-accordion-header {
 	display: block;
 	cursor: pointer;
 	position: relative;
@@ -166,33 +166,33 @@ jqueryui .ui-accordion .ui-accordion-header {
 	padding: .5em .5em .5em .7em;
 	min-height: 0; /* support: IE7 */
 }
-jqueryui .ui-accordion .ui-accordion-icons {
+.ui-accordion .ui-accordion-icons {
 	padding-left: 2.2em;
 }
-jqueryui .ui-accordion .ui-accordion-noicons {
+.ui-accordion .ui-accordion-noicons {
 	padding-left: .7em;
 }
-jqueryui .ui-accordion .ui-accordion-icons .ui-accordion-icons {
+.ui-accordion .ui-accordion-icons .ui-accordion-icons {
 	padding-left: 2.2em;
 }
-jqueryui .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
 	position: absolute;
 	left: .5em;
 	top: 50%;
 	margin-top: -8px;
 }
-jqueryui .ui-accordion .ui-accordion-content {
+.ui-accordion .ui-accordion-content {
 	padding: 1em 2.2em;
 	border-top: 0;
 	overflow: auto;
 }
-jqueryui .ui-autocomplete {
+.ui-autocomplete {
 	position: absolute;
 	top: 0;
 	left: 0;
 	cursor: default;
 }
-jqueryui .ui-button {
+.ui-button {
 	display: inline-block;
 	position: relative;
 	padding: 0;
@@ -203,133 +203,133 @@ jqueryui .ui-button {
 	text-align: center;
 	overflow: visible; /* removes extra width in IE */
 }
-jqueryui .ui-button,
-jqueryui .ui-button:link,
-jqueryui .ui-button:visited,
-jqueryui .ui-button:hover,
-jqueryui .ui-button:active {
+.ui-button,
+.ui-button:link,
+.ui-button:visited,
+.ui-button:hover,
+.ui-button:active {
 	text-decoration: none;
 }
 /* to make room for the icon, a width needs to be set here */
-jqueryui .ui-button-icon-only {
+.ui-button-icon-only {
 	width: 2.2em;
 }
 /* button elements seem to need a little more width */
-buttonjqueryui .ui-button-icon-only {
+.ui-button-icon-only {
 	width: 2.4em;
 }
-jqueryui .ui-button-icons-only {
+.ui-button-icons-only {
 	width: 3.4em;
 }
-buttonjqueryui .ui-button-icons-only {
+.ui-button-icons-only {
 	width: 3.7em;
 }
 
 /* button text element */
-jqueryui .ui-button .ui-button-text {
+.ui-button .ui-button-text {
 	display: block;
 	line-height: normal;
 }
-jqueryui .ui-button-text-only .ui-button-text {
+.ui-button-text-only .ui-button-text {
 	padding: .4em 1em;
 }
-jqueryui .ui-button-icon-only .ui-button-text,
-jqueryui .ui-button-icons-only .ui-button-text {
+.ui-button-icon-only .ui-button-text,
+.ui-button-icons-only .ui-button-text {
 	padding: .4em;
 	text-indent: -9999999px;
 }
-jqueryui .ui-button-text-icon-primary .ui-button-text,
-jqueryui .ui-button-text-icons .ui-button-text {
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
 	padding: .4em 1em .4em 2.1em;
 }
-jqueryui .ui-button-text-icon-secondary .ui-button-text,
-jqueryui .ui-button-text-icons .ui-button-text {
+.ui-button-text-icon-secondary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
 	padding: .4em 2.1em .4em 1em;
 }
-jqueryui .ui-button-text-icons .ui-button-text {
+.ui-button-text-icons .ui-button-text {
 	padding-left: 2.1em;
 	padding-right: 2.1em;
 }
 /* no icon support for input elements, provide padding by default */
-inputjqueryui .ui-button {
+.ui-button {
 	padding: .4em 1em;
 }
 
 /* button icon element(s) */
-jqueryui .ui-button-icon-only .ui-icon,
-jqueryui .ui-button-text-icon-primary .ui-icon,
-jqueryui .ui-button-text-icon-secondary .ui-icon,
-jqueryui .ui-button-text-icons .ui-icon,
-jqueryui .ui-button-icons-only .ui-icon {
+.ui-button-icon-only .ui-icon,
+.ui-button-text-icon-primary .ui-icon,
+.ui-button-text-icon-secondary .ui-icon,
+.ui-button-text-icons .ui-icon,
+.ui-button-icons-only .ui-icon {
 	position: absolute;
 	top: 50%;
 	margin-top: -8px;
 }
-jqueryui .ui-button-icon-only .ui-icon {
+.ui-button-icon-only .ui-icon {
 	left: 50%;
 	margin-left: -8px;
 }
-jqueryui .ui-button-text-icon-primary .ui-button-icon-primary,
-jqueryui .ui-button-text-icons .ui-button-icon-primary,
-jqueryui .ui-button-icons-only .ui-button-icon-primary {
+.ui-button-text-icon-primary .ui-button-icon-primary,
+.ui-button-text-icons .ui-button-icon-primary,
+.ui-button-icons-only .ui-button-icon-primary {
 	left: .5em;
 }
-jqueryui .ui-button-text-icon-secondary .ui-button-icon-secondary,
-jqueryui .ui-button-text-icons .ui-button-icon-secondary,
-jqueryui .ui-button-icons-only .ui-button-icon-secondary {
+.ui-button-text-icon-secondary .ui-button-icon-secondary,
+.ui-button-text-icons .ui-button-icon-secondary,
+.ui-button-icons-only .ui-button-icon-secondary {
 	right: .5em;
 }
 
 /* button sets */
-jqueryui .ui-buttonset {
+.ui-buttonset {
 	margin-right: 7px;
 }
-jqueryui .ui-buttonset .ui-button {
+.ui-buttonset .ui-button {
 	margin-left: 0;
 	margin-right: -.3em;
 }
 
 /* workarounds */
 /* reset extra padding in Firefox, see h5bp.com/l */
-inputjqueryui .ui-button::-moz-focus-inner,
-buttonjqueryui .ui-button::-moz-focus-inner {
+.ui-button::-moz-focus-inner,
+.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 }
-jqueryui .ui-datepicker {
+.ui-datepicker {
 	width: 17em;
 	padding: .2em .2em 0;
 	display: none;
 }
-jqueryui .ui-datepicker .ui-datepicker-header {
+.ui-datepicker .ui-datepicker-header {
 	position: relative;
 	padding: .2em 0;
 }
-jqueryui .ui-datepicker .ui-datepicker-prev,
-jqueryui .ui-datepicker .ui-datepicker-next {
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
 	position: absolute;
 	top: 2px;
 	width: 1.8em;
 	height: 1.8em;
 }
-jqueryui .ui-datepicker .ui-datepicker-prev-hover,
-jqueryui .ui-datepicker .ui-datepicker-next-hover {
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
 	top: 1px;
 }
-jqueryui .ui-datepicker .ui-datepicker-prev {
+.ui-datepicker .ui-datepicker-prev {
 	left: 2px;
 }
-jqueryui .ui-datepicker .ui-datepicker-next {
+.ui-datepicker .ui-datepicker-next {
 	right: 2px;
 }
-jqueryui .ui-datepicker .ui-datepicker-prev-hover {
+.ui-datepicker .ui-datepicker-prev-hover {
 	left: 1px;
 }
-jqueryui .ui-datepicker .ui-datepicker-next-hover {
+.ui-datepicker .ui-datepicker-next-hover {
 	right: 1px;
 }
-jqueryui .ui-datepicker .ui-datepicker-prev span,
-jqueryui .ui-datepicker .ui-datepicker-next span {
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
 	display: block;
 	position: absolute;
 	left: 50%;
@@ -337,46 +337,46 @@ jqueryui .ui-datepicker .ui-datepicker-next span {
 	top: 50%;
 	margin-top: -8px;
 }
-jqueryui .ui-datepicker .ui-datepicker-title {
+.ui-datepicker .ui-datepicker-title {
 	margin: 0 2.3em;
 	line-height: 1.8em;
 	text-align: center;
 }
-jqueryui .ui-datepicker .ui-datepicker-title select {
+.ui-datepicker .ui-datepicker-title select {
 	font-size: 1em;
 	margin: 1px 0;
 }
-jqueryui .ui-datepicker select.ui-datepicker-month-year {
+.ui-datepicker select.ui-datepicker-month-year {
 	width: 100%;
 }
-jqueryui .ui-datepicker select.ui-datepicker-month,
-jqueryui .ui-datepicker select.ui-datepicker-year {
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
 	width: 49%;
 }
-jqueryui .ui-datepicker table {
+.ui-datepicker table {
 	width: 100%;
 	font-size: .9em;
 	border-collapse: collapse;
 	margin: 0 0 .4em;
 }
-jqueryui .ui-datepicker th {
+.ui-datepicker th {
 	padding: .7em .3em;
 	text-align: center;
 	font-weight: bold;
 	border: 0;
 }
-jqueryui .ui-datepicker td {
+.ui-datepicker td {
 	border: 0;
 	padding: 1px;
 }
-jqueryui .ui-datepicker td span,
-jqueryui .ui-datepicker td a {
+.ui-datepicker td span,
+.ui-datepicker td a {
 	display: block;
 	padding: .2em;
 	text-align: right;
 	text-decoration: none;
 }
-jqueryui .ui-datepicker .ui-datepicker-buttonpane {
+.ui-datepicker .ui-datepicker-buttonpane {
 	background-image: none;
 	margin: .7em 0 0 0;
 	padding: 0 .2em;
@@ -384,7 +384,7 @@ jqueryui .ui-datepicker .ui-datepicker-buttonpane {
 	border-right: 0;
 	border-bottom: 0;
 }
-jqueryui .ui-datepicker .ui-datepicker-buttonpane button {
+.ui-datepicker .ui-datepicker-buttonpane button {
 	float: right;
 	margin: .5em .2em .4em;
 	cursor: pointer;
@@ -392,90 +392,90 @@ jqueryui .ui-datepicker .ui-datepicker-buttonpane button {
 	width: auto;
 	overflow: visible;
 }
-jqueryui .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
 	float: left;
 }
 
 /* with multiple calendars */
-jqueryui .ui-datepicker.ui-datepicker-multi {
+.ui-datepicker.ui-datepicker-multi {
 	width: auto;
 }
-jqueryui .ui-datepicker-multi .ui-datepicker-group {
+.ui-datepicker-multi .ui-datepicker-group {
 	float: left;
 }
-jqueryui .ui-datepicker-multi .ui-datepicker-group table {
+.ui-datepicker-multi .ui-datepicker-group table {
 	width: 95%;
 	margin: 0 auto .4em;
 }
-jqueryui .ui-datepicker-multi-2 .ui-datepicker-group {
+.ui-datepicker-multi-2 .ui-datepicker-group {
 	width: 50%;
 }
-jqueryui .ui-datepicker-multi-3 .ui-datepicker-group {
+.ui-datepicker-multi-3 .ui-datepicker-group {
 	width: 33.3%;
 }
-jqueryui .ui-datepicker-multi-4 .ui-datepicker-group {
+.ui-datepicker-multi-4 .ui-datepicker-group {
 	width: 25%;
 }
-jqueryui .ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
-jqueryui .ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
 	border-left-width: 0;
 }
-jqueryui .ui-datepicker-multi .ui-datepicker-buttonpane {
+.ui-datepicker-multi .ui-datepicker-buttonpane {
 	clear: left;
 }
-jqueryui .ui-datepicker-row-break {
+.ui-datepicker-row-break {
 	clear: both;
 	width: 100%;
 	font-size: 0;
 }
 
 /* RTL support */
-jqueryui .ui-datepicker-rtl {
+.ui-datepicker-rtl {
 	direction: rtl;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-prev {
+.ui-datepicker-rtl .ui-datepicker-prev {
 	right: 2px;
 	left: auto;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-next {
+.ui-datepicker-rtl .ui-datepicker-next {
 	left: 2px;
 	right: auto;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-prev:hover {
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
 	right: 1px;
 	left: auto;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-next:hover {
+.ui-datepicker-rtl .ui-datepicker-next:hover {
 	left: 1px;
 	right: auto;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-buttonpane {
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
 	clear: right;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-buttonpane button {
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
 	float: left;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
-jqueryui .ui-datepicker-rtl .ui-datepicker-group {
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
 	float: right;
 }
-jqueryui .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
-jqueryui .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
 	border-right-width: 0;
 	border-left-width: 1px;
 }
-jqueryui .ui-dialog {
+.ui-dialog {
 	position: absolute;
 	top: 0;
 	left: 0;
 	padding: .2em;
 	outline: 0;
 }
-jqueryui .ui-dialog .ui-dialog-titlebar {
+.ui-dialog .ui-dialog-titlebar {
 	padding: .4em 1em;
 	position: relative;
 }
-jqueryui .ui-dialog .ui-dialog-title {
+.ui-dialog .ui-dialog-title {
 	float: left;
 	margin: .1em 0;
 	white-space: nowrap;
@@ -483,7 +483,7 @@ jqueryui .ui-dialog .ui-dialog-title {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-jqueryui .ui-dialog .ui-dialog-titlebar-close {
+.ui-dialog .ui-dialog-titlebar-close {
 	position: absolute;
 	right: .3em;
 	top: 50%;
@@ -492,61 +492,61 @@ jqueryui .ui-dialog .ui-dialog-titlebar-close {
 	padding: 1px;
 	height: 20px;
 }
-jqueryui .ui-dialog .ui-dialog-content {
+.ui-dialog .ui-dialog-content {
 	position: relative;
 	border: 0;
 	padding: .5em 1em;
 	background: none;
 	overflow: auto;
 }
-jqueryui .ui-dialog .ui-dialog-buttonpane {
+.ui-dialog .ui-dialog-buttonpane {
 	text-align: left;
 	border-width: 1px 0 0 0;
 	background-image: none;
 	margin-top: .5em;
 	padding: .3em 1em .5em .4em;
 }
-jqueryui .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
 	float: right;
 }
-jqueryui .ui-dialog .ui-dialog-buttonpane button {
+.ui-dialog .ui-dialog-buttonpane button {
 	margin: .5em .4em .5em 0;
 	cursor: pointer;
 }
-jqueryui .ui-dialog .ui-resizable-se {
+.ui-dialog .ui-resizable-se {
 	width: 12px;
 	height: 12px;
 	right: -5px;
 	bottom: -5px;
 	background-position: 16px 16px;
 }
-jqueryui .ui-draggable .ui-dialog-titlebar {
+.ui-draggable .ui-dialog-titlebar {
 	cursor: move;
 }
-jqueryui .ui-menu {
+.ui-menu {
 	list-style: none;
 	padding: 2px;
 	margin: 0;
 	display: block;
 	outline: none;
 }
-jqueryui .ui-menu .ui-menu {
+.ui-menu .ui-menu {
 	margin-top: -3px;
 	position: absolute;
 }
-jqueryui .ui-menu .ui-menu-item {
+.ui-menu .ui-menu-item {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 }
-jqueryui .ui-menu .ui-menu-divider {
+.ui-menu .ui-menu-divider {
 	margin: 5px -2px 5px -2px;
 	height: 0;
 	font-size: 0;
 	line-height: 0;
 	border-width: 1px 0 0 0;
 }
-jqueryui .ui-menu .ui-menu-item a {
+.ui-menu .ui-menu-item a {
 	text-decoration: none;
 	display: block;
 	padding: 2px .4em;
@@ -554,72 +554,72 @@ jqueryui .ui-menu .ui-menu-item a {
 	min-height: 0; /* support: IE7 */
 	font-weight: normal;
 }
-jqueryui .ui-menu .ui-menu-item a.ui-state-focus,
-jqueryui .ui-menu .ui-menu-item a.ui-state-active {
+.ui-menu .ui-menu-item a.ui-state-focus,
+.ui-menu .ui-menu-item a.ui-state-active {
 	font-weight: normal;
 	margin: -1px;
 }
 
-jqueryui .ui-menu .ui-state-disabled {
+.ui-menu .ui-state-disabled {
 	font-weight: normal;
 	margin: .4em 0 .2em;
 	line-height: 1.5;
 }
-jqueryui .ui-menu .ui-state-disabled a {
+.ui-menu .ui-state-disabled a {
 	cursor: default;
 }
 
 /* icon support */
-jqueryui .ui-menu-icons {
+.ui-menu-icons {
 	position: relative;
 }
-jqueryui .ui-menu-icons .ui-menu-item a {
+.ui-menu-icons .ui-menu-item a {
 	position: relative;
 	padding-left: 2em;
 }
 
 /* left-aligned */
-jqueryui .ui-menu .ui-icon {
+.ui-menu .ui-icon {
 	position: absolute;
 	top: .2em;
 	left: .2em;
 }
 
 /* right-aligned */
-jqueryui .ui-menu .ui-menu-icon {
+.ui-menu .ui-menu-icon {
 	position: static;
 	float: right;
 }
-jqueryui .ui-progressbar {
+.ui-progressbar {
 	height: 2em;
 	text-align: left;
 	overflow: hidden;
 }
-jqueryui .ui-progressbar .ui-progressbar-value {
+.ui-progressbar .ui-progressbar-value {
 	margin: -1px;
 	height: 100%;
 }
-jqueryui .ui-progressbar .ui-progressbar-overlay {
+.ui-progressbar .ui-progressbar-overlay {
 	background: url("images/animated-overlay.gif");
 	height: 100%;
 	filter: alpha(opacity=25);
 	opacity: 0.25;
 }
-jqueryui .ui-progressbar-indeterminate .ui-progressbar-value {
+.ui-progressbar-indeterminate .ui-progressbar-value {
 	background-image: none;
 }
-jqueryui .ui-slider {
+.ui-slider {
 	position: relative;
 	text-align: left;
 }
-jqueryui .ui-slider .ui-slider-handle {
+.ui-slider .ui-slider-handle {
 	position: absolute;
 	z-index: 2;
 	width: 1.2em;
 	height: 1.2em;
 	cursor: default;
 }
-jqueryui .ui-slider .ui-slider-range {
+.ui-slider .ui-slider-range {
 	position: absolute;
 	z-index: 1;
 	font-size: .7em;
@@ -629,56 +629,56 @@ jqueryui .ui-slider .ui-slider-range {
 }
 
 /* For IE8 - See #6727 */
-jqueryui .ui-slider.ui-state-disabled .ui-slider-handle,
-jqueryui .ui-slider.ui-state-disabled .ui-slider-range {
+.ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
 }
 
-jqueryui .ui-slider-horizontal {
+.ui-slider-horizontal {
 	height: .8em;
 }
-jqueryui .ui-slider-horizontal .ui-slider-handle {
+.ui-slider-horizontal .ui-slider-handle {
 	top: -.3em;
 	margin-left: -.6em;
 }
-jqueryui .ui-slider-horizontal .ui-slider-range {
+.ui-slider-horizontal .ui-slider-range {
 	top: 0;
 	height: 100%;
 }
-jqueryui .ui-slider-horizontal .ui-slider-range-min {
+.ui-slider-horizontal .ui-slider-range-min {
 	left: 0;
 }
-jqueryui .ui-slider-horizontal .ui-slider-range-max {
+.ui-slider-horizontal .ui-slider-range-max {
 	right: 0;
 }
 
-jqueryui .ui-slider-vertical {
+.ui-slider-vertical {
 	width: .8em;
 	height: 100px;
 }
-jqueryui .ui-slider-vertical .ui-slider-handle {
+.ui-slider-vertical .ui-slider-handle {
 	left: -.3em;
 	margin-left: 0;
 	margin-bottom: -.6em;
 }
-jqueryui .ui-slider-vertical .ui-slider-range {
+.ui-slider-vertical .ui-slider-range {
 	left: 0;
 	width: 100%;
 }
-jqueryui .ui-slider-vertical .ui-slider-range-min {
+.ui-slider-vertical .ui-slider-range-min {
 	bottom: 0;
 }
-jqueryui .ui-slider-vertical .ui-slider-range-max {
+.ui-slider-vertical .ui-slider-range-max {
 	top: 0;
 }
-jqueryui .ui-spinner {
+.ui-spinner {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
 	padding: 0;
 	vertical-align: middle;
 }
-jqueryui .ui-spinner-input {
+.ui-spinner-input {
 	border: none;
 	background: none;
 	color: inherit;
@@ -688,7 +688,7 @@ jqueryui .ui-spinner-input {
 	margin-left: .4em;
 	margin-right: 22px;
 }
-jqueryui .ui-spinner-button {
+.ui-spinner-button {
 	width: 16px;
 	height: 50%;
 	font-size: .5em;
@@ -702,39 +702,39 @@ jqueryui .ui-spinner-button {
 	right: 0;
 }
 /* more specificity required here to overide default borders */
-jqueryui .ui-spinner a.ui-spinner-button {
+.ui-spinner a.ui-spinner-button {
 	border-top: none;
 	border-bottom: none;
 	border-right: none;
 }
 /* vertical centre icon */
-jqueryui .ui-spinner .ui-icon {
+.ui-spinner .ui-icon {
 	position: absolute;
 	margin-top: -8px;
 	top: 50%;
 	left: 0;
 }
-jqueryui .ui-spinner-up {
+.ui-spinner-up {
 	top: 0;
 }
-jqueryui .ui-spinner-down {
+.ui-spinner-down {
 	bottom: 0;
 }
 
 /* TR overrides */
-jqueryui .ui-spinner .ui-icon-triangle-1-s {
+.ui-spinner .ui-icon-triangle-1-s {
 	/* need to fix icons sprite */
 	background-position: -65px -16px;
 }
-jqueryui .ui-tabs {
+.ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;
 }
-jqueryui .ui-tabs .ui-tabs-nav {
+.ui-tabs .ui-tabs-nav {
 	margin: 0;
 	padding: .2em .2em 0;
 }
-jqueryui .ui-tabs .ui-tabs-nav li {
+.ui-tabs .ui-tabs-nav li {
 	list-style: none;
 	float: left;
 	position: relative;
@@ -744,31 +744,31 @@ jqueryui .ui-tabs .ui-tabs-nav li {
 	padding: 0;
 	white-space: nowrap;
 }
-jqueryui .ui-tabs .ui-tabs-nav li a {
+.ui-tabs .ui-tabs-nav li a {
 	float: left;
 	padding: .5em 1em;
 	text-decoration: none;
 }
-jqueryui .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	margin-bottom: -1px;
 	padding-bottom: 1px;
 }
-jqueryui .ui-tabs .ui-tabs-nav li.ui-tabs-active a,
-jqueryui .ui-tabs .ui-tabs-nav li.ui-state-disabled a,
-jqueryui .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
 	cursor: text;
 }
-jqueryui .ui-tabs .ui-tabs-nav li a, /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
-jqueryui .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+.ui-tabs .ui-tabs-nav li a, /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
 	cursor: pointer;
 }
-jqueryui .ui-tabs .ui-tabs-panel {
+.ui-tabs .ui-tabs-panel {
 	display: block;
 	border-width: 0;
 	padding: 1em 1.4em;
 	background: none;
 }
-jqueryui .ui-tooltip {
+.ui-tooltip {
 	padding: 8px;
 	position: absolute;
 	z-index: 9999;
@@ -776,6 +776,6 @@ jqueryui .ui-tooltip {
 	-webkit-box-shadow: 0 0 5px #aaa;
 	box-shadow: 0 0 5px #aaa;
 }
-body jqueryui .ui-tooltip {
+body .ui-tooltip {
 	border-width: 2px;
 }

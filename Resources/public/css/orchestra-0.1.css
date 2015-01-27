@@ -277,3 +277,18 @@ input[type="radio"] {
     margin-top: 100px;
 }
 */
+
+/* hack to stack lower icons in font-awesome (combined users/new) */
+
+.fa-sub {
+    font-size: 0.35em !important;
+    position: relative;
+    bottom:-0.5em;
+    right:0.9em;
+    color: inherit;
+    background-color: #ffffff;
+    border-width: 0.13em;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 1px 1px 0px 1px;
+}
