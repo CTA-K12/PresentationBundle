@@ -218,12 +218,29 @@ dd {
     dd {
       margin-left: @component-offset-horizontal;
       .clearfix(); // Clear the floated `dt` if an empty `dd` is present
+      > ul,
+      > ol {
+          margin-bottom: 0px;
+      }
     }
   }
   // MESD Override
   .dl-align-left {
       dt {
           text-align: left;
+      }
+  }
+  .dl-lined {
+      position: relative;
+      dd:after {
+          content:                  " ";
+          position:            absolute;
+          border-bottom: 1px solid #ccc;
+          width:                   100%;
+          left:                     0px;
+      }
+      dd:last-child:after {
+          border-bottom: 1px solid rgb(255,255,255,0);
       }
   }
 }

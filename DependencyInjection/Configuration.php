@@ -87,6 +87,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('org_url')
                     ->defaultValue('http://myurl.domain')
                 ->end()
+                ->scalarNode('home_path')
+                    ->defaultValue('#')
+                ->end()
                 ->scalarNode('password_reset_text')
                     ->defaultValue('Forgot Password?')
                 ->end()
@@ -104,6 +107,12 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('user_settings_path')
                     ->defaultValue('#')
+                ->end()
+                ->scalarNode('brand_asset_path')
+                    ->defaultValue('bundles/mesdpresentation/img/orchestra_logo_sml.png')
+                ->end()
+                ->scalarNode('brand_alt_text')
+                    ->defaultValue('home')
                 ->end()
             ->end();
 
