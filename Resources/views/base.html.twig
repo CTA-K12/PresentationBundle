@@ -7,9 +7,9 @@
                     {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
                 {% endblock meta %}
 
-                {% block title %}
+                {%- block title -%}
                     {% include 'MesdPresentationBundle:Block:title.html.twig' %}
-                {% endblock title%}
+                {%- endblock title -%}
 
                 {% block stylesheets %}
                     {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
@@ -46,14 +46,11 @@
                                             <span class="icon-bar"></span>
                                             <span class="icon-bar"></span>
                                         </button>
-                                        <a class="navbar-brand" href="{{ mesd_presentation_app_url }}">
-                                            {% block navbarContentLogo %}
-                                                <img
-                                                    src="{{ asset(mesd_presentation_brand_asset_path) }}"
-                                                    alt="{{ mesd_presentation_brand_alt_text }}"
-                                                />
-                                            {% endblock navbarContentLogo %}
-                                        </a>
+                                        {% block navbarContentLogo %}
+                                            <a class="navbar-brand" href="#">
+                                                <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+                                            </a>
+                                        {% endblock navbarContentLogo %}
                                     </div>
 
                                     <div class="collapse navbar-collapse main-collapse" id="navbar-main">
@@ -66,7 +63,7 @@
                                                     {% include 'MesdPresentationBundle::searchBar.html.twig' %}
                                                 {% endblock navbarContentWidgets %}
                                                 {% block userMenu %}
-                                                    {% include 'MesdPresentationBundle::userMenu.html.twig' %}
+                                                    {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
                                                 {% endblock userMenu %}
                                             {% endblock navbarContentRight %}
                                         </div>
@@ -145,28 +142,27 @@
                                     </div>
                                 {% endblock toolbarTop %}
 
-                                {% block flashMessage %}
-                                    {% for type in ['danger', 'warning', 'info', 'success'] %}
-                                        {% for flashMessage in app.session.flashbag.get(type) %}
-                                            {% if flashMessage is defined %}
-                                                <div class="{{"alert alert-dismissable alert-"~type}}">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                    {{ flashMessage|raw }}
-                                                </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endfor %}
-                                {% endblock flashMessage %}
+                                {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
 
                                 {% block content %}
                                     <div id="content" class="content section section-white">
                                         <div class="section-header">
                                             {% block contentHeader %}
                                                 {% block pageTitle %}
-                                                    <h1 class="page-title">{% if pageTitle is defined %}{{ pageTitle|raw }}{% endif %}
-                                                        {% block pageSubtitle %}
-                                                            {% if pageSubtitle is defined %}<small>{{ pageSubtitle|raw }}</small>{% endif %}
-                                                        {% endblock pageSubtitle %}
+                                                    <h1 class="page-title">
+                                                    {%- block pageIcon -%}
+                                                        {%- if pageIcon is defined %}
+                                                            {%- include 'MesdPresentationBundle:Block:pageIcon.html.twig' -%}
+                                                        {%- endif -%}
+                                                    {%- endblock pageIcon -%}
+                                                    {%- if pageTitle is defined -%}
+                                                        {{- pageTitle|raw -}}
+                                                    {%- endif -%}
+                                                        {%- block pageSubtitle -%}
+                                                            {%- if pageSubtitle is defined -%}
+                                                                &nbsp;<small>{{- pageSubtitle|raw -}}</small>
+                                                            {%- endif -%}
+                                                        {%- endblock pageSubtitle -%}
                                                     </h1>
                                                 {% endblock pageTitle %}
                                             {% endblock contentHeader %}

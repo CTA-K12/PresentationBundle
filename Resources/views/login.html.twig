@@ -7,16 +7,15 @@
 {% endblock navbarContentRight %}
 
 {% block containerOuter %}
-
     <div id="container-outer" class="container-outer wrapper">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     {% block subtitle %}
-                        {% if subtitle is defined %}
+                        {% if pageTitle is defined %}
+                            <h1 class="page-title">{%if pageIcon is defined %}{{pageIcon|raw}} {% endif %}{{ pageTitle|raw }}</h1>
+                        {% elseif subtitle is defined %}
                             <h1 class="page-title">{{ subtitle|raw }}</h1>
-                        {% elseif pagetitle is defined %}
-                            <h1 class="page-title">{{ pagetitle|raw }}</h1>
                         {% else %}
                             <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Login</h1>
                         {% endif %}
@@ -24,6 +23,7 @@
                 </div>
                 <div class="modal-body">
                     {% block panelBody %}
+                        {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
                         {#} See:
                                 http://symfony.com/doc/current/cookbook/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
                             for more information
@@ -89,9 +89,9 @@
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <div class="row">
                                 <div class="col-xs-5-12">
-                                    <a href=".." title="Home" class="btn btn-default form-control">
+                                    <a href="{{ routeHelper(mesd_presentation_login_target_path) }}" title="Home" class="btn btn-default form-control">
                                         <span class="fa fa-home"></span>&nbsp;
-                                        Go to home
+                                        Home
                                     </a>
                                 </div>
                                 <div class="col-xs-5-12 col-xs-offset-1-6">
