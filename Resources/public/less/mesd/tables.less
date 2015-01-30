@@ -171,32 +171,31 @@ table {
 // MESD OVERRIDES
 .table-responsive {
   @media screen and (max-width: @screen-xs-max) {
+    overflow-x: scroll;
     // TABLE
-    table, thead, tbody, th, td, tr, caption {
+    thead, tbody, th, td, tr, caption {
       display:      block;
     }
     caption {
       margin:    -6px 6px;
     }
-    .table {
-      overflow-x: scroll;
-      thead tr {
+    thead tr {
       position:  absolute;
       top:        -9999px;
       left:       -9999px;
-        th {
-          text-align: left;
-        }
-      }
-      td {
-        &.left-align,
-        &.right-align,
-        &.center-align {
-          text-align: left;
-        }
+      th {
+        text-align: left;
       }
     }
-    .table-bordered {
+    td {
+      min-height: 30px;
+      &.left-align,
+      &.right-align,
+      &.center-align {
+        text-align: left;
+      }
+    }
+    &.table-bordered {
       border-left: 1px solid #ddd;
       th, td {
         border-left:   none;
@@ -218,5 +217,21 @@ table {
         white-space: nowrap;
       }
     }
+    &.table-condensed {
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            padding: 4px;
+          }
+        }
+      }
+    }
   }
+}
+
+.table-controls {
+    margin-bottom: 10px;
 }
