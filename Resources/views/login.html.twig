@@ -22,7 +22,7 @@
         </div>
         <div class="section-body">
             {% block panelBody %}
-                {% include 'MesdPresentationBundle::flash.html.twig' %}
+                {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
                 {% if error is defined %}
                     {% if error %}
                         <div>{{ error.message }}</div>
