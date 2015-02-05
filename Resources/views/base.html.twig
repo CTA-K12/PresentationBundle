@@ -55,12 +55,18 @@
 
                                     <div class="collapse navbar-collapse main-collapse" id="navbar-main">
                                         {% block navbarContentLeft %}
-                                            {% include 'MesdPresentationBundle::navLinks.html.twig' %}
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="#">Demo1</a></li>
+                                                <li><a href="#">Demo2</a></li>
+                                                <li><a href="#">Demo3</a></li>
+                                            </ul>
                                         {% endblock navbarContentLeft %}
                                         <div class="navbar-right">
                                             {% block navbarContentRight %}
                                                 {% block navbarContentWidgets %}
-                                                    {% include 'MesdPresentationBundle::searchBar.html.twig' %}
+                                                    <form id="search" class="navbar-form navbar-left navbar-search">
+                                                        <input type="text" class="form-control search-input" placeholder="Search">
+                                                    </form>
                                                 {% endblock navbarContentWidgets %}
                                                 {% block userMenu %}
                                                     {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
@@ -83,47 +89,47 @@
                             {# to allow overridding just the inner #}
                             {# is appropriate will wait for CH     #}
                             {# resolution                          #}
-                        <aside id="sidebar" closed="{{app.request.cookies.get('MesdPresentationSidebarClosed')}}" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %} {% if app.request.cookies.get('MesdPresentationSidebarClosed')%}sidebar-closed{% else %}sidebar-open{% endif %}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
-                            {% block sidebarInner %}
-                                {{ render(controller('MesdPresentationBundle:Default:sidebar', {
-                                    'route': app.request.get('_route'),
-                                    'options': { 'type': '' },
-                                    'menu': {
-                                        'Fluid Grid': {
-                                            'text':   'Fluid Grid',
-                                            'path':   '#fluidGridSystem',
-                                            'title':  'fluid grid',
-                                            'icon':   'fa fa-desktop',
-                                            'active': true
-                                        },
-                                        'Responsive': {
-                                            'text': 'Responsive',
-                                            'path': '#responsive',
-                                            'title': 'responsive',
-                                            'icon': 'fa fa-mobile-phone'
-                                        },
-                                        'Typography': {
-                                            'text': 'Typography',
-                                            'path': '#typography',
-                                            'title': 'typography',
-                                            'icon': 'fa fa-font'
-                                        },
-                                        'Table': {
-                                            'text': 'Table',
-                                            'path': '#tables',
-                                            'title': 'table',
-                                            'icon': 'fa fa-table'
-                                        },
-                                        'Form': {
-                                            'text': 'Form',
-                                            'path': '#forms',
-                                            'title': 'form',
-                                            'icon': 'fa fa-list-alt'
-                                        }
-                                    }}))
-                                }}
-                            {% endblock sidebarInner %}
-                        </aside>
+                            <aside id="sidebar" closed="{{app.request.cookies.get('MesdPresentationSidebarClosed')}}" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %} {% if app.request.cookies.get('MesdPresentationSidebarClosed')%}sidebar-closed{% else %}sidebar-open{% endif %}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+                                {% block sidebarInner %}
+                                    {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+                                        'route': app.request.get('_route'),
+                                        'options': { 'type': '' },
+                                        'menu': {
+                                            'Fluid Grid': {
+                                                'text':   'Fluid Grid',
+                                                'path':   '#fluidGridSystem',
+                                                'title':  'fluid grid',
+                                                'icon':   'fa fa-desktop',
+                                                'active': true
+                                            },
+                                            'Responsive': {
+                                                'text': 'Responsive',
+                                                'path': '#responsive',
+                                                'title': 'responsive',
+                                                'icon': 'fa fa-mobile-phone'
+                                            },
+                                            'Typography': {
+                                                'text': 'Typography',
+                                                'path': '#typography',
+                                                'title': 'typography',
+                                                'icon': 'fa fa-font'
+                                            },
+                                            'Table': {
+                                                'text': 'Table',
+                                                'path': '#tables',
+                                                'title': 'table',
+                                                'icon': 'fa fa-table'
+                                            },
+                                            'Form': {
+                                                'text': 'Form',
+                                                'path': '#forms',
+                                                'title': 'form',
+                                                'icon': 'fa fa-list-alt'
+                                            }
+                                        }}))
+                                    }}
+                                {% endblock sidebarInner %}
+                            </aside>
                         {% endblock sidebarOuter %}
                         {% block containerInner %}
                             <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
@@ -142,7 +148,9 @@
                                     </div>
                                 {% endblock toolbarTop %}
 
-                                {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
+                                {% block flashMessage %}
+                                    {% include 'MesdPresentationBundle:Block:flashMessage.html.twig' %}
+                                {% endblock flashMessage %}
 
                                 {% block content %}
                                     <div id="content" class="content section section-white">
@@ -152,7 +160,9 @@
                                                     <h1 class="page-title">
                                                     {%- block pageIcon -%}
                                                         {%- if pageIcon is defined %}
-                                                            {%- include 'MesdPresentationBundle:Block:pageIcon.html.twig' -%}
+                                                            {%- if pageIcon is defined -%}
+                                                                {{ pageIcon|raw }}
+                                                            {%- endif -%}
                                                         {%- endif -%}
                                                     {%- endblock pageIcon -%}
                                                     {%- if pageTitle is defined -%}

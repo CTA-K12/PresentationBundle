@@ -1,3 +1,5 @@
+{% import _self as ulli %}
+
 {% if 'inline' == type %}
     {% set sidebarclass = 'sidebar sidebar-inline' %}
 {% elseif 'dropdown' == type %}
@@ -13,51 +15,51 @@
             <span class="icon-bar"></span>
         </div><!-- END btn-navbar -->
         <div class="nav-collapse sidebar-collapse">
-        {% endif %}
+{% endif %}
 
-        <ul class="nav">
-            {% for text, item in menu %}
-                {#  set currentPath = path(route)
-                    split the currentPath and v['path']
-                    do a for loop on path
-                    if each value of currentPath is found in v['path']
-                    set to active
-                    if not, don't set active
-                    ----------------------------------------------------
-                    this method is checking that all child paths match
-                    for example:
+<nav>
+    <ul class="nav">
+        {{ ulli.maker(menu, 1) }}
+    </ul>
+</nav>
 
-                    if menu path was /foo/bar/
-                    for each current path:
-                        menu         | current         | pass/fail
-                        -------------+-----------------+----------
-                        /foo/bar     | /foo/bar        | PASS
-                        /foo/bar     | /foo/foo/bar    | FAIL
-                        /foo/bar     | /foo/bar/new    | PASS
-                        /foo/bar     | /foo/bar/1/edit | PASS
-                        /foo/bar/new | /foo/bar        | FAIL
-
-                        #}
-                {#}
-                {% if path(route) == item.path %}
-                    <li class="active">
-                {% else %}
-                    <li>
-                {% endif %}
-                {#}
-                {#{ path(route)|split(item.path) }#}
-                <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
-                    <a href="{{ item.path }}" title="{% if item.title is defined %}{{ item.title }}{% else %}{{ title }}{% endif %}">
-                        <span class="fa icon {{ item.icon }}"></span>
-                        <span class="pull-right hideable {% if app.request.cookies.has('MesdPresentationHideSidebarLabels') %}hide{% endif %}">{% if item.text is defined %}{{ item.text }}{% else %}{{ text }}{% endif %}</span>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-
-        {% if 'dropdown' == type %}
+{% if 'dropdown' == type %}
         </div><!-- END nav-collapse -->
     </div><!-- END navbar -->
 {% endif %}
 
-{% include 'MesdPresentationBundle::sidebarshim.html.twig' %}
+{% block sidebarshim %}
+    <div class="drag-bar" style="left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+        <div class="drag-bar-handle">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div><!-- END drag-bar-handle -->
+    </div><!-- END drag-bar -->
+{% endblock sidebarshim %}
+
+{% macro maker(list, level) %}
+    {% import _self as ulli %}
+    {% for text, item in list %}
+        <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
+            <a href="{{ item.path is null ? '#' : item.path }}" title="{{ item.title is defined ? item.title : title }}">
+                <span class="fa icon {{ item.icon }}"></span>
+                <span class="pull-right hideable">
+                    {% if item.text is defined %}
+                        {{ item.text }}
+                    {% else %}
+                        {{ text }}
+                    {% endif %}
+                    {% if item.children is defined and 0 < item.children|length %}
+                        <span class="fa fa-plus-square-o"></span>
+                    {% endif %}
+                </span>
+            </a>
+            {% if item.children is defined and 0 < item.children|length %}
+                <ul>
+                    {{ ulli.maker(item.children) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
