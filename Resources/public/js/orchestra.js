@@ -26,7 +26,6 @@ var sidebar = new function() {
     this.setCurrPos = function(pos) {
         this.currPos = pos;
 
-        $('.sidebarOuter').css('width', this.currPos);
         $('.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
