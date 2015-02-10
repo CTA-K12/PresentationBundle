@@ -19,7 +19,12 @@
 
 <nav>
     <ul class="nav">
-        {{ ulli.maker(menu, 1) }}
+        {{ ulli.maker(menu) }}
+        {% block sidebarToggle %}
+            <div id="sidebar-toggle" class="sidebar-nav-item">
+                <span class="fa fa-chevron-circle-left"></span>
+            </div>
+        {% endblock sidebarToggle %}
     </ul>
 </nav>
 
@@ -28,8 +33,9 @@
     </div><!-- END navbar -->
 {% endif %}
 
+{#}
 {% block sidebarshim %}
-    <div class="drag-bar" style="left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+    <div class="sidebar-" style="left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
         <div class="drag-bar-handle">
             <span class="dot"></span>
             <span class="dot"></span>
@@ -37,29 +43,23 @@
         </div><!-- END drag-bar-handle -->
     </div><!-- END drag-bar -->
 {% endblock sidebarshim %}
+{#}
 
-{% macro maker(list, level) %}
+{% macro maker(list) %}
     {% import _self as ulli %}
-    {% for text, item in list %}
-        <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
-            <a href="{{ item.path is null ? '#' : item.path }}" title="{{ item.title is defined ? item.title : title }}">
-                <span class="fa icon {{ item.icon }}"></span>
-                <span class="pull-right hideable">
-                    {% if item.text is defined %}
-                        {{ item.text }}
-                    {% else %}
-                        {{ text }}
-                    {% endif %}
-                    {% if item.children is defined and 0 < item.children|length %}
-                        <span class="fa fa-plus-square-o"></span>
-                    {% endif %}
-                </span>
-            </a>
-            {% if item.children is defined and 0 < item.children|length %}
-                <ul>
-                    {{ ulli.maker(item.children) }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
+        {% for text, item in list %}
+            <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
+                <a href="{{ item.path is null ? '#' : item.path }}" title="{{ item.title is defined ? item.title : title }}">
+                    <span class="sidebar-item-icon fa {{ item.icon }}"></span>
+                    <span class="sidebar-item-text">
+                        {{ item.text is defined ? item.text : text }}
+                    </span>
+                </a>
+                {% if item.children is defined and 0 < item.children|length %}
+                    <ul class="nav">
+                        {{ ulli.maker(item.children) }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
 {% endmacro %}

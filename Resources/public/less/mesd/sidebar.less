@@ -4,32 +4,58 @@
 // This file is MESD specific styling.
 // It is not maintained by Bootstrap.
 
-.sidebar {
+aside#sidebar {
     position:                   fixed;
-    width:   @sidebar-base-width;
+    display:                    block;
+    width:        @sidebar-base-width;
     height:                      100%;
-    top:                          0px;
+    min-height:                  100%;
+    top:                            0;
+    left:                           0;
     background-color:   @gray-lighter;
-    margin-top:                  40px;
+    padding-top:                 40px;
+    z-index:                        1;
     transition:        250ms cubic-bezier(0.1,.57,.1,1);
     -webkit-transform: translate(0px,0) translateZ(0px);
     .box-shadow(1px 1px 4px 0 rgba(0, 0, 0, 0.1));
-    // or padding-top: 40px; not sure yet
+    /*
+    padding-top: 40px; not sure yet
+    background: @asideColor-end;
+    background: url(@asideDataURL);
+    background: -moz-linear-gradient(left, @asideColor-end 93%, @asideColor-start 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(93%, @asideColor-end), color-stop(100%, @asideColor-start));
+    background: -webkit-linear-gradient(left, @asideColor-end 93%, @asideColor-start 100%);
+    background: -o-linear-gradient(left, @asideColor-end 93%, @asideColor-start 100%);
+    background: -ms-linear-gradient(left, @asideColor-end 93%, @asideColor-start 100%);
+    background: linear-gradient(to right, @asideColor-end 93%, @asideColor-start 100%);
+    */
     nav {
         overflow-y:     auto;
+        overflow-x:   hidden;
         height:         100%;
-        padding-bottom: 45px;
+        padding-bottom:  5px;
         ul.nav {
-            position:   relative;
-            overflow-x:   hidden;
-            overflow-y:   scroll;
-            height:         100%;
-            width:          115%;
-            padding-right:  25px;
+            position:                relative;
+            overflow-x:                hidden;
+            overflow-y:                scroll;
+            height:                      100%;
+            width: @sidebar-base-width + 60px;
+            padding:                        0;
+            margin:                         0;
             li {
+                overflow: hidden;
+                a {
+                    line-height:              normal;
+                    display:                   block;
+                    font-weight:              normal;
+                    text-decoration: none !important;
+                    position:               relative;
+                    padding-bottom:              4px;
+                }
                 &.active a {
                     color:            #ffffff;
                     background-color: #428bca;
+                    position:        relative;
                     &:hover {
                         color:            #ffffff;
                         background-color: #2a6496;
@@ -38,35 +64,6 @@
             }
             ul {
                 display: none;
-                &:before {
-                    content:                       "";
-                    display:                    block;
-                    position:                absolute;
-                    z-index:                        1;
-                    left:                        23px;
-                    top:                            0;
-                    bottom:                         0;
-                    border-left:    1px solid #7A7A7A;
-                }
-                li:before {
-                    content:                       "";
-                    display:                    block;
-                    position:                absolute;
-                    width:                        8px;
-                    left:                        23px;
-                    top:                         16px;
-                    border-top:     1px solid #7A7A7A;
-                    z-index:                        1;
-                }
-                ul:before {
-                    content:                       "";
-                    display:                    block;
-                    position:                absolute;
-                    width:                       18px;
-                    left:                        10px;
-                    top:                         17px;
-                    border-top: 1px solid transparent;
-                }
             }
         }
         .nav > li:last-child > a,
@@ -89,20 +86,13 @@
                     padding:                             5px 0 0;
                     &:hover {
                         background-color:                  White;
-                        -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
-                        -moz-box-shadow:    inset 0 2px 2px rgba(0, 0, 0, 0.1);
                         box-shadow:         inset 0 2px 2px rgba(0, 0, 0, 0.1);
                     }
-                    > [class^="icon"],
-                      [class*=" icon"] {
+                    > .sidebar-item-icon {
                         font-size:     20px;
-                        line-height:    4px;
-                        width:         40px;
-                        padding-left:   5px;
+                        line-height:   26px;
+                        width:         60px;
                         text-align:  center;
-                    }
-                    > .pull-right {
-                        padding-right: 10px;
                     }
                 }
                 &:last-child {
@@ -117,12 +107,11 @@
     }
 }
 
-
 .drag-bar {
     position:           fixed;
     left:                60px;
-    top:                 40px;
-    bottom:              20px;
+    top:                  0px;
+    bottom:              60px;
     width:                3px;
     padding-bottom:       1px;
     cursor:              auto;
@@ -196,13 +185,7 @@
     }
 }
 
-// Handled via session variables now
-//.sidebar[max-width="239px"] .hideable {
-//    display: none;
-//}
-
 @media (min-width: @screen-md-min) {
-    // Left aside, individually scrollable
     .sidebar {
         width:    @sidebar-base-width;
         .hide {
@@ -267,4 +250,384 @@
     .toggle-bar {
         display: none;
     }
+}
+
+ul.nav li ul li a span:first-child {
+    margin-left:                      20px;
+}
+
+ul.nav ul.nav {
+    background-color:     #dddddd;
+}
+
+aside nav ul li a:active {
+}
+
+aside nav > ul > li {
+    &:last-child.open {
+        border-bottom:1px solid rgba(255,255,255,0.15);
+    }
+    > ul > li {
+        > a {
+            padding-top:    7px;
+            padding-bottom: 7px;
+        }
+        > ul > li > a {
+            padding-top:    7px;
+            padding-bottom: 7px;
+        }
+    }
+}
+
+aside nav ul {
+    span.sidebar-item-text {
+        display: inline-block;
+        margin:             0;
+        padding:            0;
+    }
+}
+
+aside nav > ul > li > a {
+    span.collapse-sign {
+        float:        right;
+        padding-right: 60px;
+        margin-top:     8px;
+    }
+    > span.fa {
+        margin-right:     5px;
+        width:           15px;
+        display: inline-block;
+        text-align:    center;
+        position:    relative;
+        > em {
+            font-size:           9px;
+            display:           block;
+            padding:             2px;
+            position:       absolute;
+            top:                -8px;
+            right:              -6px;
+            text-decoration:    none;
+            font-style:       normal;
+            background:      #ED1C24;
+            color:            @white;
+            min-width:          13px;
+            border-radius:       50%;
+            max-height:         13px;
+            line-height:         8px;
+            font-weight:        bold;
+            vertical-align: baseline;
+            white-space:      nowrap;
+            text-align:       center;
+            border: 1px solid rgba(red(@white), green(@white), blue(@white), 0.1);
+        }
+    }
+}
+
+/*
+aside nav ul li li {
+    border-bottom: none;
+    position:  relative;
+}
+
+aside nav > ul ul li a i {
+    width: 18px !important;
+    text-align: center !important;
+}
+
+aside nav ul ul {
+    margin:         0;
+    padding:        0;
+    padding:    7px 0;
+    display:     none;
+    background: rgba(69, 69, 69,.6);
+    ul {
+        background: transparent;
+        padding: 0;
+    }
+}
+
+aside nav ul ul li {
+    margin:  0;
+    padding: 0;
+    > a {
+        padding-left:  42px;
+        font-weight: normal;
+        outline:          0;
+    }
+}
+
+aside nav ul ul ul li a {
+}
+
+aside nav ul ul ul ul li a {
+    padding-left: 90px;
+}
+
+aside nav ul ul ul ul ul li a {
+    padding-left: 110px;
+}
+
+aside nav ul ul ul ul ul ul li a {
+    padding-left: 130px;
+}
+
+aside nav ul ul b {
+    color: #B3B3B3;
+}
+
+aside nav ul ul > li:hover b {
+    color: #D5D9E2;
+}
+*/
+
+.minified .inbox-badge {
+    border-radius:  50%;
+    font-size:      9px;
+    padding:        2px;
+    position:  absolute;
+    top:            6px;
+    right:          6px;
+    background: #ED1C24;
+    min-width:     13px;
+}
+
+#sidebar-toggle {
+    border-bottom: 1px solid #302F2F;
+    background:              #454545;
+    color:                   #A8A8A8;
+    text-align:               center;
+    padding:                       0;
+    width:                      36px;
+    height:                     28px;
+    line-height:                30px;
+    display:                   block;
+    position:               absolute;
+    right:                      48px;
+    border-radius:   5px 0px 0px 5px;
+    cursor:                  pointer;
+    margin-top:                  5px;
+    font-size:                  20px;
+    transition:   all 0.1s linear 0s;
+    &:hover {
+        background: #646464;
+        color:      #E4E4E4;
+    }
+}
+
+
+.minified #sidebar-toggle {
+    color:     #A8A8A8;
+    position: relative;
+    width:        60px;
+    right:           0;
+    border-radius: 0px;
+    margin:          0;
+    height:       34px;
+    line-height:  34px;
+    font-size:    20px;
+}
+
+.minified #container-inner {
+    margin-left: 60px;
+}
+
+.minified aside#sidebar {
+    width:       60px;
+    overflow: visible;
+    nav {
+        overflow: visible;
+        > ul.nav {
+            positiion: relative;
+            overflow:   visible;
+            width:         60px;
+            padding:          0;
+            li {
+                width:                     100%;
+                background-color: @gray-lighter;
+                &:hover {
+                    width:             240px;
+                    background-color: ffffff;
+                    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
+                    .sidebar-item-text {
+                        position: absolute;
+                        top:             0;
+                        left:         60px;
+                        width:       180px;
+                        height:       36px;
+                        line-height:  38px;
+                    }
+                }
+                > a {
+                    padding-bottom: 4px;
+                }
+            }
+            ul {
+                min-height:    30px !important;
+                max-height:   180px !important;
+                overflow-y:             scroll;
+                overflow-x:             hidden;
+                position:             absolute;
+                width:                   180px;
+                padding:                     0;
+                overflow:               hidden;
+                z-index:                    10;
+                left:                     60px;
+                top:                      36px;
+                height:                   auto;
+                border-left: 1px solid rgba(0,0,0,0.05);
+            }
+            > li {
+                overflow: visible;
+                a {
+                    margin: 0;
+                    .sidebar-item-icon {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+    .collapse-sign {
+        position: absolute;
+        left:    -999999px;
+    }
+    .open a {
+        background-color: none;
+    }
+}
+
+
+.minified aside nav > ul > li,
+.minified aside nav > ul > li a {
+    position: relative;
+}
+
+.minified aside nav ul > li {
+    > a {
+        padding: 10px 11px;
+        display:     block;
+        .fa.fa-fw {
+            display:     block;
+            width:        auto;
+            text-align: center;
+            padding:         0;
+        }
+        > span {
+            margin:         0;
+            display:    block;
+        }
+    }
+}
+
+
+.minified aside nav ul ul li a {
+    padding-left: 14px;
+    li a {
+        padding-left: 25px;
+    }
+}
+
+.minified aside nav > ul > li > a .sidebar-item-text,
+.minified aside nav > ul > li > a > b {
+    display: none;
+}
+
+.minified aside nav > ul > li > a > .sidebar-item-text {
+    -webkit-box-shadow: 2px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+    -moz-box-shadow:    2px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+    box-shadow:         2px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+}
+
+.minified aside nav > ul > li > ul {
+    display: none !important;
+    position:       absolute;
+    left:               60px;
+    width:       60px - 20px;
+    z-index:               5;
+    min-height:        180px;
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+    -moz-box-shadow:    1px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+    box-shadow:         1px 1px 2px 0 rgba(red(@black), green(@black), blue(@black), 0.2);
+    background:      #3A3633;
+    > li > ul {
+        position: relative;
+        left:         13px;
+        border:       none;
+        width:        auto;
+        margin-left: -12px;
+        width: 60px - 23px;
+    }
+}
+
+.minified aside nav > ul > li:hover > a > .sidebar-item-text,
+.minified aside nav > ul > li:hover > ul {
+    display: block !important;
+}
+
+.minified aside nav > ul > li > ul > li > ul > li {
+    background-color: #484B50;
+}
+
+.minified aside nav > ul > li > ul::before {
+    border-left: none;
+}
+
+.minified aside nav > ul ul li::before {
+    border: none;
+}
+
+.slimScrollDiv, .slimScrollDiv > :first-child {
+    overflow: hidden;
+}
+
+.minified .slimScrollDiv,
+.minified .slimScrollDiv > :first-child {
+    overflow: visible !important;
+}
+
+.minified .slimScrollBar,
+.minified .slimScrollRail {
+    display: none;
+}
+
+.minified aside nav > ul > li > ul > li {
+    > a,
+    > ul > li > a {
+        padding-top:    7px;
+        padding-bottom: 7px;
+    }
+}
+
+
+.minified aside nav > ul > li > ul > li > ul > li a {
+    padding-top:    6px;
+    padding-bottom: 6px;
+}
+
+.minified aside nav ul ul ul {
+    ul li a {
+        padding-left: 45px;
+        ul li a {
+            padding-left: 62px;
+            ul li a {
+                padding-left: 82px;
+            }
+        }
+    }
+}
+
+.minified #sidebar-toggle .fa:before {
+    content:"\f0a9";
+}
+
+/* Active buttons are overriding the aside nav */
+.btn-group > .btn:hover,
+.btn-group-vertical > .btn:hover,
+.btn-group > .btn:focus,
+.btn-group-vertical > .btn:focus,
+.btn-group > .btn:active,
+.btn-group-vertical > .btn:active,
+.btn-group > .btn.active,
+.btn-group-vertical > .btn.active {
+    z-index: 0 !important;
 }
