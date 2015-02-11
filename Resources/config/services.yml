@@ -7,7 +7,7 @@ parameters:
     #presentation.breadcrumb.class:   Mesd\PresentationBundle\Twig\BreadcrumbExtension
     presentation.routeHelper.class:  Mesd\PresentationBundle\Twig\RouteHelperExtension
     presentation.icon.class:         Mesd\PresentationBundle\Twig\MesdPresentationIconExtension
-    presentation.menu.class:         Mesd\PresentationBundle\Twig\MenuExtension
+    #presentation.menu.class:         Mesd\PresentationBundle\Twig\MenuExtension
 
 services:
     presentation.twig.config_extension:
@@ -56,8 +56,8 @@ services:
         tags:
             - { name: twig.extension }
 
-    presentation.twig.menu_extension:
-        class: %presentation.menu.class%
-        arguments: [@service_container]
-        tags:
-            - { name: twig.extension }
+#    presentation.twig.menu_extension:
+#        class: %presentation.menu.class%
+#        arguments: [@service_container]
+#        tags:
+#            - { name: twig.extension }
