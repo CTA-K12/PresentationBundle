@@ -18,14 +18,14 @@
 {% endif %}
 
 <nav>
-    <ul class="nav">
+    {% block sidebarMenu %}
         {{ ulli.maker(menu) }}
         {% block sidebarToggle %}
-            <div id="sidebar-toggle" class="sidebar-nav-item">
+            <div id="sidebar-toggle" class="sidebar-item-toggle">
                 <span class="fa fa-chevron-circle-left"></span>
             </div>
         {% endblock sidebarToggle %}
-    </ul>
+    {% endblock sidebarMenu %}
 </nav>
 
 {% if 'dropdown' == type %}
@@ -47,19 +47,19 @@
 
 {% macro maker(list) %}
     {% import _self as ulli %}
-        {% for text, item in list %}
-            <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
-                <a href="{{ item.path is null ? '#' : item.path }}" title="{{ item.title is defined ? item.title : title }}">
-                    <span class="sidebar-item-icon fa {{ item.icon }}"></span>
-                    <span class="sidebar-item-text">
-                        {{ item.text is defined ? item.text : text }}
-                    </span>
-                </a>
-                {% if item.children is defined and 0 < item.children|length %}
-                    <ul class="nav">
+        <ul class="nav">
+            {% for text, item in list %}
+                <li{% if item.active is defined and item.active == true %} class="active"{% endif %}>
+                    <a href="{{ item.path is null ? '#' : item.path }}" title="{{ item.title is defined ? item.title : title }}">
+                        <span class="sidebar-item-icon fa {{ item.icon }}"></span>
+                        <span class="sidebar-item-label">
+                            {{ item.text is defined ? item.text : text }}
+                        </span>
+                    </a>
+                    {% if item.children is defined and 0 < item.children|length %}
                         {{ ulli.maker(item.children) }}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
 {% endmacro %}
