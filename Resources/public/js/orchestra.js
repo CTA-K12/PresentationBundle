@@ -167,3 +167,14 @@ $('#sidebar-toggle').click(function(e) {
     e.preventDefault();
 });
 
+
+// Bootstrap Javascript
+// ----------------------------------------------------------
+// Refer to the following links for explanation:
+// - http://getbootstrap.com/javascript/#callout-tooltip-groups
+// - https://github.com/twbs/bootstrap/pull/5768
+// The container `body` is not needed on `.btn` classed elements,
+// but it looks nice; prevents the tooltip from falling behind the sidebar.
+$('.btn-group [data-toggle="tooltip"], [data-toggle="tooltip"].btn').tooltip({
+    container: 'body'
+});

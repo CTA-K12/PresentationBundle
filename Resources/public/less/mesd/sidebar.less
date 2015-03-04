@@ -51,6 +51,7 @@ aside#sidebar {
                     }
                 }
                 &.active a {
+                //&:not(.open).current_ancestor a {
                     color:                   #ffffff;
                     background-color:        #428bca;
                     position:               relative;
@@ -83,7 +84,7 @@ aside#sidebar {
                     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
                     padding:                               3px 0;
                     &:hover {
-                        background-color:                  White;
+                        background-color:                #ffffff;
                         box-shadow:         inset 0 2px 2px rgba(0, 0, 0, 0.1);
                     }
                     > .sidebar-item-icon {
@@ -301,7 +302,8 @@ aside nav {
             overflow:   visible;
             width:         60px;
             padding:          0;
-            li {
+            li,
+            li.current_ancestor {
                 width:                     100%;
                 background-color: @gray-lighter;
                 height:                    36px;
