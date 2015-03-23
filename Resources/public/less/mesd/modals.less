@@ -156,9 +156,17 @@
 
 // Scale up the modal
 @media (max-width: @screen-sm-max) {
-  // Automatically set modal's width for larger viewports
-  .modal-dialog {
-    width: 100%;
-    margin: 0 auto;
-  }
+    // Automatically set modal's width for larger viewports
+    .modal-dialog {
+        width:    100%;
+        margin: 0 auto;
+    }
+    // Remove border radii on small screens
+    .modal-content {
+        border-radius: 0;
+    }
+    .modal-footer {
+        border-bottom-left-radius:  0;
+        border-bottom-right-radius: 0;
+    }
 }

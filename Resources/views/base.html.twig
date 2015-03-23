@@ -219,25 +219,25 @@
                                         <p class="h-card">
                                             <span>&copy; {{ "now"|date("Y") }}</span>
                                             <abbr class="p-name name" title="{{ mesd_presentation_org_name }}">{{ mesd_presentation_org_abbreviation }}</abbr>
-                                            <span class="p-adr adr">{{ mesd_presentation_org_address }}</span>
+                                            <span class="p-adr adr hidden-xs hidden-sm">{{ mesd_presentation_org_address }}</span>
                                         </p>
                                     {% endblock footerContentLeft %}
                                 </div>
                                 <div class="footer-center col-xs-1-6">
                                     {% block footerContentCenter %}
-                                        <p>version: {{ mesd_presentation_app_version }}</p>
+                                        <p><span class="hidden-xs hidden-sm">version: </span>{{ mesd_presentation_app_version }}</p>
                                     {% endblock footerContentCenter %}
                                 </div>
                                 <div class="footer-right col-xs-5-12">
                                     {% block footerContentRight %}
                                         <p>
-                                            <a href="#" title="about">About</a>
+                                            <a href="#" title="about">{{ 'about'|trans }}</a>
                                             <span class="divider">|</span>
-                                            <a href="#" title="terms">Terms</a>
+                                            <a href="#" title="terms">{{ 'terms'|trans }}</a>
                                             <span class="divider">|</span>
-                                            <a href="#" title="privacy">Privacy</a>
+                                            <a href="#" title="privacy">{{ 'privacy'|trans }}</a>
                                             <span class="divider">|</span>
-                                            <a href="#" title="security">Security</a>
+                                            <a href="#" title="security">{{ 'security'|trans }}</a>
                                         </p>
                                     {% endblock footerContentRight %}
                                 </div>
