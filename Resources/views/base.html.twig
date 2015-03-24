@@ -200,7 +200,7 @@
                                 {% endblock toolbarBottom %}
 
                             </section><!-- END content -->
-                            <!--<hr class="eop" />-->
+                            {#} <hr class="eop" /> {#}
                         {% endblock containerInner %}
 
                         {#} NOTE: This block is intended to hold hidden dialogs. {#}
@@ -253,6 +253,10 @@
                 {% block analytics %}
                     {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
                 {% endblock analytics %}
+
+                {#} NOTE: This block is intended to hold application and page specific scripts. {#}
+                {% block scripts %}
+                {% endblock scripts %}
             {% endblock body %}
         </body>
 

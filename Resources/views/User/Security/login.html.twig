@@ -51,7 +51,7 @@
                             <form action="{{ routeHelper(mesd_presentation_login_check_path) }}" method="post" role="form">
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                                 <div class="form-group">
-                                    <label for="username">Username</label>
+                                    <label for="username">{{ 'username.or.email'|trans }}</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="fa fa-user"></span></div>
                                         <input
@@ -63,6 +63,13 @@
                                             value="{{ last_username }}"
                                             {% if last_username is empty %}autofocus{% endif %}
                                             required
+                                            {% if 'dev' != app.environment %}
+                                                autocomplete="off"
+                                                oncopy="return false;"
+                                                oncut="return false;"
+                                                onpaste="return false;"
+                                                oncontextmenu="return false;"
+                                            {% endif %}
                                         />
                                     </div>
                                 </div>
@@ -78,6 +85,13 @@
                                             placeholder="Password"
                                             {% if last_username is not empty %}autofocus{% endif %}
                                             required
+                                            {% if 'dev' != app.environment %}
+                                                autocomplete="off"
+                                                oncopy="return false;"
+                                                oncut="return false;"
+                                                onpaste="return false;"
+                                                oncontextmenu="return false;"
+                                            {% endif %}
                                         />
                                     </div>
                                 </div>
