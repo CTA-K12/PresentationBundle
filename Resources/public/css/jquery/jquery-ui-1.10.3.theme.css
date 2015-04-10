@@ -234,6 +234,7 @@
 /* Component containers
 ----------------------------------*/
 
+/*
 .ui-widget {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
@@ -250,10 +251,11 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: inherit;
 }
-
+*/
 .ui-widget-content {
     border: 1px solid #aaaaaa;
-    background: #ffffff url("images/ui-bg_glass_75_ffffff_1x400.png") 50% 50% repeat-x;
+    background: #ffffff;
+    /*background: #ffffff url("images/ui-bg_glass_75_ffffff_1x400.png") 50% 50% repeat-x;*/
     color: #404040;
 }
 
@@ -411,6 +413,7 @@
 
 /* states and images */
 
+/*
 .ui-icon {
     width: 16px;
     height: 16px;
@@ -446,9 +449,10 @@
 .ui-state-error-text .ui-icon {
     background-image: url("images/ui-icons_f6cf3b_256x240.png");
 }
+*/
 
 /* positioning */
-
+/*
 .ui-icon-carat-1-n { background-position: 0 0; }
 .ui-icon-carat-1-ne { background-position: -16px 0; }
 .ui-icon-carat-1-e { background-position: -32px 0; }
@@ -637,7 +641,7 @@
 .ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
 .ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
 .ui-icon-grip-diagonal-se { background-position: -80px -224px; }
-
+*/
 /* Misc visuals
 ----------------------------------*/
 
@@ -684,7 +688,8 @@
 /* Overlays */
 
 .ui-widget-overlay {
-    background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+    background: #aaaaaa;
+    /*background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;*/
     opacity: .30;
     filter:Alpha(Opacity=30);
 }
@@ -692,7 +697,8 @@
 .ui-widget-shadow {
     margin: -8px 0 0 -8px;
     padding: 8px;
-    background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+    background: #aaaaaa;
+    /*background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;*/
     opacity: .30;
     filter:Alpha(Opacity=30);
     -webkit-border-radius: 8px; /* Safari 4 */
@@ -1357,15 +1363,11 @@ button.ui-button::-moz-focus-inner {
 
 .ui-dialog .ui-dialog-titlebar-close {
     position: absolute;
-    right: .3em;
-    top: 50%;
-    width: 19px;
-    margin: -20px 0 0 0;
-    padding: 1px;
-    height: 18px;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 13.5px;
+    right:     10px;
+    top:        8px;
+    width:     21px;
+    height:    20px;
+    font: normal normal normal 14px/1 FontAwesome;
     text-shadow: 0 1px 0 #ffffff;
     filter:alpha(opacity=25);
     -khtml-opacity: 0.25;
@@ -1387,7 +1389,6 @@ button.ui-button::-moz-focus-inner {
 
 .ui-dialog .ui-dialog-titlebar-close:hover,
 .ui-dialog .ui-dialog-titlebar-close:focus {
-    padding: 1px;
     filter:alpha(opacity=90);
     -moz-opacity: 0.90;
     opacity: 0.90;   
