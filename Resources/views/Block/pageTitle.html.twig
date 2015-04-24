@@ -1,0 +1,17 @@
+<h1 class="page-title">
+{%- block pageIcon -%}
+    {%- if pageIcon is defined %}
+        {%- if pageIcon is defined -%}
+            {{ pageIcon|raw }}
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock pageIcon -%}
+{%- if pageTitle is defined -%}
+    {{- pageTitle|raw -}}
+{%- endif -%}
+    {%- block pageSubtitle -%}
+        {%- if pageSubtitle is defined -%}
+            &nbsp;<small>{{- pageSubtitle|raw -}}</small>
+        {%- endif -%}
+    {%- endblock pageSubtitle -%}
+</h1>
