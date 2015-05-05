@@ -62,6 +62,10 @@ class MesdPresentationIconExtension extends Twig_Extension
                 break;
         }
 
+        if (!$iconMod) {
+            $iconMod = "<span class=\"fa fa-".$type." fa-sub fa-fw\"></span>";
+        }
+
         return $root.$iconMod;
     }
 
