@@ -69,9 +69,9 @@ class MesdPresentationIconExtension extends Twig_Extension
         return $root.$iconMod;
     }
 
-    public function iconFunction($icon)
+    public function iconFunction($icon, $class = '')
     {
-        return '<span class="fa fa-'.$icon.'"></span>';
+        return '<span class="fa fa-'.$icon.' '.$class.'"></span>';
     }
 
     public function getName()
