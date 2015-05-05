@@ -62,7 +62,11 @@ class MesdPresentationIconExtension extends Twig_Extension
                 break;
         }
 
-        return $root.$iconMod;
+        if (!$iconMod) {
+            $iconMod = "<span class=\"fa fa-".$type." fa-sub\"></span>";
+        }
+
+        return '<span class="fa-stacked-icon">'.$root.$iconMod.'</span>';
     }
 
     public function iconFunction($icon)

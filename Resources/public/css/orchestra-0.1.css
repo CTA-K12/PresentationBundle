@@ -284,11 +284,12 @@ input[type="radio"] {
     font-size: 0.35em !important;
     position: relative;
     bottom:-0.5em;
-    right:0.9em;
+    right:1em;
     color: inherit;
     background-color: #ffffff;
     border-width: 0.13em;
     border-style: solid;
     border-radius: 3px;
     padding: 1px 1px 0px 1px;
+    margin-right: -1em;
 }
