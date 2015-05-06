@@ -11,6 +11,10 @@ var delay = (function() {
     };
 })();
 
+var sidebar_size = 240;
+var small_screen = 991;
+
+var clicking = false;
 // this sidebar object
 var sidebar = new function() {
     // attributes; raw vlaues are currently
@@ -26,18 +30,18 @@ var sidebar = new function() {
     this.setCurrPos = function(pos) {
         this.currPos = pos;
 
-        $('.sidebarOuter').css('width', this.currPos);
-        $('.sidebar').css('width', this.currPos);
+        $('aside.sidebar').css('width', this.currPos);
         $('.container-inner').css('margin-left', this.currPos);
         $('.drag-bar').css('left', this.currPos);
+        // $('aside.sidebar > nav').css('width', this.currPos);
+        // $('aside.sidebar > nav > ul').css('width', this.currPos+15);
+        // $('.sidebarOuter').css('width', this.currPos);
     };
 
-    //returns 0 = min, -1 = between, 1 = max
     this.isMin = function() {
         return this.currPos <= this.min;
     };
 
-    //returns 0 = min, -1 = between, 1 = max
     this.isMax = function() {
         return this.currPos >= this.max;
     };
@@ -45,7 +49,7 @@ var sidebar = new function() {
     // TODO
     // what does this do? curtis
 
-    // Reponse to undated comment
+    // Response to undated comment
     // sets the javascript object value to determine
     // if the sidebar should always be moveable
     // DL Sep 26 2014
@@ -83,12 +87,12 @@ var sidebar = new function() {
     };
 
     this.showlabel = function() {
-        $('.sidebar').find('.hideable').removeClass('hide');
+        $('.sidebar').find('.sidebar-item-label').removeClass('hide');
         $.removeCookie('MesdPresentationHideSidebarLabels', {path: '/', expires: 30});
     };
 
     this.hidelabel = function() {
-        $('.sidebar').find('.hideable').addClass('hide');
+        $('.sidebar').find('.sidebar-item-label').addClass('hide');
         $.cookie('MesdPresentationHideSidebarLabels', 1, {path: '/', expires: 30});
     };
 
@@ -120,8 +124,8 @@ var sidebar = new function() {
 function sidebarToggle(){
     if ($('.sidebar').hasClass('sidebar-closed')) {
         sidebar.open();
-        sidebar.lastPos = 240;
-        sidebar.setCurrPos(240);
+        sidebar.lastPos = sidebar_size;
+        sidebar.setCurrPos(sidebar_size);
     } else {
         sidebar.close();
         sidebar.lastPos = 60;
@@ -131,94 +135,98 @@ function sidebarToggle(){
 
 
 
-sidebarDoubleClick =
+handleDoubleClick =
 function(e) {
-    e.preventDefault();
-
     var vp = $(window).viewportW();
-    // if viewport is larger than mdmin or always expandable
-    // allow moveable
-    if (vp >= mdMin || sidebar.alwaysExpandable()) {
+    if (vp > small_screen) {
+        e.preventDefault();
 
-        $('.sidebar').find('.hideable').toggleClass('hide');
-        if (e.pageX) {
-            var xcoord = e.pageX;
+        // if viewport is larger than mdmin or always expandable
+        // allow moveable
+        if (vp >= mdMin || sidebar.alwaysExpandable()) {
 
-            if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6) {
-                xcoord = sidebar.min;
-            } else if (sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6) {
-                xcoord = sidebar.max;
-            } else if (sidebar.max > e.pageX - 1) {
-                xcoord = sidebar.min;
+            $('.sidebar').find('.hideable').toggleClass('hide');
+            if (e.pageX) {
+                var xcoord = e.pageX;
+
+                if(sidebar.max >= e.pageX - 6 && sidebar.max <= e.pageX + 6) {
+                    xcoord = sidebar.min;
+                } else if (sidebar.min <= e.pageX + 6 && sidebar.min >= e.pageX - 6) {
+                    xcoord = sidebar.max;
+                } else if (sidebar.max > e.pageX - 1) {
+                    xcoord = sidebar.min;
+                } else {
+                    xcoord = sidebar.max;
+                }
+
+                sidebar.lastPos = xcoord;
+                sidebar.setCurrPos(xcoord);
+
+                if (sidebar.min == xcoord) {
+                    sidebar.close();
+                } else {
+                    sidebar.open();
+                }
+
             } else {
-                xcoord = sidebar.max;
+                sidebarToggle();
             }
-
-            sidebar.lastPos = xcoord;
-            sidebar.setCurrPos(xcoord);
-
-            if (sidebar.min == xcoord) {
-                sidebar.close();
-            } else {
-                sidebar.open();
-            }
-
-        } else {
-            sidebarToggle();
         }
+
+        sidebar.finishMove();
     }
-
-    sidebar.finishMove();
 };
 
-sidebarClick = function(e) {
-    e.preventDefault();
-    sidebarToggle();
-    sidebar.finishMove();
-};
-
-$('.drag-bar-handle').dblclick(sidebarDoubleClick);
-$('#rest-of-sidebar').click(sidebarClick);
-
-$('.drag-bar').mousedown(function(e){
-    e.preventDefault();
-    // get the viewport width
+sidebarDoubleClick = function(e) {
     var vp = $(window).viewportW();
+    if (vp > small_screen) {
+        e.preventDefault();
+        sidebarToggle();
+        sidebar.finishMove();
+    }
+};
 
-    // if viewport is larger than mdmin or always expandable
-    // allow moveable
-    if (vp >= mdMin || sidebar.alwaysExpandable()) {
-        $(document).mousemove(function(e) {
-            var xcoord = e.pageX - 1;
-            if (0 >= e.pageX - 1) {
-                xcoord = 0;
-            } else if (vp - 2 <= e.pageX) {
-                xcoord = vp - 2;
+$('.drag-bar-handle').dblclick(handleDoubleClick);
+$('#rest-of-sidebar').dblclick(sidebarDoubleClick);
+// $('#rest-of-sidebar').click(sidebarClick);
+
+$(document).mousemove(function(e) {
+    var vp = $(window).viewportW();
+    if (clicking && vp > small_screen) {
+        if (e.pageX < sidebar_size) {
+            if (vp >= mdMin || sidebar.alwaysExpandable()) {
+                var xcoord = e.pageX - 1;
+                if (0 >= e.pageX - 1) {
+                    xcoord = 0;
+                } else if (vp - 2 <= e.pageX) {
+                    xcoord = vp - 2;
+                } else {
+                    xccord = e.pageX - 1;
+                }
+                if (xcoord < sidebar.min) {
+                    xcoord = sidebar.min;
+                }
+                sidebar.lastPos = xcoord;
+                sidebar.setCurrPos(xcoord);
+                sidebar.finishMove();
+            }
+            if (vp < mdMin) {
+                sidebar.lastPos = sidebar.currPos;
             } else {
-                xccord = e.pageX - 1;
+                // do nothing
             }
-            if (xcoord < sidebar.min) {
-                xcoord = sidebar.min;
-            }
-            sidebar.lastPos = xcoord;
-            sidebar.setCurrPos(xcoord);
-            sidebar.finishMove();
-        });
-    } else {
-        // do nothing
+        }
     }
 });
 
-$(document).mouseup(function(e){
-    // get window width
-    var vp = $(window).viewportW();
+$('.drag-bar').mousedown(function(e){
+    e.preventDefault();
+    clicking = true;
+});
 
-    if (vp < mdMin) {
-        sidebar.lastPos = sidebar.currPos;
-    } else {
-        // do nothing
-    }
-    $(document).unbind('mousemove');
+$(document).mouseup(function(e){
+    e.preventDefault();
+    clicking = false;
 });
 
 $(window).resize(function(){
@@ -238,7 +246,7 @@ $(window).resize(function(){
             if (sidebar.isMin()) {
                 // do nothing
             } else if (sidebar.isMax()) {
-                sidebar.lastPos = 240;
+                sidebar.lastPos = sidebar_size;
             } else {
                 sidebar.lastPos = sidebar.currPos;
             }
@@ -342,9 +350,9 @@ $(document).ready(function() {
 
     // set cookies to open if zero or greater
     if ($.cookie('MesdPresentationSidebarSize') <= 0) {
-        $.cookie('MesdPresentationSidebarSize', 240, {path: '/', expires: 30 });
+        $.cookie('MesdPresentationSidebarSize', sidebar_size, {path: '/', expires: 30 });
         $.removeCookie('MesdPresentationHideSidebarLabels', {path: '/'});
-        sidebar.setCurrPos(240);
+        sidebar.setCurrPos(sidebar_size);
         sidebar.finishMove();
         sidebar.open();
     } else {
