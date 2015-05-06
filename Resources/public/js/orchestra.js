@@ -33,26 +33,14 @@ var sidebar = new function() {
 
         $('aside.sidebar').css({
             width            : this.currPos,
-            WebkitTransition : animation,
-            MozTransition    : animation,
-            MsTransition     : animation,
-            OTransition      : animation,
             transition       : animation
         });
         $('.container-inner').css({
-            'margin-left'    : this.currPos,
-            WebkitTransition : animation,
-            MozTransition    : animation,
-            MsTransition     : animation,
-            OTransition      : animation,
+            marginLeft       : this.currPos,
             transition       : animation
         });
         $('.drag-bar').css({
             left             : this.currPos,
-            WebkitTransition : animation,
-            MozTransition    : animation,
-            MsTransition     : animation,
-            OTransition      : animation,
             transition       : animation
         });
         // $('aside.sidebar > nav').css('width', this.currPos);
