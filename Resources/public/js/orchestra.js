@@ -29,10 +29,32 @@ var sidebar = new function() {
     // sets current position of sidebar to pos
     this.setCurrPos = function(pos) {
         this.currPos = pos;
+        animation = 'opacity 0.01s ease-in-out';
 
-        $('aside.sidebar').css('width', this.currPos);
-        $('.container-inner').css('margin-left', this.currPos);
-        $('.drag-bar').css('left', this.currPos);
+        $('aside.sidebar').css({
+            width            : this.currPos,
+            WebkitTransition : animation,
+            MozTransition    : animation,
+            MsTransition     : animation,
+            OTransition      : animation,
+            transition       : animation
+        });
+        $('.container-inner').css({
+            'margin-left'    : this.currPos,
+            WebkitTransition : animation,
+            MozTransition    : animation,
+            MsTransition     : animation,
+            OTransition      : animation,
+            transition       : animation
+        });
+        $('.drag-bar').css({
+            left             : this.currPos,
+            WebkitTransition : animation,
+            MozTransition    : animation,
+            MsTransition     : animation,
+            OTransition      : animation,
+            transition       : animation
+        });
         // $('aside.sidebar > nav').css('width', this.currPos);
         // $('aside.sidebar > nav > ul').css('width', this.currPos+15);
         // $('.sidebarOuter').css('width', this.currPos);
