@@ -285,7 +285,7 @@ input[type="radio"] {
     position: relative;
     bottom:-0.5em;
     right:1em;
-    color: inherit;
+    color: #428bca;
     background-color: #ffffff;
     border-width: 0.13em;
     border-style: solid;
