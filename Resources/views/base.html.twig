@@ -1,141 +1,146 @@
 <!DOCTYPE html>
-    <html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
-        <head>
-            {% block head %}
+<html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
+    <head>
+        {% block head %}
 
-                {% block meta %}
-                    {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
-                {% endblock meta %}
+            {% block meta %}
+                {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
+            {% endblock meta %}
 
-                {%- block title -%}
-                    {% include 'MesdPresentationBundle:Block:title.html.twig' %}
-                {%- endblock title -%}
+            {%- block title -%}
+                {% include 'MesdPresentationBundle:Block:title.html.twig' %}
+            {%- endblock title -%}
 
-                {% block stylesheets %}
-                    {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
-                {% endblock stylesheets %}
+            {% block stylesheets %}
+                {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
+            {% endblock stylesheets %}
 
-                {% block icons %}
-                    {% include 'MesdPresentationBundle:Block:icons.html.twig' %}
-                {% endblock icons %}
+            {% block icons %}
+                {% include 'MesdPresentationBundle:Block:icons.html.twig' %}
+            {% endblock icons %}
 
-                {% block sitemap %}
-                    {% include 'MesdPresentationBundle:Block:sitemap.html.twig' %}
-                {% endblock sitemap %}
+            {% block sitemap %}
+                {% include 'MesdPresentationBundle:Block:sitemap.html.twig' %}
+            {% endblock sitemap %}
 
-                {% block shiv %}
-                    <script src="{{ asset('bundles/mesdpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
-                {% endblock shiv %}
+            {% block shiv %}
+                <script src="{{ asset('bundles/mesdpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
+            {% endblock shiv %}
 
-            {% endblock head %}
-        </head>
+        {% endblock head %}
+    </head>
 
-        <body>
-            {% block body %}
+    <body>
+        {% block body %}
 
-                {% block header %}
-                    <header id="header">
-                        {% block navbar %}
-                            <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
-                                <div class="container-fluid">
-                                {% block navbarContent %}
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                        {% block navbarContentLogo %}
-                                            <a class="navbar-brand" href="#">
-                                                <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
-                                            </a>
-                                        {% endblock navbarContentLogo %}
-                                    </div>
-
-                                    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
-                                        {% block navbarContentLeft %}
-                                            <ul class="nav navbar-nav">
-                                                <li><a href="#">Demo1</a></li>
-                                                <li><a href="#">Demo2</a></li>
-                                                <li><a href="#">Demo3</a></li>
-                                            </ul>
-                                        {% endblock navbarContentLeft %}
-                                        <div class="navbar-right">
-                                            {% block navbarContentRight %}
-                                                {% block navbarContentWidgets %}
-                                                    <form id="search" class="navbar-form navbar-left navbar-search">
-                                                        <input type="text" class="form-control search-input" placeholder="Search">
-                                                    </form>
-                                                {% endblock navbarContentWidgets %}
-                                                {% block userMenu %}
-                                                    {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
-                                                {% endblock userMenu %}
-                                            {% endblock navbarContentRight %}
-                                        </div>
-                                    </div><!-- END nav-collapse -->
-                                {% endblock navbarContent %}
+            {% block header %}
+                <header id="header">
+                    {% block navbar %}
+                        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                            <div class="container-fluid">
+                            {% block navbarContent %}
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    {% block navbarContentLogo %}
+                                        <a class="navbar-brand" href="#">
+                                            <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
+                                        </a>
+                                    {% endblock navbarContentLogo %}
                                 </div>
-                            </nav><!-- END nav, navbar -->
-                        {% endblock navbar %}
-                    </header>
-                {% endblock header %}
 
-                {% block containerOuter %}
-                    <div id="container-outer" class="container-outer wrapper">
-                        {% block sidebarOuter %}
-                            {# conditional added Aug 05 2014 by DL #}
-                            {# Probably a better blocking strategy #}
-                            {# to allow overridding just the inner #}
-                            {# is appropriate will wait for CH     #}
-                            {# resolution                          #}
-                            <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}">
-                                {% block sidebarInner %}
-                                    {{ render(controller('MesdPresentationBundle:Default:sidebar', {
-                                        'route': app.request.get('_route'),
-                                        'options': { 'type': '' },
-                                        'menu': {
-                                            'Fluid Grid': {
-                                                'text':   'Fluid Grid',
-                                                'path':   '#fluidGridSystem',
-                                                'title':  'fluid grid',
-                                                'icon':   'fa fa-desktop',
-                                                'active': true
-                                            },
-                                            'Responsive': {
-                                                'text': 'Responsive',
-                                                'path': '#responsive',
-                                                'title': 'responsive',
-                                                'icon': 'fa fa-mobile-phone'
-                                            },
-                                            'Typography': {
-                                                'text': 'Typography',
-                                                'path': '#typography',
-                                                'title': 'typography',
-                                                'icon': 'fa fa-font'
-                                            },
-                                            'Table': {
-                                                'text': 'Table',
-                                                'path': '#tables',
-                                                'title': 'table',
-                                                'icon': 'fa fa-table'
-                                            },
-                                            'Form': {
-                                                'text': 'Form',
-                                                'path': '#forms',
-                                                'title': 'form',
-                                                'icon': 'fa fa-list-alt'
-                                            }
-                                        }}))
-                                    }}
-                                {% endblock sidebarInner %}
-                            </aside>
-                        {% endblock sidebarOuter %}
-                        {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid">
+                                <div class="collapse navbar-collapse main-collapse" id="navbar-main">
+                                    {% block navbarContentLeft %}
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="#">Demo1</a></li>
+                                            <li><a href="#">Demo2</a></li>
+                                            <li><a href="#">Demo3</a></li>
+                                        </ul>
+                                    {% endblock navbarContentLeft %}
+                                    <div class="navbar-right">
+                                        {% block navbarContentRight %}
+                                            {% block navbarContentWidgets %}
+                                                <form id="search" class="navbar-form navbar-left navbar-search">
+                                                    <input type="text" class="form-control search-input" placeholder="Search">
+                                                </form>
+                                            {% endblock navbarContentWidgets %}
+                                            {% block userMenu %}
+                                                {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
+                                            {% endblock userMenu %}
+                                        {% endblock navbarContentRight %}
+                                    </div>
+                                </div><!-- END nav-collapse -->
+                            {% endblock navbarContent %}
+                            </div>
+                        </nav><!-- END nav, navbar -->
+                    {% endblock navbar %}
+                </header>
+            {% endblock header %}
 
+            {% block containerOuter %}
+                <div id="container-outer" class="container-outer wrapper">
+                    {#} NOTE: This block is intended to hold hidden alerts. {#}
+                    {% block containerAlerts %}
+                    {% endblock containerAlerts %}
+
+                    {% block sidebarOuter %}
+                        {# conditional added Aug 05 2014 by DL #}
+                        {# Probably a better blocking strategy #}
+                        {# to allow overridding just the inner #}
+                        {# is appropriate will wait for CH     #}
+                        {# resolution                          #}
+                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}">
+                            {% block sidebarInner %}
+                                {{ render(controller('MesdPresentationBundle:Default:sidebar', {
+                                    'route': app.request.get('_route'),
+                                    'options': { 'type': '' },
+                                    'menu': {
+                                        'Fluid Grid': {
+                                            'text':   'Fluid Grid',
+                                            'path':   '#fluidGridSystem',
+                                            'title':  'fluid grid',
+                                            'icon':   'fa fa-desktop',
+                                            'active': true
+                                        },
+                                        'Responsive': {
+                                            'text': 'Responsive',
+                                            'path': '#responsive',
+                                            'title': 'responsive',
+                                            'icon': 'fa fa-mobile-phone'
+                                        },
+                                        'Typography': {
+                                            'text': 'Typography',
+                                            'path': '#typography',
+                                            'title': 'typography',
+                                            'icon': 'fa fa-font'
+                                        },
+                                        'Table': {
+                                            'text': 'Table',
+                                            'path': '#tables',
+                                            'title': 'table',
+                                            'icon': 'fa fa-table'
+                                        },
+                                        'Form': {
+                                            'text': 'Form',
+                                            'path': '#forms',
+                                            'title': 'form',
+                                            'icon': 'fa fa-list-alt'
+                                        }
+                                    }}))
+                                }}
+                            {% endblock sidebarInner %}
+                        </aside>
+                    {% endblock sidebarOuter %}
+                    {% block containerInner %}
+                        <section id="container-inner" class="container-inner container-fluid">
+
+                            <div id="toolbar-top" class="toolbar section section-white">
                                 {% block toolbarTop %}
-                                    <div id="toolbar-top" class="toolbar section section-white">
+                                    <div class="row">
                                         {% block toolbarTopLeft %}
                                             {% block breadcrumbWidget %}
                                                 <ul class="breadcrumb">
@@ -147,49 +152,51 @@
                                         {% endblock toolbarTopRight %}
                                     </div>
                                 {% endblock toolbarTop %}
+                            </div>
 
-                                {% block flashMessage %}
-                                    {% include 'MesdPresentationBundle:Block:flashMessage.html.twig' %}
-                                {% endblock flashMessage %}
+                            {% block flashMessage %}
+                                {% include 'MesdPresentationBundle:Block:flashMessage.html.twig' %}
+                            {% endblock flashMessage %}
 
-                                {% block content %}
-                                    <div id="content" class="content section section-white">
-                                        <div class="section-header">
-                                            {% block contentHeader %}
-                                                {% block pageTitle %}
-                                                    <h1 class="page-title">
-                                                    {%- block pageIcon -%}
-                                                        {%- if pageIcon is defined %}
-                                                            {%- if pageIcon is defined -%}
-                                                                {{ pageIcon|raw }}
-                                                            {%- endif -%}
+                            {% block content %}
+                                <div id="content" class="content section section-white">
+                                    <div class="section-header">
+                                        {% block contentHeader %}
+                                            {% block pageTitle %}
+                                                <h1 class="page-title">
+                                                {%- block pageIcon -%}
+                                                    {%- if pageIcon is defined %}
+                                                        {%- if pageIcon is defined -%}
+                                                            {{ pageIcon|raw }}&nbsp;
                                                         {%- endif -%}
-                                                    {%- endblock pageIcon -%}
-                                                    {%- if pageTitle is defined -%}
-                                                        {{- pageTitle|raw -}}
                                                     {%- endif -%}
-                                                        {%- block pageSubtitle -%}
-                                                            {%- if pageSubtitle is defined -%}
-                                                                &nbsp;<small>{{- pageSubtitle|raw -}}</small>
-                                                            {%- endif -%}
-                                                        {%- endblock pageSubtitle -%}
-                                                    </h1>
-                                                {% endblock pageTitle %}
-                                            {% endblock contentHeader %}
-                                        </div>
-                                        <div class="section-body">
-                                            {% block contentBody %}
-                                            {% endblock contentBody %}
-                                        </div>
-                                        <div class="section-footer">
-                                            {% block contentFooter %}
-                                            {% endblock contentFooter %}
-                                        </div>
-                                    </div><!-- END content -->
-                                {% endblock content %}
+                                                {%- endblock pageIcon -%}
+                                                {%- if pageTitle is defined -%}
+                                                    {{- pageTitle|raw -}}
+                                                {%- endif -%}
+                                                    {%- block pageSubtitle -%}
+                                                        {%- if pageSubtitle is defined -%}
+                                                            &nbsp;<small>{{- pageSubtitle|raw -}}</small>
+                                                        {%- endif -%}
+                                                    {%- endblock pageSubtitle -%}
+                                                </h1>
+                                            {% endblock pageTitle %}
+                                        {% endblock contentHeader %}
+                                    </div>
+                                    <div class="section-body">
+                                        {% block contentBody %}
+                                        {% endblock contentBody %}
+                                    </div>
+                                    <div class="section-footer">
+                                        {% block contentFooter %}
+                                        {% endblock contentFooter %}
+                                    </div>
+                                </div><!-- END content -->
+                            {% endblock content %}
 
-                                {% block toolbarBottom %}
-                                    <div id="toolbar-bottom" class="toolbar section section-white">
+                            {% block toolbarBottom %}
+                                <div id="toolbar-bottom" class="toolbar section section-white">
+                                    <div class="row">
                                         {% block toolbarBottomLeft %}
                                         {% endblock toolbarBottomLeft %}
                                         {% block toolbarBottomCenter %}
@@ -197,67 +204,67 @@
                                         {% block toolbarBottomRight %}
                                         {% endblock toolbarBottomRight %}
                                     </div>
-                                {% endblock toolbarBottom %}
-
-                            </section><!-- END content -->
-                            {#} <hr class="eop" /> {#}
-                        {% endblock containerInner %}
-
-                        {#} NOTE: This block is intended to hold hidden dialogs. {#}
-                        {% block containerDialogs %}
-                        {% endblock containerDialogs %}
-
-                    </div><!-- END container-outer -->
-                {% endblock containerOuter %}
-
-                {% block footer %}
-                    <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
-                        {% block footerContent %}
-                            <div class="row">
-                                <div class="footer-left col-xs-5-12">
-                                    {% block footerContentLeft %}
-                                        <p class="h-card">
-                                            <span>&copy; {{ "now"|date("Y") }}</span>
-                                            <abbr class="p-name name" title="{{ mesd_presentation_org_name }}">{{ mesd_presentation_org_abbreviation }}</abbr>
-                                            <span class="p-adr adr hidden-xs hidden-sm">{{ mesd_presentation_org_address }}</span>
-                                        </p>
-                                    {% endblock footerContentLeft %}
                                 </div>
-                                <div class="footer-center col-xs-1-6">
-                                    {% block footerContentCenter %}
-                                        <p><span class="hidden-xs hidden-sm">version: </span>{{ mesd_presentation_app_version }}</p>
-                                    {% endblock footerContentCenter %}
-                                </div>
-                                <div class="footer-right col-xs-5-12">
-                                    {% block footerContentRight %}
-                                        <p>
-                                            <a href="#" title="about">{{ 'about'|trans }}</a>
-                                            <span class="divider">|</span>
-                                            <a href="#" title="terms">{{ 'terms'|trans }}</a>
-                                            <span class="divider">|</span>
-                                            <a href="#" title="privacy">{{ 'privacy'|trans }}</a>
-                                            <span class="divider">|</span>
-                                            <a href="#" title="security">{{ 'security'|trans }}</a>
-                                        </p>
-                                    {% endblock footerContentRight %}
-                                </div>
-                            </div><!-- END row -->
-                        {% endblock footerContent %}
-                    </footer><!-- END footer, navbar -->
-                {% endblock footer %}
+                            {% endblock toolbarBottom %}
 
-                {% block javascripts %}
-                    {% include 'MesdPresentationBundle:Block:javascripts.html.twig' %}
-                {% endblock javascripts %}
+                        </section><!-- END content -->
+                        {#} <hr class="eop" /> {#}
+                    {% endblock containerInner %}
 
-                {% block analytics %}
-                    {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
-                {% endblock analytics %}
+                    {#} NOTE: This block is intended to hold hidden dialogs. {#}
+                    {% block containerDialogs %}
+                    {% endblock containerDialogs %}
 
-                {#} NOTE: This block is intended to hold application and page specific scripts. {#}
-                {% block scripts %}
-                {% endblock scripts %}
-            {% endblock body %}
-        </body>
+                </div><!-- END container-outer -->
+            {% endblock containerOuter %}
 
-    </html>
+            {% block footer %}
+                <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
+                    {% block footerContent %}
+                        <div class="row">
+                            <div class="footer-left col-xs-5-12">
+                                {% block footerContentLeft %}
+                                    <p class="h-card">
+                                        <span>&copy; {{ "now"|date("Y") }}</span>
+                                        <abbr class="p-name name" title="{{ mesd_presentation_org_name }}">{{ mesd_presentation_org_abbreviation }}</abbr>
+                                        <span class="p-adr adr hidden-xs hidden-sm">{{ mesd_presentation_org_address }}</span>
+                                    </p>
+                                {% endblock footerContentLeft %}
+                            </div>
+                            <div class="footer-center col-xs-1-6">
+                                {% block footerContentCenter %}
+                                    <p><span class="hidden-xs hidden-sm">version: </span>{{ mesd_presentation_app_version }}</p>
+                                {% endblock footerContentCenter %}
+                            </div>
+                            <div class="footer-right col-xs-5-12">
+                                {% block footerContentRight %}
+                                    <p>
+                                        <a href="#" title="about">{{ 'about'|trans }}</a>
+                                        <span class="divider">|</span>
+                                        <a href="#" title="terms">{{ 'terms'|trans }}</a>
+                                        <span class="divider">|</span>
+                                        <a href="#" title="privacy">{{ 'privacy'|trans }}</a>
+                                        <span class="divider">|</span>
+                                        <a href="#" title="security">{{ 'security'|trans }}</a>
+                                    </p>
+                                {% endblock footerContentRight %}
+                            </div>
+                        </div><!-- END row -->
+                    {% endblock footerContent %}
+                </footer><!-- END footer, navbar -->
+            {% endblock footer %}
+
+            {% block javascripts %}
+                {% include 'MesdPresentationBundle:Block:javascripts.html.twig' %}
+            {% endblock javascripts %}
+
+            {% block analytics %}
+                {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
+            {% endblock analytics %}
+
+            {#} NOTE: This block is intended to hold application and page specific scripts. {#}
+            {% block scripts %}
+            {% endblock scripts %}
+        {% endblock body %}
+    </body>
+</html>
