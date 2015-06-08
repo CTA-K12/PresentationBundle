@@ -79,7 +79,7 @@
                             {# to allow overridding just the inner #}
                             {# is appropriate will wait for CH     #}
                             {# resolution                          #}
-                        <aside id="sidebar" closed="{{app.request.cookies.get('MesdPresentationSidebarClosed')}}" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %} {% if app.request.cookies.get('MesdPresentationSidebarClosed')%}sidebar-closed{% else %}sidebar-open{% endif %}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
+                        <aside id="sidebar" closed="{{app.request.cookies.get('MesdPresentationSidebarClosed')}}" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %} {% if app.request.cookies.get('MesdPresentationSidebarClosed')%}sidebar-closed{% else %}sidebar-open{% endif %}" style="width: {{app.request.cookies.get('MesdPresentationSidebarSize') ?: 60 }}px;">
                             {% block sidebarInner %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
