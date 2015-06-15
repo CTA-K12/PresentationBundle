@@ -67,6 +67,9 @@ class MesdPresentationIconExtension extends Twig_Extension
 
     public function iconFunction($icon)
     {
+        if ( strpos($icon, 'fa-') !== false ) {
+            $icon = substr(stristr($icon, '-'), 1);
+        }
         return '<span class="fa fa-'.$icon.'"></span>';
     }
 
