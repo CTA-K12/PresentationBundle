@@ -1,0 +1,33 @@
+# mesd_presentation.en.yml
+# Engrish
+#
+# Examples
+# #############################
+# account:
+#     data:              Account Data
+# displaying.max.of.total.records:    Displaying %max% of %total% records
+# #############################
+already.logged.in:          Already logged in!
+%app%.login:                %app% Login
+%app%.password.reset:       %app% Password Reset
+back:                       Back
+check.email.to.confirm.registration: Check email to confirm registration.
+close:                      Close
+email:                      Email
+email.sent.to.%address%:    Email sent to %address%.
+error:                      Error!
+forgot.password:            Forgot Password?
+home:                       Home
+logged.in.as.%username%:    Logged in as %username%.
+login:                      Login
+logout:                     Logout
+new.password:               New Password
+new.password.confirm:       New Password Confirm
+password:                   Password
+password.already.requested: Password already requested!
+register:                   Register
+registration.confirmed.for.%username%: Registration confirmed for %username%.
+request:                    Request
+reset:                      Reset
+username:                   Username
+username.or.email:          Username or Email
