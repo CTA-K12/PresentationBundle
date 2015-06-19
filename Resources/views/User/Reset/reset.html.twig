@@ -1,4 +1,5 @@
 {% extends 'MesdPresentationBundle::splash.html.twig' %}
+{% trans_default_domain "mesd_presentation" %}
 
 {% block navbarContentLeft %}
 {% endblock navbarContentLeft %}
@@ -18,7 +19,10 @@
                         {% elseif pagetitle is defined %}
                             <h1 class="page-title">{{ pagetitle|raw }}</h1>
                         {% else %}
-                            <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Password Reset</h1>
+                            <h1>
+                                <span class="fa fa-lock"></span>&nbsp;
+                                {{ '%app%.password.reset'|trans({'%app%': mesd_presentation_app_name}) }}
+                            </h1>
                         {% endif %}
                     {% endblock subtitle %}
                 </div>

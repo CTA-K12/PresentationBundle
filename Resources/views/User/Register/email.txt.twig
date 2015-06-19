@@ -1,4 +1,5 @@
-{% trans_default_domain 'MesdUserBundle' %}
+{% trans_default_domain "mesd_presentation" %}
+
 {% block subject %}
 {% autoescape false %}
 {{ 'registration.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}

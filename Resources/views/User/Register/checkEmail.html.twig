@@ -1,7 +1,9 @@
 {% extends "MesdUserBundle::layout.html.twig" %}
-
-{% trans_default_domain 'MesdUserBundle' %}
+{% trans_default_domain "mesd_presentation" %}
 
 {% block mesd_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+    <p>
+        {{ 'email.sent.to.%address%'|trans({'%address%': user.email}) }}
+        {{ 'check.email.to.confirm.registration'|trans }}
+    </p>
 {% endblock mesd_user_content %}

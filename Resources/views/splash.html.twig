@@ -14,6 +14,9 @@
             {% endblock subtitle %}
         </div>
         <div class="section-body">
+            {% block flashMessage %}
+                {% include 'MesdPresentationBundle:Block:flashMessage.html.twig' %}
+            {% endblock flashMessage %}
             {% block sectionBody %}
                 <p>MESD Application</p>
             {% endblock sectionBody %}

@@ -1,4 +1,5 @@
 {% extends 'MesdPresentationBundle::splash.html.twig' %}
+{% trans_default_domain "mesd_presentation" %}
 
 {% block navbarContentLeft %}
 {% endblock navbarContentLeft %}
@@ -18,7 +19,10 @@
                         {% elseif pagetitle is defined %}
                             <h1 class="page-title">{{ pagetitle|raw }}</h1>
                         {% else %}
-                            <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Password Reset</h1>
+                            <h1>
+                                <span class="fa fa-lock"></span>&nbsp;
+                                {{ '%app%.password.reset'|trans({'%app%': mesd_presentation_app_name}) }}
+                            </h1>
                         {% endif %}
                     {% endblock subtitle %}
                 </div>
@@ -32,17 +36,15 @@
                                     <div class="alert alert-warning alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert">
                                             <span aria-hidden="true">&times;</span>
-                                            <span class="sr-only">Close</span>
+                                            <span class="sr-only">{{ 'close'|trans }}</span>
                                         </button>
                                         <span class="fa fa-exclamation-triangle"></span>&nbsp;
                                         <strong>{{ 'already.logged.in'|trans }}!</strong>
-                                        {{ 'logged.in.as.username'|trans({'%username%': app.user.username}) ~ '.' }}
+                                        {{ 'logged.in.as.%username%'|trans({'%username%': app.user.username}) ~ '.' }}
                                     </div>
                                 {% endif %}
                                 
-                                <p>
-                                    {{ 'resetting.check_email'|trans({'%email%': email}) }}
-                                </p>
+                                <p>{{ 'email.has.been.sent.to.%address%'|trans({'%address%': email}) }}</p>
 
                             {% endblock panelBody %}
                         </div>
@@ -53,14 +55,20 @@
                                 <div class="row">
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                         <div class="col-xs-5-12">
-                                            <a href="{{ path(mesd_presentation_home_path) }}" title="home" class="btn btn-default form-control" tabindex="3">
+                                            <a href="{{ path(mesd_presentation_home_path) }}" title="home" class="btn btn-default form-control" tabindex="1">
                                                 <span class="fa fa-home"></span>&nbsp;
                                                 {{ 'home'|trans }}
                                             </a>
                                         </div>
-                                    {% else %}
                                         <div class="col-xs-5-12">
-                                            <a href="{{ path(mesd_presentation_login_path) }}" title="login" class="btn btn-default form-control" tabindex="3">
+                                            <a href="{{ path(mesd_presentation_login_path) }}" title="login" class="btn btn-default form-control" tabindex="2">
+                                                <span class="fa fa-reply"></span>&nbsp;
+                                                {{ 'login'|trans }}
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-xs-1-1">
+                                            <a href="{{ path(mesd_presentation_login_path) }}" title="login" class="btn btn-default form-control" tabindex="1">
                                                 <span class="fa fa-reply"></span>&nbsp;
                                                 {{ 'login'|trans }}
                                             </a>
