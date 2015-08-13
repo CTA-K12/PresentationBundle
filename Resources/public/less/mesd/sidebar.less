@@ -7,6 +7,11 @@
 .sidebar-extra {
     width: @sidebar-base-width;
     flex: auto;
+    &:hover,
+    &:active,
+    &:focus {
+        cursor:        pointer;
+    }
 }
 
 aside.sidebar {
@@ -98,7 +103,7 @@ aside.sidebar {
     &:hover,
     &:active,
     &:focus {
-        cursor:        col-resize;
+        cursor:        pointer;
         background-color: #bbddff;
         -webkit-box-shadow: 0 0 12px 2px rgba(187,221,255,0.5);
         -moz-box-shadow:    0 0 12px 2px rgba(187,221,255,0.5);
