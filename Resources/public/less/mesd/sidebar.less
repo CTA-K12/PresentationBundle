@@ -4,8 +4,14 @@
 // This file is MESD specific styling.
 // It is not maintained by Bootstrap.
 
+.sidebar-extra {
+    width: @sidebar-base-width;
+    flex: auto;
+}
 
 aside.sidebar {
+    display: flex;
+    flex-direction: column;
     position:                absolute;
     height:                      100%;
     top:                          0px;
@@ -13,6 +19,7 @@ aside.sidebar {
     overflow-x:                hidden;
     overflow-y:                  auto;
     width: @sidebar-base-width;
+    float: left;
 
     &.sidebar-closed {
         width: @sidebar-base-closed-width;

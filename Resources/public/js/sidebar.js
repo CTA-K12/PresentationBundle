@@ -20,7 +20,7 @@ toggleSidebar = function() {
     $.cookie('sidebar-closed', (parseInt($.cookie('sidebar-closed'),10) ? 0 : 1) );
 }
 
-$('.drag-bar-handle').on('click', function(e) {
+$('.drag-bar-handle, .sidebar-extra').on('click', function(e) {
     e.preventDefault();
     toggleSidebar();
 });
