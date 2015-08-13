@@ -4,67 +4,120 @@
 // This file is MESD specific styling.
 // It is not maintained by Bootstrap.
 
-.sidebar {
+
+aside.sidebar {
     position:                absolute;
-    width: @sidebar-base-closed-width;
     height:                      100%;
     top:                          0px;
     bottom:                       0px;
     overflow-x:                hidden;
     overflow-y:                  auto;
-    background-color:   @gray-lighter;
-    .box-shadow(1px 1px 4px 0 rgba(0, 0, 0, 0.1));
-    .hideable {
-        display:           none;
-    }
-    .sidebar-dropdown {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-        a span {
-            display:     inline;
-            margin-left:    8px;
-        }
-        .navbar .btn {
-            margin: 10px;
+
+    &.sidebar-closed {
+        width: @sidebar-base-closed-width;
+        .nav {
+            .sidebar-label {
+                display: none;
+            }
         }
     }
+
+    &.sidebar-open {
+        width: @sidebar-base-width;
+    }
+
+    .navbar,
+    .navbar .nav-collapse,
+    .navbar .nav-collapse .nav,
     .nav {
-        width: 100%;
-    }
-    .nav > li:last-child > a,
-    .navbar > li:last-child > a,
-    .navbar .nav-collapse > li:last-child > a,
-    .navbar .nav-collapse .nav > li:last-child > a {
-        border-bottom: none;
-    }
-    .sidebar-inline {
-        ul {
-            margin-bottom: 0;
-            margin-left:   0;
-            display:   table;
-            width:      100%;
-            li {
-                padding:             0;
-                box-sizing: border-box;
-                display:    table-cell;
-                text-align:     center;
-                > a {
-                    padding:           5px;
-                    line-height:      40px;
-                    box-sizing: border-box;
-                    &:hover {
-                        box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.1);
-                    }
-                    &:last-child > a {
-                        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-                    }
+        margin-bottom: 0;
+        > li {
+            > a {
+                line-height:                            30px;
+                border-bottom:                1px solid #ccc;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                padding:                             5px 0 0;
+                &:hover {
+                    background-color:                  White;
+                    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow:    inset 0 2px 2px rgba(0, 0, 0, 0.1);
+                    box-shadow:         inset 0 2px 2px rgba(0, 0, 0, 0.1);
                 }
-                + li {
-                    border-left: 1px solid rgba(0,0,0,0.1);
+                > [class^="icon"],
+                  [class*=" icon"] {
+                    font-size:     20px;
+                    line-height:    4px;
+                    width:         40px;
+                    padding-left:   5px;
+                    text-align:  center;
                 }
+                > .pull-right {
+                    padding-right: 10px;
+                }
+            }
+            &:last-child {
+                border-bottom:                1px solid #ccc;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
             }
         }
     }
 }
+
+// .sidebar {
+//     width: @sidebar-base-closed-width;
+//     background-color:   @gray-lighter;
+//     .box-shadow(1px 1px 4px 0 rgba(0, 0, 0, 0.1));
+//     .hideable {
+//         display:           none;
+//     }
+//     .sidebar-dropdown {
+//         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+//         a span {
+//             display:     inline;
+//             margin-left:    8px;
+//         }
+//         .navbar .btn {
+//             margin: 10px;
+//         }
+//     }
+//     .nav {
+//         width: 100%;
+//     }
+//     .nav > li:last-child > a,
+//     .navbar > li:last-child > a,
+//     .navbar .nav-collapse > li:last-child > a,
+//     .navbar .nav-collapse .nav > li:last-child > a {
+//         border-bottom: none;
+//     }
+//     .sidebar-inline {
+//         ul {
+//             margin-bottom: 0;
+//             margin-left:   0;
+//             display:   table;
+//             width:      100%;
+//             li {
+//                 padding:             0;
+//                 box-sizing: border-box;
+//                 display:    table-cell;
+//                 text-align:     center;
+//                 > a {
+//                     padding:           5px;
+//                     line-height:      40px;
+//                     box-sizing: border-box;
+//                     &:hover {
+//                         box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.1);
+//                     }
+//                     &:last-child > a {
+//                         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+//                     }
+//                 }
+//                 + li {
+//                     border-left: 1px solid rgba(0,0,0,0.1);
+//                 }
+//             }
+//         }
+//     }
+// }
 
 .sidebar-inline,
 .sidebar-dropdown {
@@ -79,7 +132,7 @@
 
 .drag-bar {
     position:           fixed;
-    left:                60px;
+    left:                @sidebar-base-width;
     top:                 40px;
     bottom:              20px;
     width:                3px;
