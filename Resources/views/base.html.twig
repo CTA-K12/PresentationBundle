@@ -79,7 +79,7 @@
                             {# to allow overridding just the inner #}
                             {# is appropriate will wait for CH     #}
                             {# resolution                          #}
-                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %} {% if app.request.cookies.get('MesdPresentationSidebarClosed')%}sidebar-closed{% else %}sidebar-open{% endif %}">
+                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
                             {% block sidebarInner %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
@@ -116,7 +116,7 @@
                         </aside>
                         {% endblock sidebarOuter %}
                         {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid" style="margin-left: {{app.request.cookies.get('MesdPresentationSidebarSize') ?: 240 }}px;">
+                            <section id="container-inner" class="container-inner container-fluid{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
 
                                 {% block toolbarTop %}
                                     <div id="toolbar-top" class="toolbar section section-white">
