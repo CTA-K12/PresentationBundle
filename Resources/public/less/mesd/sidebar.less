@@ -132,21 +132,48 @@ aside.sidebar {
 /* mobile */
 @media (max-width: 767px) {
     .drag-bar {
-        left: 60px;
+        left: @sidebar-base-closed-width;
+    }
+    aside.sidebar {
+        width: @sidebar-base-closed-width;
+    }
+    .sidebar-label {
+        display: none;
+    }
+    .sidebar-extra {
+        width: @sidebar-base-closed-width;
     }
 }
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 991px) {
     .drag-bar {
-        left: 60px;
+        left: @sidebar-base-closed-width;
+    }
+    aside.sidebar {
+        width: @sidebar-base-closed-width;
+    }
+    .sidebar-label {
+        display: none;
+    }
+    .sidebar-extra {
+        width: @sidebar-base-closed-width;
     }
 }
 
 /* lo res monitor */
 @media (min-width: 992px) and (max-width: 1199px) {
     .drag-bar {
-        left: 60px;
+        left: @sidebar-base-closed-width;
+    }
+    aside.sidebar {
+        width: @sidebar-base-closed-width;
+    }
+    .sidebar-label {
+        display: none;
+    }
+    .sidebar-extra {
+        width: @sidebar-base-closed-width;
     }
 }
 
@@ -165,7 +192,7 @@ aside.sidebar {
 */
 
 
-@media (min-width: @screen-md-min) {
+@media (min-width: 1200px) {
 
     // Main content section, individually scrollable
     .container-inner {
