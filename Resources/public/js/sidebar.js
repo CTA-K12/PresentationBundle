@@ -17,7 +17,7 @@ toggleSidebar = function() {
     $('.container-inner').toggleClass('sidebar-closed');
 
     // toggling
-    $.cookie('sidebar-closed', (parseInt($.cookie('sidebar-closed'),10) ? 0 : 1) );
+    $.cookie('sidebar-closed', (parseInt($.cookie('sidebar-closed'),10) ? 0 : 1), {path: '/', expires: 30} );
 }
 
 $('.drag-bar-handle, .sidebar-extra').on('click', function(e) {
