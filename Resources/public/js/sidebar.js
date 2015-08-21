@@ -66,55 +66,6 @@ $(document).mouseup(function(e){
     $(document).unbind('mousemove');
 });
 
-$(window).resize(function(){
-    var vp = $(window).viewportW();
-
-    if (vp <= sidebar.currPos) {
-
-            // if size is smaller than minimum,
-            // resize sidebar to current size
-            sidebar.setCurrPos(vp);
-            sidebar.lastPos = vp;
-
-        } else if (vp < mdMin) {
-
-            // if tablet size or smaller, close sidebar
-            // and remember last position
-            if (sidebar.isMin()) {
-                // do nothing
-            } else if (sidebar.isMax()) {
-                sidebar.lastPos = 240;
-            } else {
-                sidebar.lastPos = sidebar.currPos;
-            }
-            sidebar.setCurrPos(sidebar.min);
-
-        // }   else if(1 == sidebar.isMin) {
-
-            // if we are at minimum already
-            // and size is tablet or greater,
-            // do nothing
-
-        // }   else if (1 == sidebar.isMax ) {
-
-            // if we are at maximum already
-            // and size is tablet or greater,
-            // do nothing
-
-        } else {
-            sidebar.setCurrPos(sidebar.lastPos);
-        }
-
-        if (vp >= mdMin || sidebar.alwaysExpandable()) {
-            sidebar.showHandle();
-        } else {
-            sidebar.hideHandle();
-        }
-
-        sidebar.finishMove();
-    });
-
-
 // when sidebar is scrolled, set a cookie of the scroll position
 $('#sidebar').scroll(function() {
     $.cookie('sscroll', $('#sidebar').scrollTop());
