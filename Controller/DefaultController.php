@@ -79,7 +79,7 @@ class DefaultController extends Controller
     }
 
     // Renders the sidebar, not accessible via routes, only by controller
-    public function sidebarAction($route, $menu, $options = array())
+    public function sidebarAction($menu, $options = array())
     {
         $type = 'default';
         if(isset($options['type'])){
@@ -97,7 +97,6 @@ class DefaultController extends Controller
             }
         }
         return $this->render('MesdPresentationBundle::sidebar.html.twig', array(
-            'route' => $route,
             'menu'  => $menu,
             'type'  => $type
         ));

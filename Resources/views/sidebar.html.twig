@@ -19,33 +19,22 @@
 
 <nav>
     {% block sidebarMenu %}
-        {{ ulli.maker(menu) }}
-        {% block sidebarToggle %}
-            <div id="sidebar-toggle" class="sidebar-item-toggle">
-                <span class="fa fa-chevron-circle-left"></span>
-            </div>
-        {% endblock sidebarToggle %}
+        {{ ulli.maker(menu, true) }}
     {% endblock sidebarMenu %}
 </nav>
+
+{% block sidebarToggle %}
+    <div id="sidebar-toggle" class="sidebar-item-toggle">
+        <span class="fa fa-chevron-circle-left"></span>
+    </div>
+{% endblock sidebarToggle %}
 
 {% if 'dropdown' == type %}
         </div><!-- END nav-collapse -->
     </div><!-- END navbar -->
 {% endif %}
 
-{#}
-{% block sidebarshim %}
-    <div class="sidebar-" style="left: {{app.request.cookies.get('MesdPresentationSidebarSize')}}px;">
-        <div class="drag-bar-handle">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div><!-- END drag-bar-handle -->
-    </div><!-- END drag-bar -->
-{% endblock sidebarshim %}
-{#}
-
-{% macro maker(list) %}
+{% macro maker(list, isRoot = false) %}
     {% import _self as ulli %}
         <ul class="nav">
             {% for text, item in list %}
@@ -60,6 +49,9 @@
                         {{ ulli.maker(item.children) }}
                     {% endif %}
                 </li>
+            {% if loop.last and isRoot %}
+                {{ block('sidebarToggle') }}
+            {% endif %}
             {% endfor %}
         </ul>
 {% endmacro %}
