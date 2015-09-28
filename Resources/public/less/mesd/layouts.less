@@ -30,11 +30,6 @@ body {
     }
 }
 
-hr.eop {
-    height:          3px !important;
-    margin: 0 -10px -6px !important;
-}
-
 footer {
     p {
         font-size:   65%;
@@ -81,19 +76,29 @@ footer {
 @-khtml-keyframes rainbowgoright  { .mixin-lefttoright; }
 @keyframes  rainbowgoright        { .mixin-lefttoright; }
 
-hr.eop {
-    background-image: -webkit-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-    background-image:    -moz-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-    background-image:      -o-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-    background-image:     -ms-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-    background-image:  -khtml-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-    background-image:         linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
-       -moz-animation: rainbowgoright 5.0s forwards linear infinite;
-    -webkit-animation: rainbowgoright 5.0s forwards linear infinite;
-         -o-animation: rainbowgoright 5.0s forwards linear infinite;
-     -khtml-animation: rainbowgoright 5.0s forwards linear infinite;
-        -ms-animation: rainbowgoright 5.0s forwards linear infinite;
-      -lynx-animation: rainbowgoright 5.0s forwards linear infinite;
-            animation: rainbowgoright 5.0s forwards linear infinite;
-      background-size: 50% auto !important;
+// hr.eop {
+//     background-image: -webkit-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//     background-image:    -moz-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//     background-image:      -o-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//     background-image:     -ms-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//     background-image:  -khtml-linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//     background-image:         linear-gradient( left, red, orange, yellow, green, blue, indigo, violet, red );
+//        -moz-animation: rainbowgoright 5.0s forwards linear infinite;
+//     -webkit-animation: rainbowgoright 5.0s forwards linear infinite;
+//          -o-animation: rainbowgoright 5.0s forwards linear infinite;
+//      -khtml-animation: rainbowgoright 5.0s forwards linear infinite;
+//         -ms-animation: rainbowgoright 5.0s forwards linear infinite;
+//       -lynx-animation: rainbowgoright 5.0s forwards linear infinite;
+//             animation: rainbowgoright 5.0s forwards linear infinite;
+//       background-size: 50% auto !important;
+// }
+
+@media (max-width: 1440px) {
+    .toolbar-bottom,
+    .container-inner,
+    .section
+    {
+        overflow: auto !important;
+        overflow-x: auto !important;
+    }
 }
