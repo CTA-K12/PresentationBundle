@@ -62,7 +62,7 @@ class MesdPresentationIconExtension extends Twig_Extension
                 break;
         }
 
-        return $root.$iconMod;
+        return '<span class="fa-sub-outer">'.$root.$iconMod.'</span>';
     }
 
     public function iconFunction($icon)
