@@ -1776,6 +1776,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
       selector = $this.attr('href')
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
     }
+console.log($this);
 
     if ($this.parent('li').hasClass('active')) return
 
@@ -1868,6 +1869,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   // ============
 
   $(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+    console.log(e);
     e.preventDefault()
     $(this).tab('show')
   })
