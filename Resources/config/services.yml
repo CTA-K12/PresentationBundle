@@ -11,7 +11,7 @@ parameters:
 services:
     presentation.twig.config_extension:
         class: %presentation.config.class%
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
 
@@ -38,19 +38,19 @@ services:
     presentation.twig.breadcrumb_extension:
         class: %presentation.breadcrumb.class%
         scope: container
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
 
     presentation.twig.routeHelper_extension:
         class: %presentation.routeHelper.class%
         scope: container
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
 
     presentation.twig.icon_extension:
         class: %presentation.icon.class%
-        arguments: [@service_container]
+        arguments: ["@service_container"]
         tags:
             - { name: twig.extension }
