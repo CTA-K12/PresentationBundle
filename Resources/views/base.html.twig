@@ -53,47 +53,36 @@
                                     {% endblock navbarContentLogo %}
                                 </div>
 
-                                <div class="collapse navbar-collapse main-collapse" id="navbar-main">
-                                    {% block navbarContentLeft %}
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="#">Demo1</a></li>
-                                            <li><a href="#">Demo2</a></li>
-                                            <li><a href="#">Demo3</a></li>
+                                    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
+                                        {% block navbarContentLeft %}
+                                            {% include 'MesdPresentationBundle::navLinks.html.twig' %}
+                                        {% endblock navbarContentLeft %}
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {% block navbarContentRight %}
+                                                {% block navbarContentWidgets %}
+                                                    {% include 'MesdPresentationBundle::searchBar.html.twig' %}
+                                                {% endblock navbarContentWidgets %}
+                                                {% block userMenu %}
+                                                    {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
+                                                {% endblock userMenu %}
+                                            {% endblock navbarContentRight %}
                                         </ul>
-                                    {% endblock navbarContentLeft %}
-                                    <div class="navbar-right">
-                                        {% block navbarContentRight %}
-                                            {% block navbarContentWidgets %}
-                                                <form id="search" class="navbar-form navbar-left navbar-search">
-                                                    <input type="text" class="form-control search-input" placeholder="Search">
-                                                </form>
-                                            {% endblock navbarContentWidgets %}
-                                            {% block userMenu %}
-                                                {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
-                                            {% endblock userMenu %}
-                                        {% endblock navbarContentRight %}
-                                    </div>
-                                </div><!-- END nav-collapse -->
-                            {% endblock navbarContent %}
-                            </div>
-                        </nav><!-- END nav, navbar -->
-                    {% endblock navbar %}
-                </header>
-            {% endblock header %}
+                                    </div><!-- END nav-collapse -->
+                                {% endblock navbarContent %}
+                            </nav><!-- END nav, navbar -->
+                        {% endblock navbar %}
+                    </header>
+                {% endblock header %}
 
-            {% block containerOuter %}
-                <div id="container-outer" class="container-outer wrapper">
-                    {#} NOTE: This block is intended to hold hidden alerts. {#}
-                    {% block containerAlerts %}
-                    {% endblock containerAlerts %}
-
-                    {% block sidebarOuter %}
-                        {# conditional added Aug 05 2014 by DL #}
-                        {# Probably a better blocking strategy #}
-                        {# to allow overridding just the inner #}
-                        {# is appropriate will wait for CH     #}
-                        {# resolution                          #}
-                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}">
+                {% block containerOuter %}
+                    <div id="container-outer" class="container-outer wrapper">
+                        {% block sidebarOuter %}
+                            {# conditional added Aug 05 2014 by DL #}
+                            {# Probably a better blocking strategy #}
+                            {# to allow overridding just the inner #}
+                            {# is appropriate will wait for CH     #}
+                            {# resolution                          #}
+                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
                             {% block sidebarInner %}
                                 {{ render(controller('MesdPresentationBundle:Default:sidebar', {
                                     'route': app.request.get('_route'),
@@ -133,10 +122,13 @@
                                     }}))
                                 }}
                             {% endblock sidebarInner %}
+
+                        <div class="sidebar-extra">
+                        </div>
                         </aside>
-                    {% endblock sidebarOuter %}
-                    {% block containerInner %}
-                        <section id="container-inner" class="container-inner container-fluid">
+                        {% endblock sidebarOuter %}
+                        {% block containerInner %}
+                            <section id="container-inner" class="container-inner container-fluid{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
 
                             <div id="toolbar-top" class="toolbar section section-white">
                                 {% block toolbarTop %}

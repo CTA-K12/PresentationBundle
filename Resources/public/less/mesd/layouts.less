@@ -25,6 +25,10 @@ body {
     padding: @padding-base-horizontal @padding-base-horizontal @padding-base-vertical;
     overflow-x:       hidden;
     overflow-y:         auto;
+    margin: 0 auto -2px @sidebar-base-closed-width;
+    &.sidebar-closed {
+        margin: 0 auto -2px @sidebar-base-closed-width;
+    }
 }
 
 hr.eop {
@@ -65,8 +69,6 @@ footer {
     }
 
 }
-
-
 
 /* mobile */
 @media (max-width: @screen-xs-max) {

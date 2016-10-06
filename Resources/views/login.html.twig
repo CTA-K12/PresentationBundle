@@ -7,17 +7,33 @@
 {% endblock navbarContentRight %}
 
 {% block containerOuter %}
-    <div id="container-outer" class="container-outer wrapper">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    {% block subtitle %}
-                        {% if pageTitle is defined %}
-                            <h1 class="page-title">{%if pageIcon is defined %}{{pageIcon|raw}} {% endif %}{{ pageTitle|raw }}</h1>
-                        {% elseif subtitle is defined %}
-                            <h1 class="page-title">{{ subtitle|raw }}</h1>
-                        {% else %}
-                            <h1><span class="fa fa-lock"></span>&nbsp; {{ mesd_presentation_app_name }} Login</h1>
+
+    <div class="section section-splash section-splash-medium">
+        <div class="section-header">
+            {% block subtitle %}
+                {% if subtitle is defined %}
+                    <h1 class="page-title">{{ subtitle }}</h1>
+                {% elseif pagetitle is defined %}
+                    <h1 class="page-title">{{ pagetitle }}</h1>
+                {% else %}
+                    <h1>{{ mesd_presentation_app_name }} Login</h1>
+                {% endif %}
+            {% endblock subtitle %}
+        </div>
+        <div class="section-body">
+            {% block panelBody %}
+                {% include 'MesdPresentationBundle:Block:flash.html.twig' %}
+                {% if error is defined %}
+                    {% if error %}
+                        <div>{{ error.message }}</div>
+                    {% endif %}
+                {% endif %}
+                <form action="{{ routeHelper(mesd_presentation_login_check_path) }}" method="post" role="form">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="form-group">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            Logged in as: {{  app.user.username }}
+                            <a href="{{ routeHelper(mesd_presentation_logout_path) }}">Logout</a>
                         {% endif %}
                     {% endblock subtitle %}
                 </div>

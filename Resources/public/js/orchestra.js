@@ -1,12 +1,19 @@
-/**
- * jQuery Viewport Plugin
- *
- * similar to a css media query
- * returns height and width of client window (aka viewport)
- * in pixels
- *
- * @return {Object} | {int} | {int}
- */
+// TODO
+// what is always-expandable
+// and if it is what i think it is, why isn't it controlled by css?
+
+// inhibits recurring callback for duration of quiet before executing
+var delay = (function() {
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
+// viewport jQuery plugin
+// like css media query, returns the height and width
+// of the user's window (aka viewport)
 (function ($) {
     var e = window;
     var a = 'inner';
@@ -44,16 +51,12 @@ $(function() {
     $('[data-toggle=tooltip]').tooltip();
 });
 
-// when sidebar is scrolled, set a cookie of the scroll position
-$('#sidebar').scroll(function() {
-    $.cookie('sscroll', $('#sidebar').scrollTop());
-});
-
 // when container-inner is scrolled, set a cookie of the scroll position
 $('#container-inner').scroll(function() {
     $.cookie('cscroll', $('#container-inner').scrollTop());
 });
 
+<<<<<<< HEAD
 
 // INITIALIZE LEFT NAV
 $(document).ready(function() {
@@ -86,7 +89,7 @@ $.fn.extend({
 
         // Extend our default options with those provided.
         var opts = $.extend(defaults, options);
-        
+
         //Assign current element to variable, in this case is UL element
         var $this = $(this);
 
