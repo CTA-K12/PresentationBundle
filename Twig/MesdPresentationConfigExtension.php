@@ -2,11 +2,10 @@
 
 namespace Mesd\PresentationBundle\Twig;
 
-use Twig_Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig_Extension;
 
-
-class MesdPresentationConfigExtension extends Twig_Extension
+class MesdPresentationConfigExtension extends Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     protected $container;
 
@@ -19,11 +18,11 @@ class MesdPresentationConfigExtension extends Twig_Extension
     {
         // Make MesdPresentationBundle config parameters into twig globals
         $keys = preg_grep(
-                    '/^mesd_presentation/',
-                    array_keys($this->container->getParameterBag()->all())
-                );
+            '/^mesd_presentation/',
+            array_keys($this->container->getParameterBag()->all())
+        );
 
-        foreach ( $keys as $k => $v ) {
+        foreach ($keys as $k => $v) {
             $params[str_replace('.', '_', $v)] = $this->container->getParameter($v);
         }
 
@@ -34,5 +33,4 @@ class MesdPresentationConfigExtension extends Twig_Extension
     {
         return 'mesd_presentation_config_extension';
     }
-
 }
