@@ -1,0 +1,76 @@
+{% use "bootstrap_3_layout.html.twig" %}
+
+{# form_errors.html.twig #}
+{#}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% if compound %}
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+{#}
+
+{#}
+This form error block might need to accomadate compound errors
+{#}
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    {% if form.parent %}<span class="help-block">{% else %}<div class="alert alert-danger">{% endif %}
+    <ul class="list-unstyled">
+        {%- for error in errors -%}
+            <li><span class="fa fa-exclamation-sign"></span> {{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {% if form.parent %}</span>{% else %}</div>{% endif %}
+    {%- endif %}
+{%- endblock form_errors %}
+
+{% block form_label %}
+    {{ parent() }}
+
+    {% if required %}
+        <strong class="required text-danger" title="This field is required">*</strong>
+    {% endif %}
+{% endblock %}
+
+{% block form_widget_simple %}
+    {{ parent() }}
+
+    {% if help is defined %}
+        <span class="help-block">{{ help }}</span>
+    {% endif %}
+{% endblock %}
+
+{%- block button_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    {% if icon is not defined -%}
+        {% set icon = null %}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        {% if icon is not null %}<span class="fa fa-{{ icon }}"></span>&nbsp; {% endif %}
+        {% if label_raw is defined and label_raw is not empty and label_raw == true %}{{ label|raw }}{% else %}{% if translation_domain is same as(false) %}{{ label }}{% else %}{{ label|trans({}, translation_domain) }}{% endif %}{% endif %}
+    </button>
+{%- endblock button_widget -%}

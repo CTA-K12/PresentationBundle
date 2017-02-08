@@ -1,7 +1,7 @@
-MesdPresentationBundle_ui:
-    resource: "@MesdPresentationBundle/Resources/config/routing/default.yml"
-    prefix:   /ui
+mesd_presentation_homepage:
+    path:     /
+    defaults: { _controller: MesdPresentationBundle:Default:index }
 
-MesdPresentationBundle_docs:
-    resource: "@MesdPresentationBundle/Resources/config/routing/docs.yml"
-    prefix:   /docs
+mesd_presentation_heartbeat:
+    path:     /heartbeat
+    defaults: { _controller: MesdPresentationBundle:Default:heartbeat }

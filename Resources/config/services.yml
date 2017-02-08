@@ -1,62 +1,16 @@
 parameters:
-    presentation.config.class:       Mesd\PresentationBundle\Twig\MesdPresentationConfigExtension
-    presentation.icon.class:         Mesd\PresentationBundle\Twig\MesdPresentationIconExtension
-#    presentation.gravatar.class:     Mesd\PresentationBundle\Twig\GravatarExtension
-#    presentation.placeholder.class:  Mesd\PresentationBundle\Twig\PlaceholderExtension
-#    presentation.highlighter.class:  Mesd\PresentationBundle\Twig\HighlighterExtension
-#    presentation.interval.class:     Mesd\PresentationBundle\Twig\IntervalExtension
-#    presentation.breadcrumb.class:   Mesd\PresentationBundle\Twig\BreadcrumbExtension
-    presentation.routeHelper.class:  Mesd\PresentationBundle\Twig\RouteHelperExtension
-
+    mesd_presentation.global_extension.class:     Mesd\PresentationBundle\Twig\GlobalExtension
+    mesd_presentation.box_extension.class:        Mesd\PresentationBundle\Twig\BoxExtension
 services:
-    presentation.twig.config_extension:
-        class: %presentation.config.class%
-        arguments: [@service_container]
+    mesd_presentation.global_extension:
+        class:     %mesd_presentation.global_extension.class%
+        public:    false
+        arguments: [ "%mesd_presentation%" ]
         tags:
             - { name: twig.extension }
-
-    presentation.twig.icon_extension:
-        class: %presentation.icon.class%
-        arguments: [@service_container]
+    mesd_presentation.box_extension:
+        class:     %mesd_presentation.box_extension.class%
+        public:    false
+        arguments: [ %mesd_presentation% ]
         tags:
             - { name: twig.extension }
-
-#    presentation.twig.gravatar_extension:
-#        class: %presentation.gravatar.class%
-#        tags:
-#            - { name: twig.extension }
-
-#    presentation.twig.placeholder_extension:
-#        class: %presentation.placeholder.class%
-#        tags:
-#            - { name: twig.extension }
-
-#    presentation.twig.highlighter_extension:
-#        class: %presentation.highlighter.class%
-#        tags:
-#            - { name: twig.extension }
-
-#    presentation.twig.interval_extension:
-#        class: %presentation.interval.class%
-#        tags:
-#            - { name: twig.extension }
-
-#    presentation.twig.presentation_crumb:
-#        class: %presentation.breadcrumb.class%
-#        scope: container
-#        arguments: [@service_container]
-#        tags:
-#            - { name: twig.extension }
-
-    presentation.twig.routeHelper_extension:
-        class: %presentation.routeHelper.class%
-        scope: container
-        arguments: [@service_container]
-        tags:
-            - { name: twig.extension }
-
-#    presentation.twig.menu_extension:
-#        class: %presentation.menu.class%
-#        arguments: [@service_container]
-#        tags:
-#            - { name: twig.extension }

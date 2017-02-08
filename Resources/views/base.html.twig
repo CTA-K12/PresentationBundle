@@ -1,262 +1,651 @@
+{% trans_default_domain mesd_presentation.trans_domain %}
+{% import _self as attributes %}
+{% set body_attributes = {'class': 'hold-transition skin-blue fixed sidebar-mini'} %}
+
+{% block _html %}
 <!DOCTYPE html>
-<html profile="http://dublincore.org" lang="{{ app.request.locale }}"{% if ngApp is defined %} data-ng-app="{{ ngApp }}"{% endif %}>
+<html lang="{{ app.request.locale }}">
+{% block html %}
+
+    {% block _head %}
     <head>
-        {% block head %}
+    {% block head %}
 
-            {% block meta %}
-                {% include 'MesdPresentationBundle:Block:meta.html.twig' %}
-            {% endblock meta %}
+        {% block metas %}
+        {#
+            The following 3 meta tags *must* come first in the head;
+            any other head content must come *after* these tags.
+        #}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+        <meta name="description" content="{{ mesd_presentation.app_description }}">
+        <meta name="author" content="">
+        {% endblock metas %}
 
-            {%- block title -%}
-                {% include 'MesdPresentationBundle:Block:title.html.twig' %}
-            {%- endblock title -%}
+        {% block title %}
+            <title>
+            {% if page_title is defined and page_title is not empty %}
+                {% if page_subtitle is defined and page_subtitle is not empty %}
+                    {{ page_subtitle }} {{ page_title }} | {{ mesd_presentation.app_name }}
+                {% else %}
+                    {{ page_title }} | {{ mesd_presentation.app_name }}
+                {% endif %}
+            {% else %}
+                {% if mesd_presentation.app_name is not empty %}
+                    {{ mesd_presentation.app_name }}
+                {% else %}
+                    {{ 'no.title.set'|trans }}
+                {% endif %}
+            {% endif %}
+            </title>
+        {% endblock title %}
 
-            {% block stylesheets %}
-                {% include 'MesdPresentationBundle:Block:stylesheets.html.twig' %}
-            {% endblock stylesheets %}
+        {% block stylesheets %}
+            {#}
+                '@admin_lte_plugins_css'
+            {#}
+            {% stylesheets
+                '@jquery_ui_css'
+                '@bootstrap_css'
+                '@font_awesome_css'
+                '@admin_lte_css'
+                '@datatables_css'
+                '@fullcalendar_css'
+                '@eonasdan_dtpicker_css'
+                '@selectize_css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
+        {#<link href="{{ asset('css/dev.css') }}" rel="stylesheet">#}
+        {% endblock stylesheets %}
 
-            {% block icons %}
-                {% include 'MesdPresentationBundle:Block:icons.html.twig' %}
-            {% endblock icons %}
+        {% block styles %}
+        {% endblock styles %}
 
-            {% block sitemap %}
-                {% include 'MesdPresentationBundle:Block:sitemap.html.twig' %}
-            {% endblock sitemap %}
+        {% block fonts %}
+        {% endblock fonts %}
 
-            {% block shiv %}
-                <script src="{{ asset('bundles/mesdpresentation/js/modernizr/modernizr-2.6.2.js') }}"></script>
-            {% endblock shiv %}
+        {% block icos %}
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+        {% endblock icos %}
 
-        {% endblock head %}
+        {% block shim %}
+        {% endblock shim %}
+
+    {% endblock head %}
     </head>
+    {% endblock _head %}
 
-    <body>
-        {% block body %}
+    {% block _body %}
+    <body{{ attributes.build(body_attributes) }}>
+        <div class="wrapper">
+    {% block body %}
 
-            {% block header %}
-                <header id="header">
-                    {% block navbar %}
-                        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
-                            <div class="container-fluid">
-                            {% block navbarContent %}
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    {% block navbarContentLogo %}
-                                        <a class="navbar-brand" href="#">
-                                            <img src="{{ asset('bundles/mesdpresentation/img/orchestra_logo_sml.png') }}" alt="Orchestra"/>
-                                        </a>
-                                    {% endblock navbarContentLogo %}
-                                </div>
+        {% block _header %}
+        <header class="main-header">
+        {% block header %}
 
-                                    <div class="collapse navbar-collapse main-collapse" id="navbar-main">
-                                        {% block navbarContentLeft %}
-                                            {% include 'MesdPresentationBundle::navLinks.html.twig' %}
-                                        {% endblock navbarContentLeft %}
-                                        <ul class="nav navbar-nav navbar-right">
-                                            {% block navbarContentRight %}
-                                                {% block navbarContentWidgets %}
-                                                    {% include 'MesdPresentationBundle::searchBar.html.twig' %}
-                                                {% endblock navbarContentWidgets %}
-                                                {% block userMenu %}
-                                                    {% include 'MesdPresentationBundle:Block:userMenu.html.twig' %}
-                                                {% endblock userMenu %}
-                                            {% endblock navbarContentRight %}
-                                        </ul>
-                                    </div><!-- END nav-collapse -->
-                                {% endblock navbarContent %}
-                            </nav><!-- END nav, navbar -->
-                        {% endblock navbar %}
-                    </header>
-                {% endblock header %}
+            <a href="#" class="logo" title="{{ mesd_presentation.app_name }}">
+                <span class="logo-mini">
+                    <strong>
+                        <small>{{ mesd_presentation.app_name }}</small>
+                    </strong>
+                </span>
+                <span class="logo-lg">
+                    <strong>{{ mesd_presentation.app_name }}</strong>
+                    <small>{{ mesd_presentation.app_abbreviation }}</small>
+                </span>
+            </a>
 
-                {% block containerOuter %}
-                    <div id="container-outer" class="container-outer wrapper">
-                        {% block sidebarOuter %}
-                            {# conditional added Aug 05 2014 by DL #}
-                            {# Probably a better blocking strategy #}
-                            {# to allow overridding just the inner #}
-                            {# is appropriate will wait for CH     #}
-                            {# resolution                          #}
-                        <aside id="sidebar" class="{% if sidebarclass is defined%}{{ sidebarclass }}{% else %}sidebar{% endif %}{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
-                            {% block sidebarInner %}
-                                {{ render(controller('MesdPresentationBundle:Default:sidebar', {
-                                    'route': app.request.get('_route'),
-                                    'options': { 'type': '' },
-                                    'menu': {
-                                        'Fluid Grid': {
-                                            'text':   'Fluid Grid',
-                                            'path':   '#fluidGridSystem',
-                                            'title':  'fluid grid',
-                                            'icon':   'fa fa-desktop',
-                                            'active': true
-                                        },
-                                        'Responsive': {
-                                            'text': 'Responsive',
-                                            'path': '#responsive',
-                                            'title': 'responsive',
-                                            'icon': 'fa fa-mobile-phone'
-                                        },
-                                        'Typography': {
-                                            'text': 'Typography',
-                                            'path': '#typography',
-                                            'title': 'typography',
-                                            'icon': 'fa fa-font'
-                                        },
-                                        'Table': {
-                                            'text': 'Table',
-                                            'path': '#tables',
-                                            'title': 'table',
-                                            'icon': 'fa fa-table'
-                                        },
-                                        'Form': {
-                                            'text': 'Form',
-                                            'path': '#forms',
-                                            'title': 'form',
-                                            'icon': 'fa fa-list-alt'
-                                        }
-                                    }}))
-                                }}
-                            {% endblock sidebarInner %}
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
 
-                        <div class="sidebar-extra">
-                        </div>
-                        </aside>
-                        {% endblock sidebarOuter %}
-                        {% block containerInner %}
-                            <section id="container-inner" class="container-inner container-fluid{% if app.request.cookies.get('sidebar-closed')%} sidebar-closed{% endif %}">
-
-                            <div id="toolbar-top" class="toolbar section section-white">
-                                {% block toolbarTop %}
-                                    <div class="row">
-                                        {% block toolbarTopLeft %}
-                                            {% block breadcrumbWidget %}
-                                                <ul class="breadcrumb">
-                                                    {{ render(controller('MesdPresentationBundle:Breadcrumb:index', {'request': app.request})) }}
-                                                </ul>
-                                            {% endblock breadcrumbWidget %}
-                                        {% endblock toolbarTopLeft %}
-                                        {% block toolbarTopRight %}
-                                        {% endblock toolbarTopRight %}
-                                    </div>
-                                {% endblock toolbarTop %}
-                            </div>
-
-                            {% block flashMessage %}
-                                {% include 'MesdPresentationBundle:Block:flashMessage.html.twig' %}
-                            {% endblock flashMessage %}
-
-                            {% block content %}
-                                <div id="content" class="content section section-white">
-                                    <div class="section-header">
-                                        {% block contentHeader %}
-                                            {% block pageTitle %}
-                                                <h1 class="page-title">
-                                                {%- block pageIcon -%}
-                                                    {%- if pageIcon is defined %}
-                                                        {%- if pageIcon is defined -%}
-                                                            {{ pageIcon|raw }}&nbsp;
-                                                        {%- endif -%}
-                                                    {%- endif -%}
-                                                {%- endblock pageIcon -%}
-                                                {%- if pageTitle is defined -%}
-                                                    {{- pageTitle|raw -}}
-                                                {%- endif -%}
-                                                    {%- block pageSubtitle -%}
-                                                        {%- if pageSubtitle is defined -%}
-                                                            &nbsp;<small>{{- pageSubtitle|raw -}}</small>
-                                                        {%- endif -%}
-                                                    {%- endblock pageSubtitle -%}
-                                                </h1>
-                                            {% endblock pageTitle %}
-                                        {% endblock contentHeader %}
-                                    </div>
-                                    <div class="section-body">
-                                        {% block contentBody %}
-                                        {% endblock contentBody %}
-                                    </div>
-                                    <div class="section-footer">
-                                        {% block contentFooter %}
-                                        {% endblock contentFooter %}
-                                    </div>
-                                </div><!-- END content -->
-                            {% endblock content %}
-
-                            {% block toolbarBottom %}
-                                <div id="toolbar-bottom" class="toolbar section section-white">
-                                    <div class="row">
-                                        {% block toolbarBottomLeft %}
-                                        {% endblock toolbarBottomLeft %}
-                                        {% block toolbarBottomCenter %}
-                                        {% endblock toolbarBottomCenter %}
-                                        {% block toolbarBottomRight %}
-                                        {% endblock toolbarBottomRight %}
-                                    </div>
-                                </div>
-                            {% endblock toolbarBottom %}
-
-                        </section><!-- END content -->
-                        {#} <hr class="eop" /> {#}
-                    {% endblock containerInner %}
-
-                    {#} NOTE: This block is intended to hold hidden dialogs. {#}
-                    {% block containerDialogs %}
-                    {% endblock containerDialogs %}
-
-                </div><!-- END container-outer -->
-            {% endblock containerOuter %}
-
-            {% block footer %}
-                <footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
-                    {% block footerContent %}
-                        <div class="row">
-                            <div class="footer-left col-xs-5-12">
-                                {% block footerContentLeft %}
-                                    <p class="h-card">
-                                        <span>&copy; {{ "now"|date("Y") }}</span>
-                                        <abbr class="p-name name" title="{{ mesd_presentation_org_name }}">{{ mesd_presentation_org_abbreviation }}</abbr>
-                                        <span class="p-adr adr hidden-xs hidden-sm">{{ mesd_presentation_org_address }}</span>
-                                    </p>
-                                {% endblock footerContentLeft %}
-                            </div>
-                            <div class="footer-center col-xs-1-6">
-                                {% block footerContentCenter %}
-                                    <p><span class="hidden-xs hidden-sm">version: </span>{{ mesd_presentation_app_version }}</p>
-                                {% endblock footerContentCenter %}
-                            </div>
-                            <div class="footer-right col-xs-5-12">
-                                {% block footerContentRight %}
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <ul class="menu">
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <ul class="menu">
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {#}
+                        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                            <li>
+                                <a href="{{ path('MesdOrcaseAppBundle_home', {'_switch_user': '_exit'}) }}">
+                                    <span class="fa fa-eye-slash fa-fw"></span>&nbsp;
+                                    {{ 'unimpersonate'|trans }}
+                                    <span class="text-muted pull-right">Ctrl+X</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('MesdUserBundle_logout') }}">
+                                    <span class="fa fa-sign-out fa-fw"></span>&nbsp;
+                                    {{ 'logout'|trans }}
+                                    <span class="text-muted pull-right">Ctrl+Q</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {#}
+                        {% block usermenu %}
+                        {#}
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <img src="{{ asset('img/user.png') }}" class="user-image" alt="User Image" />
+                                <span class="hidden-xs">{{ app.user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
                                     <p>
-                                        <a href="#" title="about">{{ 'about'|trans }}</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="terms">{{ 'terms'|trans }}</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="privacy">{{ 'privacy'|trans }}</a>
-                                        <span class="divider">|</span>
-                                        <a href="#" title="security">{{ 'security'|trans }}</a>
+                                        {{ app.user.name }}
+                                        <small>{{ 'member.since.%date%'|trans({'%date%': app.user.createdAt|date('M Y')}) }}</small>
                                     </p>
-                                {% endblock footerContentRight %}
+                                </li>
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{ path('user_show', {'id': app.user.id}) }}" class="btn btn-default btn-flat">
+                                            <i class="fa fa-user"></i>&nbsp; {{ 'profile'|trans }}
+                                        </a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{ path('logout') }}" class="btn btn-default btn-flat">
+                                            <i class="fa fa-sign-out"></i>&nbsp; {{ 'logout'|trans }}
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        {#}
+                        {% endblock usermenu %}
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        {% endblock header %}
+        </header>
+        {% endblock _header %}
+
+
+        {% block _leftaside %}
+        <aside class="main-sidebar">
+        {% block leftaside %}
+
+        <section class="sidebar">
+            {#}
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{ asset('img/user.png') }}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control" placeholder="Search...">
+                  <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                  </span>
+                </div>
+            </form>
+            {#}
+
+            {{ knp_menu_render('main', {'depth': 2, 'currentAsLink': false}) }}
+
+            {#}
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Layout Options</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">4</span>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-circle-o"></i>
+                                Fixed
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-th"></i>
+                        <span>Widgets</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green">new</small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span>Calendar</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-red">3</small>
+                            <small class="label pull-right bg-blue">17</small>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span>Mailbox</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-yellow">12</small>
+                            <small class="label pull-right bg-green">16</small>
+                            <small class="label pull-right bg-red">5</small>
+                        </span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-share"></i> <span>Multilevel</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-circle-o"></i> Level One
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                                <li>
+                                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+                <li class="header">LABELS</li>
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            </ul>
+            {#}
+        </section>
+
+        {% endblock leftaside %}
+        </aside>
+        {% endblock _leftaside %}
+
+        {% block _main %}
+        <div class="content-wrapper">
+
+            {% block main %}
+
+                {% block contentheader %}
+                <section class="content-header">
+                    {% if page_title is defined and page_title is not empty %}<h1 class="page-header">{% if page_icon is defined and page_icon is not empty %}<i class="fa fa-{{ page_icon }}"></i>&nbsp; {% endif %}{% if page_label is defined and page_label is not empty %}<span class="label label-{{ page_label.variant is defined and page_label is not empty ? page_label.variant : 'default' }}">{{ page_label.text }}</span>&nbsp; {% endif %}{{ page_title }}{% if page_subtitle is defined and page_subtitle is not empty %}&nbsp; <small>{{ page_subtitle }}</small>{% endif %}</h1>{% endif %}
+                    {% block contentheaderbreadcrumb %}
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#">Layout</a></li>
+                        <li class="active">Page</li>
+                    </ol>
+                    {% endblock contentheaderbreadcrumb %}
+                </section>
+                {% endblock contentheader %}
+
+
+                {% block _contentbody %}
+                <section class="content">
+
+                    {% block flashes %}
+                        {% set flash_types = ['info', 'success', 'warning', 'danger'] %}
+                        {% for flash_type in flash_types %}
+                            {% if 0 < app.session.flashBag.peek(flash_type)|length %}
+                                <div class="alert alert-{{ flash_type }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {% for flash_msg in app.session.flashBag.get(flash_type) %}<div>{{ flash_msg|raw }}</div>{% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {# the following clears all remaining flashes, this should be a var set in config #}
+                        {% do app.session.flashBag.clear() %}
+                    {% endblock flashes %}
+
+                    {% block contentbody %}
+                    <div class="callout callout-info">
+                        <h4>Tip!</h4>
+                        <p>
+                            Add the fixed class to the body tag to get this layout.
+                            The fixed layout is your best option if your sidebar is bigger
+                            than your content because it prevents extra unwanted scrolling.
+                        </p>
+                    </div>
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Title</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="{{ 'remove'|trans }}">
+                                    <i class="fa fa-times"></i>
+                                </button>
                             </div>
-                        </div><!-- END row -->
-                    {% endblock footerContent %}
-                </footer><!-- END footer, navbar -->
-            {% endblock footer %}
+                        </div>
+                        <div class="box-body">Start creating your amazing application!</div>
+                        <div class="box-footer">Footer</div>
+                    </div>
+                    {% endblock contentbody %}
 
-            {% block javascripts %}
-                {% include 'MesdPresentationBundle:Block:javascripts.html.twig' %}
-            {% endblock javascripts %}
+                </section>
+                {% endblock _contentbody %}
 
-            {% block analytics %}
-                {% include 'MesdPresentationBundle:Block:analytics.html.twig' %}
-            {% endblock analytics %}
+                {% block contentfooter %}
+                {% endblock contentfooter %}
 
-            {#} NOTE: This block is intended to hold application and page specific scripts. {#}
-            {% block scripts %}
-            {% endblock scripts %}
-        {% endblock body %}
+            {% endblock main %}
+
+        </div>
+        {% endblock _main %}
+
+        {% block _footer %}
+        <footer class="main-footer no-print">
+        {% block footer %}
+            <div class="pull-right hidden-xs"><b>Version</b> 0.1.0</div>
+            <strong>{{ 'copyright'|trans }} &copy; {{ 'now'|date('Y') }}&nbsp; Eric Gustafson</strong>
+            {{ 'all.rights.reserved'|trans }}
+        {% endblock footer %}
+        </footer>
+        {% endblock _footer %}
+
+        {% block _rightaside %}
+        <aside class="control-sidebar control-sidebar-dark">
+        {% block rightaside %}
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active">
+                    <a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#control-sidebar-home-tab" data-toggle="tab">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#control-sidebar-settings-tab" data-toggle="tab">
+                        <i class="fa fa-gears"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="control-sidebar-home-tab"></div>
+                <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
+                    <div>
+                        <h4 class="control-sidebar-heading">Layout Options</h4>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-layout="fixed" class="pull-right"> Fixed layout
+                            </label>
+                            <p>Activate the fixed layout. You can't use fixed and boxed layouts together</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-layout="layout-boxed" class="pull-right"> Boxed Layout
+                            </label>
+                            <p>Activate the boxed layout</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-layout="sidebar-collapse" class="pull-right"> Toggle Sidebar
+                            </label>
+                            <p>Toggle the left sidebar's state (open or collapse)</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-enable="expandOnHover" class="pull-right"> Sidebar Expand on Hover
+                            </label>
+                            <p>Let the sidebar mini expand on hover</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide
+                            </label>
+                            <p>Toggle between slide over content and push content effects</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                <input type="checkbox" data-sidebarskin="toggle" class="pull-right"> Toggle Right Sidebar Skin
+                            </label>
+                            <p>Toggle between dark and light skins for the right sidebar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                <input type="checkbox" class="pull-right" checked="">
+                            </label>
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Allow mail redirect
+                                <input type="checkbox" class="pull-right" checked="">
+                            </label>
+                            <p>
+                                Other sets of options are available
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Expose author name in posts
+                                <input type="checkbox" class="pull-right" checked="">
+                            </label>
+                            <p>
+                                Allow the user to show his name in blog posts
+                            </p>
+                        </div>
+                        <h3 class="control-sidebar-heading">Chat Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Show me as online
+                                <input type="checkbox" class="pull-right" checked="">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Turn off notifications
+                                <input type="checkbox" class="pull-right">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Delete chat history
+                                <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endblock rightaside %}
+        </aside>
+        <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+        {% endblock _rightaside %}
+
+        {% block modals %}
+        {% endblock modals %}
+
+        {% block javascripts %}
+        {#}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                '@select2_js'
+        {#}
+            {% javascripts
+                '@jquery_js'
+                '@jquery_ui_js'
+                '@bootstrap_js'
+                '@moment_js'
+                '@datatables_js'
+                '@fullcalendar_js'
+                '@mousetrap_js'
+                '@eonasdan_dtpicker_js'
+                '@selectize_js'
+                '@admin_lte_js'
+                '@admin_lte_plugins_js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {#
+        <script src="{{ asset('node_modules/admin-lte/dist/js/app.js') }}"></script>
+        #}
+        {% endblock javascripts %}
+
+        {% block scripts %}
+        {% endblock scripts %}
+
+    {% endblock body %}
+        </div>
     </body>
+    {% endblock _body %}
+
+{% endblock html %}
 </html>
+{% endblock _html %}
+
+{% macro build(attributes) %}
+{% for name, value in attributes %}
+    {%- if value is not none and value is not same as(false) -%}
+        {{- ' %s="%s"'|format(name, value is same as(true) ? name|e : value|e)|raw -}}
+    {%- endif -%}
+{%- endfor -%}
+{% endmacro %}
+

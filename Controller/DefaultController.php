@@ -4,101 +4,138 @@ namespace Mesd\PresentationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Mesd\PresentationBundle\Model\Calendar;
+use Mesd\PresentationBundle\Model\Chat;
+use Mesd\PresentationBundle\Model\Heartbeat;
+use Mesd\PresentationBundle\Model\Mail;
+use Mesd\PresentationBundle\Model\Message;
+use Mesd\PresentationBundle\Model\Notification;
+use Mesd\PresentationBundle\Model\Task;
+use Mesd\PresentationBundle\Model\User;
+
+use Mesd\PresentationBundle\Event\CalendarEvent;
+use Mesd\PresentationBundle\Event\ChatEvent;
+use Mesd\PresentationBundle\Event\HeartbeatEvent;
+use Mesd\PresentationBundle\Event\MailEvent;
+use Mesd\PresentationBundle\Event\MessageEvent;
+use Mesd\PresentationBundle\Event\NotificationEvent;
+use Mesd\PresentationBundle\Event\TaskEvent;
+use Mesd\PresentationBundle\Event\UserEvent;
+
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
 class DefaultController extends Controller
 {
-    // Renders the main (index) layout page
     public function indexAction()
     {
-        return $this->render('MesdPresentationBundle::index.html.twig', array());
+        return $this->render('MesdPresentationBundle:Default:index.html.twig');
     }
 
-    // Renders the splash layout page, used for login and registration forms
-    public function splashAction()
+    public function calendarAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::splash.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new CalendarEvent($calendar);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the docs page
-    public function docsAction()
+    public function chatAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::docs.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new UserEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the login layout page, based on splash page
-    public function loginAction()
+    public function heartbeatAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::login.html.twig', array());
+        $data = $request->request->all();
+        $heartbeat = new Heartbeat($data);
+
+        $event = new HeartbeatEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(HeartbeatEvent::NAME, $event);
+
+        return new JsonResponse($event->getHeartbeat()->normalize());
     }
 
-    // Renders the grid page, used for full page grids (like an excel spreadsheet)
-    public function gridAction()
+    public function mailAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::grid.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new UserEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the calendar page
-    public function calendarAction()
+    public function messageAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::calendar.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new UserEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the search results page (i.e. list), like a google search result page, but not
-    public function listAction()
+    public function notificationAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::list.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new UserEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the map page
-    public function mapAction()
+    public function taskAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::map.html.twig', array());
+        $data = $request->request->all();
+
+        $event = new UserEvent($heartbeat);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(UserEvent::NAME, $event);
+
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 
-    // Renders the dashboard page
-    public function dashboardAction()
+    public function userAction(Request $request)
     {
-        return $this->render('MesdPresentationBundle::dashboard.html.twig', array());
-    }
+        $data = $request->request->all();
 
-    // Renders the error page, such as 404 or 403
-    public function errorAction()
-    {
-        return $this->render('MesdPresentationBundle::error.html.twig', array());
-    }
+        $event = new UserEvent($heartbeat);
 
-    // Renders the profile page
-    public function profileAction()
-    {
-        return $this->render('MesdPresentationBundle::profile.html.twig', array());
-    }
+        $dispatcher = $this->get('event_dispatcher');
 
-    // Renders the help page
-    public function helpAction()
-    {
-        return $this->render('MesdPresentationBundle::help.html.twig', array());
-    }
+        $dispatcher->dispatch(UserEvent::NAME, $event);
 
-    // Renders the sidebar, not accessible via routes, only by controller
-    public function sidebarAction($menu, $options = array())
-    {
-        $type = 'default';
-        if(isset($options['type'])){
-            switch ($options['type']) {
-                case 'inline':
-                    $type = 'inline';
-                    break;
-                case 'dropdown':
-                    $type = 'dropdown';
-                    break;
-                case 'default':
-                default:
-                    $type = 'default';
-                    break;
-            }
-        }
-        return $this->render('MesdPresentationBundle::sidebar.html.twig', array(
-            'menu'  => $menu,
-            'type'  => $type
-        ));
+        return new JsonResponse($event->getUser()->deserialize('json'));
     }
 }

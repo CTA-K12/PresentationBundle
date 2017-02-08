@@ -1,9 +1,0 @@
-{# src/Mesd/PresentationBundle/Resources/views/breadcrumb.html.twig #}
-{% for k,v in routes %}
-    {% if not loop.last %}
-        <a href="{{ v }}">{{ k|raw }}</a> {{ separator|raw }}
-    {% else %}
-    <a class="title">stuff&rarr;</a>
-        {{ k|raw }}
-    {% endif %}
-{% endfor %}
