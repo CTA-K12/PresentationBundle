@@ -1,18 +1,150 @@
 # MesdPresentationBundle
 
-v.2.0.0
+v.3.1.0
 
 ## Introduction
+
+The Presentation Bundle is no longer a standalone implementation of Bootstrap.
+After much consideration, I have chosen to integrate the existing open-source
+AdminLTE (CSS and JS framework) project into the bundle. AdminLTE has several
+benefits over rolling our own presentation. That is, most notably, we now have
+a compliment of developers contributing and improving on our theme.
+
+## Dependencies
+
+Being that this bundle is for Symfony projects, a few PHP projects are needed
+for this bundle to work:
+
+* [Symfony](http://getbootstrap.com/) v3.3.7
+* [Twig](http://getbootstrap.com/) v3.3.7
+* [Assetic](http://getbootstrap.com/) v3.3.7
+
+The Presentation Bundle relies heavily on several css and js libraries and
+packages, they are as follows:
+
+* [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html) v2.3.11
+* [Bootstrap](http://getbootstrap.com/) v3.3.7
+* [Node JS](http://getbootstrap.com/) v3.3.7
+* [Node Package Manager](http://getbootstrap.com/) v3.3.7
+* [Font-Awesome]
+* [Moment]
+* [Mousetrap]
+* [Selectize]
+* [Source-Code-Pro]
+* [Source-Sans-Pro]
+
+Optionally, AdminLTE has a bunch of plugins available as well. Many of these
+plugins are maintained in the Presentation node modules directory which are
+later versions of the projects. By default, the Presentation assets are pointed
+to this directory rather than the AdminLTE plugins directory. They are:
+
+* [Slider for Bootstrap](http://seiyria.com/bootstrap-slider/)
+* [Bootstrap WYSIHTML5](http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/)
+* [Chart JS]()
+* [CKEditor]()
+* [Colorpicker]()
+* [Datatables]()
+* [Datepicker]()
+* [Daterangepicker]()
+* [Fastclick]()
+* [Flot]()
+* [Full Calendar]()
+* [iCheck]()
+* [Input Mask]()
+* [Ion Slider]()
+* [jQuery]()
+* [jQueryUI]()
+* [jVectorMap]()
+* [Knob]()
+* [Morris Charts]()
+* [Pace]()
+* [Select2]()
+* [Slim Scroll]()
+* [Sparkline]()
+* [Timepicker]()
+
+## Recommendations and Compatibilities
+
+This bundle works out of the box with other MESD owned bundles. They are:
+
+* [MESD User Bundle](http://getbootstrap.com/) v3.3.7
+* [MESD Form Types Bundle](http://getbootstrap.com/) v3.3.7
+* [MESD Twig Extensions Bundle](http://getbootstrap.com/) v3.3.7
+* [MESD Menu Bundle](http://getbootstrap.com/) v3.3.7
+* [MESD Help Wiki Bundle](http://getbootstrap.com/) v3.3.7
+
+## Installation
+
+## Configuration
+
+``` yml
+# Mesd Presentation Configuration
+mesd_presentation:
+    templates:
+        #box:       MesdPresentationBundle:TwigExtensions:box.html.twig
+        #form:      MesdPresentationBundle:TwigExtensions:form.html.twig
+        #help_wiki: MesdPresentationBundle:TwigExtensions:help_wiki.html.twig
+        #menu:      MesdPresentationBundle:TwigExtensions:menu.html.twig
+        #user:      MesdPresentationBundle:TwigExtensions:user.html.twig
+    globals:
+        trans_domain:      "%trans_domain%"
+        app_name:          "%app_name%"
+        app_abbreviation:  "%app_abbreviation%"
+        app_description:   "%app_description%"
+        app_keywords:      "%app_keywords%"
+        app_url:           "%app_url%"
+        app_version:       "%app_version%"
+        app_license_1:     "%app_license_1%"
+        app_license_url_1: "%app_license_url_1%"
+        app_license_2:     "%app_license_2%"
+        app_license_url_2: "%app_license_url_2%"
+        org_name:          "%org_name%"
+        org_abbreviation:  "%org_abbreviation%"
+        org_address:       "%org_address%"
+        org_telephone:     "%org_telephone%"
+        org_email:         "%org_email%"
+        org_url:           "%org_url%"
+```
+
+## Twig Extensions
+
+### Global Extension
+
+Included in this bundle is a Twig Extension to use global placeholders
+throughout your templates. This is for parts of the templates that don't change
+often or between installations; such as your application name, licenses,
+organizational names and addresses. You are free to add your own in the config
+file. You may also remove the ones you don't use, just remember to remove them
+from templates you extend.
+
+#### Usage
+
+``` yml
+# app/config/config.yml
+mesd_presentation:
+    globals:
+        foo_bar: I am foo bar!
+```
+
+``` twig
+<p>{{ mesd_presentation.foo_bar }}</p>
+```
+
+Outputs
+
+``` html
+<p>I am foo bar!</p>
+```
 
 ## The Base Template
 
 The base template for the presentation bundle has been simplified greatly.
-It includes less blocks with more options to override blocks as needed,
-making the template extremely customizeable.
+It includes fewer blocks with more options to override as needed making it more
+flexible and customizable.
 
 ### Blocks (Base Template Only)
 
-Block Purpose
+Block Name and Purpose
 
 * `_html` - Contains entire document.
 * `html`  - Contains content between `html` tags.
