@@ -186,6 +186,8 @@ Block Name and Purpose
 
 Block Hierarchy
 
+![presentation bundle layout](presentation_layout.png)
+
 * `_html`
 * `html`
     * `_head`

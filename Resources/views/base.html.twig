@@ -1,5 +1,5 @@
 {% trans_default_domain mesd_presentation.trans_domain %}
-{% import _self as attributes %}
+{% import 'MesdPresentationBundle:Macros:macros.html.twig' as attributes %}
 {% set body_attributes = {'class': 'hold-transition skin-blue fixed sidebar-mini'} %}
 
 {% block _html %}
@@ -640,12 +640,4 @@
 {% endblock html %}
 </html>
 {% endblock _html %}
-
-{% macro build(attributes) %}
-{% for name, value in attributes %}
-    {%- if value is not none and value is not same as(false) -%}
-        {{- ' %s="%s"'|format(name, value is same as(true) ? name|e : value|e)|raw -}}
-    {%- endif -%}
-{%- endfor -%}
-{% endmacro %}
 
