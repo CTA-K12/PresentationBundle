@@ -2,6 +2,10 @@
 
 v.3.1.0
 
+## Notes!!!
+
+I'll probably change a few things. Notably block names. I might switch styles and scripts to pagestyles and pagescripts. And possibly change shim to other. Since we don't really need a shim anymore and we do need to be able to list things like robots.txt and sitemap.xml and such.
+
 ## Introduction
 
 The Presentation Bundle is no longer a standalone implementation of Bootstrap.
@@ -67,11 +71,11 @@ to this directory rather than the AdminLTE plugins directory. They are:
 
 This bundle works out of the box with other MESD owned bundles. They are:
 
-* [MESD User Bundle](http://getbootstrap.com/) v3.3.7
-* [MESD Form Types Bundle](http://getbootstrap.com/) v3.3.7
-* [MESD Twig Extensions Bundle](http://getbootstrap.com/) v3.3.7
-* [MESD Menu Bundle](http://getbootstrap.com/) v3.3.7
-* [MESD Help Wiki Bundle](http://getbootstrap.com/) v3.3.7
+* [MESD User Bundle](//github.com/MESD/UserBundle) version unknown
+* [MESD Form Types Bundle](//github.com/MESD/FormTypesBundle) version unknown
+* [MESD Twig Extensions Bundle](//github.com/MESD/TwigExtensionsBundle) version unknown
+* [MESD Menu Bundle](//github.com/MESD/MenuBundle) version unknown
+* [MESD Help Wiki Bundle](//github.com/MESD/HelpWikiBundle) version unknown
 
 ## Installation
 

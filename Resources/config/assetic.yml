@@ -1,0 +1,102 @@
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: true
+    bundles:
+        - MesdPresentationBundle
+    filters:
+        cssrewrite: ~
+    assets:
+        admin_lte_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/dist/css/AdminLTE.css'
+                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/dist/css/skins/_all-skins.css'
+        admin_lte_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/dist/js/app.js'
+#        admin_lte_plugins_css:
+#            inputs:
+#                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/plugins/datepicker/datepicker3.css'
+        admin_lte_plugins_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.js'
+        bootstrap_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/bootstrap/dist/css/bootstrap.css'
+        bootstrap_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/bootstrap/dist/js/bootstrap.js'
+        datatables_css:
+            inputs:
+#                - '@MesdPresentationBundle/Resources/public/node_modules/datatables.net-bs/css/dataTables.bootstrap.css'
+#                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/plugins/datatables/jquery.dataTables.css'
+                - '@MesdPresentationBundle/Resources/public/css/dataTables.bootstrap.css'
+        datatables_js:
+            inputs:
+#                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/plugins/datatables/jquery.dataTables.js'
+#                - '@MesdPresentationBundle/Resources/public/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.js'
+                - '@MesdPresentationBundle/Resources/public/node_modules/datatables/media/js/jquery.dataTables.js'
+                - '@MesdPresentationBundle/Resources/public/node_modules/datatables.net-bs/js/dataTables.bootstrap.js'
+        eonasdan_dtpicker_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+        eonasdan_dtpicker_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        font_awesome_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/css/font-awesome.css'
+        font_awesome_eot:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/fontawesome-webfont.eot'
+            output: 'fonts/fontawesome-webfont.eot'
+        font_awesome_otf:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/FontAwesome.otf'
+            output: 'fonts/FontAwesome.otf'
+        font_awesome_svg:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/fontawesome-webfont.svg'
+            output: 'fonts/fontawesome-webfont.svg'
+        font_awesome_ttf:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/fontawesome-webfont.ttf'
+            output: 'fonts/fontawesome-webfont.ttf'
+        font_awesome_woff:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/fontawesome-webfont.woff'
+            output: 'fonts/fontawesome-webfont.woff'
+        font_awesome_woff2:
+            inputs: '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/fonts/fontawesome-webfont.woff2'
+            output: 'fonts/fontawesome-webfont.woff2'
+        fullcalendar_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/fullcalendar/dist/fullcalendar.css'
+        fullcalendar_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/fullcalendar/dist/fullcalendar.js'
+#                - '@ADesignsCalendarBundle/Resources/public/js/calendar-settings.js'
+        jquery_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/jquery/dist/jquery.js'
+        jquery_ui_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/jquery-ui-dist/jquery-ui.css'
+        jquery_ui_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/jquery-ui-dist/jquery-ui.js'
+        moment_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/moment/moment.js'
+        mousetrap_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/mousetrap/mousetrap.js'
+        selectize_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/selectize/dist/css/selectize.bootstrap3.css'
+        selectize_js:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/node_modules/selectize/dist/js/standalone/selectize.js'
+#        select2_js:
+#            inputs:
+#                - '@MesdPresentationBundle/Resources/public/node_modules/select2/dist/js/select2.js'
+#        symfony_collection_js:
+#            inputs:
+#                - '@MesdPresentationBundle/Resources/public/node_modules/symfony-collection/jquery.collection.js'
+#        admin_lte_plugins_css:
+#            inputs:
