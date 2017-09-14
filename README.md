@@ -1,158 +1,339 @@
-MESD PresentationBundle
-=======================
+# MesdPresentationBundle
 
-Version `3.0.1`
+v.3.1.0
 
-Using Bootstrap Version `3.0.2`
+## Notes!!!
 
-Description
------------
+I'll probably change a few things. Notably block names. I might switch styles and scripts to pagestyles and pagescripts. And possibly change shim to other. Since we don't really need a shim anymore and we do need to be able to list things like robots.txt and sitemap.xml and such.
 
-This bundle contains the base layout files and global css and js files for
-rendering MESD web-applications.
+I need to include more information on certain libraries. Some libraries included with AdminLTE are very old and when feasible or necessary, more recent versions are included in the parent `node_modules` directory. The assetic file included with this project has examples of how to point a `named javascript library` to a different resource.
 
-Screenshots
------------
+## Introduction
 
-Coming soon...
+The Presentation Bundle is no longer a standalone implementation of Bootstrap.
+After much consideration, I have chosen to integrate the existing open-source
+AdminLTE (CSS and JS framework) project into the bundle. AdminLTE has several
+benefits over rolling our own presentation. That is, most notably, we now have
+a compliment of developers contributing and improving on our theme.
 
-Dependencies
-------------
+## Dependencies
 
-Symfony Bundles:
+Being that this bundle is for Symfony projects, a few PHP projects are needed
+for this bundle to work:
 
-  + symfony 2.3+
-  + twig 2.1+
-  + assetic 2.0+
+* [Symfony](//symfony.com) ^v2.8
+* [Twig](//twig.symfony.com) v1.0.*||v.2.0*
+* [Assetic](//symfony.com/doc/current/assetic/asset_management.html) ^v1.4
 
-Other:
+The Presentation Bundle relies heavily on several css and js libraries and
+packages, they are as follows:
 
-  + NodeJS 
-  + NPM
-  + Less 1.7+
+* [AdminLTE](https://almsaeedstudio.com/themes/AdminLTE/index2.html) v2.3.11
+* [Bootstrap](http://getbootstrap.com/) v3.*
+* [Node JS](http://getbootstrap.com/) version unknown
+* [Node Package Manager](http://getbootstrap.com/) version unknown
+* [Font-Awesome]
+* [Moment]
+* [Mousetrap]
+* [Selectize]
+* [Source-Code-Pro]
+* [Source-Sans-Pro]
 
-Installing
-----------
+Optionally, AdminLTE has a bunch of plugins available as well. Many of these
+plugins are maintained in the Presentation node modules directory which are
+later versions of the projects. By default, the Presentation assets are pointed
+to this directory rather than the AdminLTE plugins directory. They are:
 
-How to install.
+* [Slider for Bootstrap](http://seiyria.com/bootstrap-slider/)
+* [Bootstrap WYSIHTML5](http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/)
+* [Chart JS]()
+* [CKEditor]()
+* [Colorpicker]()
+* [Datatables]()
+* [Datepicker]()
+* [Daterangepicker]()
+* [Fastclick]()
+* [Flot]()
+* [Full Calendar]()
+* [iCheck]()
+* [Input Mask]()
+* [Ion Slider]()
+* [jQuery]()
+* [jQueryUI]()
+* [jVectorMap]()
+* [Knob]()
+* [Morris Charts]()
+* [Pace]()
+* [Select2]()
+* [Slim Scroll]()
+* [Sparkline]()
+* [Timepicker]()
 
-This bundle will is compatible with all browsers except IE8 and below.
+## Recommendations and Compatibilities
 
-.. code-block:: bash
+This bundle works out of the box with other MESD owned bundles. They are:
 
-    $ cd /var/www/html/project
-    $ composer install
+* [MESD User Bundle](//github.com/MESD/UserBundle) version unknown
+* [MESD Form Types Bundle](//github.com/MESD/FormTypesBundle) version unknown
+* [MESD Twig Extensions Bundle](//github.com/MESD/TwigExtensionsBundle) version unknown
+* [MESD Menu Bundle](//github.com/MESD/MenuBundle) version unknown
+* [MESD Help Wiki Bundle](//github.com/MESD/HelpWikiBundle) version unknown
 
-Configuring
------------
+## Installation
 
+NOTE: This bundle contains all the javascript, css, and other libraries needed to use this bundle. There is no need to do an `npm install`, `webpack whatever`, or any other command besides invoking the `app/console assets:install` and `app/console assetic:dump` commands.
 
-Add Presentatioin Bundle to Assetic Configuration
-```yaml
-# Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ ]
-    - MesdPresentationBundle
-    filters:
-        cssrewrite: ~
-        cssembed:
-            jar: "%kernel.root_dir%/Resources/filters/cssembed-0.4.5.jar"
-        less:
-            node: %node_base_path%
-            node_paths: [%node_lib_path%, %node_modules_path%]
+Edit your `comsposer.json` file:
+
+``` json
+"repositories": [
+   {
+        "type" : "vcs",
+        "url" : "https://github.com/MESD/MenuBundle.git"
+    }
+ ],
 ```
 
-Add parameters.yml
-```yaml
-    node_base_path: /usr/bin/node
-    node_lib_path: /usr/include/node
-    node_modules_path: /lib/node_modules
+From a command line:
+
+``` bash
+$ composer require mesd/presentation-bundle
 ```
 
-Twig global variables are no longer used!
+Add the bundle to your `AppKernel.php` file:
 
-This bundle now uses it's own configuration, which is loaded into the service container
-at runtime. The configuration currently uses defaults, which are not appropriate for a
-production application. If you want to override the defaults, add some or all of the following
-keys to your symfony configuration:
+``` php
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Mesd\MenuBundle\MesdMenuBundle(),
+        );
+    }
+}
+```
 
-```yaml
+Update the `app/config.yml` file:
+
+``` yaml
+imports:
+#   ...
+    - { resource: "@MesdPresentationBundle/Resources/config/assetic.yml" }
+
+twig:
+#   ...
+    form_themes:
+        - "@MesdPresentationBundle:Form:bootstrap_3_layout.html.twig"
+```
+
+Run assetic from the console:
+
+``` bash
+$ app/console assets:install
+$ app/console assetic:dump
+```
+
+It is a good idea copy all of the views from the bundle and place a copy in your app directory so you can make any changes to any file to customize your layout.
+
+From your project's root directory:
+
+``` bash
+$ cp -R vendor/mesd/presentation-bundle/Mesd/PresentationBundle/Resources/views app/Resources/MesdPresentationBundle/views
+```
+
+In addition, another good idea is to create a `bast.html.twig` file in your `app/views` directory, like so:
+
+``` twig
+# app/views/base.html.twig
+{% extends 'MesdPresentationBundle::base.html.twig' %}
+```
+
+All future templates can simply extend `::base.html.twig` to get the full benefits of this bundle.
+
+## Configuration
+
+``` yml
+# Mesd Presentation Configuration
+mesd_presentation:
+    globals:
+        trans_domain:      "%trans_domain%"
+        app_name:          "%app_name%"
+        app_abbreviation:  "%app_abbreviation%"
+        app_description:   "%app_description%"
+        app_keywords:      "%app_keywords%"
+        app_url:           "%app_url%"
+        app_version:       "%app_version%"
+        app_license_1:     "%app_license_1%"
+        app_license_url_1: "%app_license_url_1%"
+        app_license_2:     "%app_license_2%"
+        app_license_url_2: "%app_license_url_2%"
+        org_name:          "%org_name%"
+        org_abbreviation:  "%org_abbreviation%"
+        org_address:       "%org_address%"
+        org_telephone:     "%org_telephone%"
+        org_email:         "%org_email%"
+        org_url:           "%org_url%"
+```
+
+## Twig Extensions
+
+### Global Extension
+
+Included in this bundle is a Twig Extension to use global placeholders
+throughout your templates. This is for parts of the templates that don't change
+often or between installations; such as your application name, licenses,
+organizational names and addresses. You are free to add your own in the config
+file. You may also remove the ones you don't use, just remember to remove them
+from templates you extend.
+
+NOTE: This is really nothing different than using the Twig Globals feature except that it is namespaced under `mesd_presentation`.
+
+#### Usage
+
+``` yml
 # app/config/config.yml
 mesd_presentation:
-    app_name:          App
-    app_abbreviation:  APP
-    app_description:   App Description
-    app_keywords:      App Key Words
-    app_url:           http://myurl.domain/app
-    app_version:       0.0.0
-    app_license_1:     My License
-    app_license_url_1: http://myurl.domain/my_license
-    app_license_2:     MIT
-    app_license_url_2: http://symfony.com/doc/current/contributing/code/license.html
-    org_name:          Org
-    org_abbreviation:  ORG
-    org_address:       Org Address
-    org_telephone:     Org Phone No
-    org_email:         Org Email Address
-    org_url:           http://myurl.domain
+    globals:
+        foo_bar: I am foo bar!
 ```
 
+``` twig
+<p>{{ mesd_presentation.foo_bar }}</p>
+```
 
-If you are already using one of the libraries required for the PresentationBundle
-to work, then you can reference it with a named asset. Listed below are the named
-assets you can set in your configuration file to override:
+Outputs
 
-  + jquery
-  + jqueryui
-  + bootstrapjs
-  + bootstrapless
-  + cookie
-  + elementqueries
-  + modernizr
-  + favicons
+``` html
+<p>I am foo bar!</p>
+```
 
-```yaml
-# app/config/config.yml
-assetic:
-    assets:
-        jquery_and_ui:
-            inputs:
-                - '@AcmeFooBundle/Resources/public/js/thirdparty/jquery.js'
-                - '@AcmeFooBundle/Resources/public/js/thirdparty/jquery.ui.js'
-   
-```             
+## The Base Template
 
-Updating
---------
+The base template for the presentation bundle has been simplified greatly.
+It includes fewer blocks with more options to override as needed making it more
+flexible and customizable.
 
-How to update.
+### Blocks (Base Template Only)
 
-Usage
------
+Block Name and Purpose
 
-How to use.
+* `_html` - Contains entire document.
+* `html`  - Contains content between `html` tags.
+* `_head` - Contains content including `head` tags.
+* `head` - Contains content between `head` tags.
+* `metas` - Contains `meta` tag content. Already outermost block.
+* `title` - Contains `title` tag content. Already outermost block.
+* `stylesheets` - Contains `style` tag content. Already outermost block.
+* `fonts` - Contains `resource` tag content. Already outermost block.
+* `icos` - Contains `resource` tag content. Already outermost block.
+* `shim` - Contains `script` tag content. Already outermost block.
+* `_body` - Contains content including `body` tags.
+* `body` - Contains content between `body` tags.
+* `_header` - Contains content including `header` tags.
+  This is the top navigation bar.
+* `header` - Contains content including `header` tags.
+  This is the top navigation bar.
+* `_wrapper` - Contains content including `div.wrapper` tags.
+  Wrapper holds all content between header and footer.
+* `wrapper` - Contains content between `div.wrapper` tags.
+  Wrapper holds all content between header and footer.
+    * `_leftaside` - Contains content between `aside.sidebar` tags.
+    * `leftaside` - Contains content including `aside.sidebar` tags.
+    * `_main` - Contains content including `main` tags.
+    * `main` - Contains content between
+      `main.container-fluid > div.row > div.col-sm-12 >` tags.
+* `_footer` - Contains content including `footer` tags.
+* `footer` - Contains content between `footer` tags.
+* `modals` - Contains `div` content for modals.
+  Used for code organization. If javascript not running,
+  a no-js message degrades gracefully to prevent modals displaying on page.
+  Already outermost block.
+* `javascripts` - Contains `script` tag content. Already outermost block.
+* `scripts` - Contains `script` tag content.
+  Used for page specific scripts. Code runs after script libraries are loaded
+  to prevent dependencies not being met.
+  Also used for code organization.
+  Already outermost block.
 
+Block Hierarchy
 
-Code Snippet
-------------
+![presentation bundle layout](Resources/doc/presentation_layout.png)
 
-.. code-block:: html
+* `_html`
+* `html`
+    * `_head`
+    * `head`
+        * `metas`
+        * `title`
+        * `stylesheets`
+        * `fonts`
+        * `icos`
+        * `shim`
+    * `_body`
+    * `body`
+        * `_header`
+        * `header`
+        * `_wrapper`
+        * `wrapper`
+            * `_leftaside`
+            * `leftaside`
+            * `_main`
+            * `main`
+        * `_footer`
+        * `footer`
+        * `modals`
+        * `javascripts`
+        * `scripts`
 
-    <body>
-        <h1 class="your-class">code</h1>
-        <p>some code here</p>
-    </body>
+### Overriding a Block
 
+When overriding a block, be aware that only 'inner content' is replaced.
+To override the 'outer content', simply include an underscore prior
+to the block name. For example:
 
-Troubleshooting
----------------
+Override the `main` content block:
 
-This bundle is likely to fail if you attempt to install it.
-I must work on this more.
+```php
+{% extends 'MesdPresentationBundle:Default:index.html.twig' %}
 
-History
--------
+{% block main %}
+Hello, world!
+{% endblock main %}
+```
 
-2013/05/31 - initial commit, probably several problems
+outputs
+
+```html
+
+<body>
+    <main class="container-fluid">
+        <div class="inner-container">
+            <div class="row">
+                <div class="col-sm-12">Hello, world!</div>
+            </div>
+        </div>
+    </main>
+</body>
+```
+
+Override the `_main` content block:
+
+```php
+{% extends 'MesdPresentationBundle:Default:index.html.twig' %}
+
+{% block _main %}
+Hello, world!
+{% endblock _main %}
+```
+
+outputs
+
+```html
+
+<body>
+Hello, world!
+</body>
+```
+
