@@ -1,6 +1,6 @@
 # MesdPresentationBundle
 
-v.3.1.0
+v.4.0.1
 
 ## Notes!!!
 
@@ -125,7 +125,7 @@ imports:
 twig:
 #   ...
     form_themes:
-        - "@MesdPresentationBundle:Form:bootstrap_3_layout.html.twig"
+        - "@MesdPresentationBundle/Resources/views/Form/bootstrap_3_layout.html.twig"
 ```
 
 Run assetic from the console:
@@ -143,7 +143,7 @@ From your project's root directory:
 $ cp -R vendor/mesd/presentation-bundle/Mesd/PresentationBundle/Resources/views app/Resources/MesdPresentationBundle/views
 ```
 
-In addition, another good idea is to create a `bast.html.twig` file in your `app/views` directory, like so:
+In addition, another good idea is to create a `base.html.twig` file in your `app/views` directory, like so:
 
 ``` twig
 # app/views/base.html.twig
