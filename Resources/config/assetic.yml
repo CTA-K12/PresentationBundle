@@ -45,9 +45,8 @@ assetic:
                 - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
         fixes_css:
             inputs:
-                - '@MesdPresentationBundle/Resources/public/fixes.css'
+                - '@MesdPresentationBundle/Resources/public/css/fixes.css'
         font_awesome_css:
-                - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/css/font-awesome.css'
         font_awesome_eot:
@@ -74,7 +73,7 @@ assetic:
         fullcalendar_js:
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/fullcalendar/dist/fullcalendar.js'
-#                - '@ADesignsCalendarBundle/Resources/public/js/calendar-settings.js'
+               # - '@ADesignsCalendarBundle/Resources/public/js/calendar-settings.js'
         jquery_js:
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/jquery/dist/jquery.js'
