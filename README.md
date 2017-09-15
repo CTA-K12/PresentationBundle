@@ -143,7 +143,7 @@ From your project's root directory:
 $ cp -R vendor/mesd/presentation-bundle/Mesd/PresentationBundle/Resources/views app/Resources/MesdPresentationBundle/views
 ```
 
-In addition, another good idea is to create a `bast.html.twig` file in your `app/views` directory, like so:
+In addition, another good idea is to create a `base.html.twig` file in your `app/views` directory, like so:
 
 ``` twig
 # app/views/base.html.twig
