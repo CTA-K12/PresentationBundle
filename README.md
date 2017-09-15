@@ -125,7 +125,7 @@ imports:
 twig:
 #   ...
     form_themes:
-        - "@MesdPresentationBundle:Form:bootstrap_3_layout.html.twig"
+        - "@MesdPresentationBundle/Resources/views/Form/bootstrap_3_layout.html.twig"
 ```
 
 Run assetic from the console:
