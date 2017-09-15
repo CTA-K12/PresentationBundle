@@ -43,7 +43,11 @@ assetic:
         eonasdan_dtpicker_js:
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        fixes_css:
+            inputs:
+                - '@MesdPresentationBundle/Resources/public/fixes.css'
         font_awesome_css:
+                - '@MesdPresentationBundle/Resources/public/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/font-awesome/css/font-awesome.css'
         font_awesome_eot:

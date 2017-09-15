@@ -1,0 +1,10 @@
+.content-header {
+    display: flex;
+}
+
+.content-header > .breadcrumb {
+    float: none;
+    align-self: flex-end;
+    position: initial;
+    margin-left: auto;
+}
