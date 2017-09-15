@@ -1,3 +1,16 @@
+/*
+The following css fixes the terrible `float right` solution
+implemented by AdminLte for breadcrumbs in the content header.
+
+The display error occurs when a header tag (eg. h1, h2, etc) is omitted
+but a breadcrumb element is still used. The breadcrumb will render behind
+any content listed after in the document.
+
+This fix is only needed until Bootstrap 4 is used for layout and grid.
+After that, this can be deleted.
+
+CGH (20170915)
+ */
 .content-header {
     display: flex;
 }
