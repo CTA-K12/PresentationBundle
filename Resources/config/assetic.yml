@@ -74,7 +74,7 @@ assetic:
         fullcalendar_js:
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/fullcalendar/dist/fullcalendar.js'
-#                - '@ADesignsCalendarBundle/Resources/public/js/calendar-settings.js'
+               # - '@ADesignsCalendarBundle/Resources/public/js/calendar-settings.js'
         jquery_js:
             inputs:
                 - '@MesdPresentationBundle/Resources/public/node_modules/jquery/dist/jquery.js'
