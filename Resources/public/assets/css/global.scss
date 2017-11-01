@@ -1,0 +1,5 @@
+// bug in coreui, override variable
+$navbar-brand-minimized-logo: url('../img/logo.png') !default;
+
+@import '~font-awesome/scss/font-awesome';
+@import '~@coreui/ajax/Static_Starter_GULP/scss/style';
