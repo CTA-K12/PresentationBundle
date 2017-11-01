@@ -54,7 +54,6 @@
         '@datatables_css'
         '@fullcalendar_css'
         '@eonasdan_dtpicker_css'
-        '@selectize_css'
     %}
         <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
@@ -62,6 +61,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/selectize/dist/css/selectize.bootstrap3.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/admin-lte/dist/css/AdminLTE.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/admin-lte/dist/css/skins/_all-skins.css') }}">
     {% endblock stylesheets %}
@@ -224,6 +224,7 @@
         <script type="text/javascript" src="{{ asset('node_modules/moment/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('node_modules/fullcalendar/dist/fullcalendar.js') }}"></script>
         <script type="text/javascript" src="{{ asset('node_modules/selectize/dist/js/standalone/selectize.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         {#<script src="{{ asset('node_modules/admin-lte/dist/js/app.js') }}"></script>#}
@@ -237,8 +238,6 @@
             '@datatables_js'
             '@fullcalendar_js'
             '@mousetrap_js'
-            '@eonasdan_dtpicker_js'
-            '@selectize_js'
         %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

@@ -16,7 +16,7 @@
 
 {% block root %}
 {% set trans_root = item.getExtra('translation_domain', 'mesd_presentation') %}
-{% set listAttributes = item.childrenAttributes|merge({'class': 'nav'}) %}
+{% set listAttributes = item.childrenAttributes|merge({'class': 'sidebar-menu nav'}) %}
 {{ block('list') -}}
 {% endblock %}
 
