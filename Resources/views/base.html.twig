@@ -54,6 +54,7 @@
         '@datatables_css'
         '@fullcalendar_css'
         '@eonasdan_dtpicker_css'
+        '@selectize_css'
     %}
         <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
@@ -88,20 +89,70 @@
     {% block _header %}
     <header class="main-header">
     {% block header %}
+        <a class="navbar-brand logo" href="{{ path('homepage') }}">
+            <img alt="logo" src="{{ asset('img/logo.png') }}" style="height:45px;padding-top:5px;margin:auto;"/>
+        </a>
+        {#}
         <a class="logo" href="{{ path('homepage') }}">
             <span class="logo-mini">1-1</span>
             <span class="logo-lg">OneOne</span>
         </a>
+        {#}
         <nav class="navbar navbar-static-top">
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>{#☰#}
+                <span class="sr-only">{{ 'toggle_navigation'|trans }}</span>{#☰#}
             </a>
             <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
-            </ul>
+                <ul class="nav navbar-nav">
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ asset('img/user-avatar.png') }}" class="user-image" style="float:left;width:25px;height:25px;border-radius:50%;margin-right:10px;margin-top:-2px;" alt="User Image">
+                                <span class="hidden-xs">{{ app.user.username|lower|split('@')[0] }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    <li title="{{ 'stop_impersonating'|trans }}">
+                                        <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">
+                                            <i class="fa fa-user-secret"></i>&nbsp; {{ 'stop_impersonating'|trans }}
+                                        </a>
+                                    </li>
+                                {% elseif is_granted('ROLE_ADMIN') %}
+                                    <li title="{{ 'admin_dashboard'|trans }}">
+                                        <a href="{{ path('admin') }}">
+                                            <i class="fa fa-wrench"></i>&nbsp; {{ 'admin'|trans }}
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                {% endif %}
+                                <li title="{{ 'user_profile'|trans }}">
+                                    <a href="{{ path('user_profile_view') }}">
+                                        <i class="fa fa-user"></i>&nbsp; {{ 'user_profile'|trans }}
+                                    </a>
+                                </li>
+                                <li title="{{ 'user_settings'|trans }}">
+                                    <a href="{{ path('user_settings_view') }}">
+                                        <i class="fa fa-gear"></i>&nbsp; {{ 'user_settings'|trans }}
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li title="{{ 'MesdUserBundle_logout'|trans }}">
+                                    <a href="{{ path('logout') }}">
+                                        <i class="fa fa-sign-out"></i>&nbsp; {{ 'logout'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li title="{{ 'login'|trans }}">
+                            <a href="{{ path('MesdUserBundle_login') }}">
+                                <i class="fa fa-sign-in"></i>&nbsp; {{ 'login'|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
         </nav>
     {% endblock header %}
     </header>
@@ -209,7 +260,7 @@
     {% block footer %}
         <span class="pull-right hidden-xs"><b>Version</b> 0.1.0</span>
         <strong>{{ 'copyright'|trans }} &copy; {{ 'now'|date('Y') }}&nbsp;</strong>
-        {{ 'all.rights.reserved'|trans }}
+        {{ 'all_rights_reserved'|trans }}
     {% endblock footer %}
     </footer>
     {% endblock _footer %}
@@ -224,7 +275,7 @@
         <script type="text/javascript" src="{{ asset('node_modules/moment/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('node_modules/fullcalendar/dist/fullcalendar.js') }}"></script>
         <script type="text/javascript" src="{{ asset('node_modules/selectize/dist/js/standalone/selectize.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js') }}"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         {#<script src="{{ asset('node_modules/admin-lte/dist/js/app.js') }}"></script>#}
@@ -238,6 +289,8 @@
             '@datatables_js'
             '@fullcalendar_js'
             '@mousetrap_js'
+            '@eonasdan_dtpicker_js'
+            '@selectize_js'
         %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

@@ -1,5 +1,4 @@
 <?php
-
 namespace Mesd\PresentationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

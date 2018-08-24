@@ -296,7 +296,7 @@ to the block name. For example:
 Override the `main` content block:
 
 ```php
-{% extends 'MesdPresentationBundle:Default:index.html.twig' %}
+{% extends 'MesdPresentationBundle:Default:list.html.twig' %}
 
 {% block main %}
 Hello, world!
@@ -321,7 +321,7 @@ outputs
 Override the `_main` content block:
 
 ```php
-{% extends 'MesdPresentationBundle:Default:index.html.twig' %}
+{% extends 'MesdPresentationBundle:Default:list.html.twig' %}
 
 {% block _main %}
 Hello, world!
